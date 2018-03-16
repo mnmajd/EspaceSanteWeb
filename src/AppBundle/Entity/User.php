@@ -138,6 +138,118 @@ class User extends  BaseUser
         $this->prenom = $prenom;
     }
 
+    /**
+     * @return string
+     */
+    public function getAdress()
+    {
+        return $this->adress;
+    }
+
+    /**
+     * @param string $adress
+     */
+    public function setAdress($adress)
+    {
+        $this->adress = $adress;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    /**
+     * @param string $avatar
+     */
+    public function setAvatar($avatar)
+    {
+        $this->avatar = $avatar;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCin()
+    {
+        return $this->cin;
+    }
+
+    /**
+     * @param string $cin
+     */
+    public function setCin($cin)
+    {
+        $this->cin = $cin;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDateNaissance()
+    {
+        return $this->dateNaissance;
+    }
+
+    /**
+     * @param \DateTime $dateNaissance
+     */
+    public function setDateNaissance($dateNaissance)
+    {
+        $this->dateNaissance = $dateNaissance;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTelephone()
+    {
+        return $this->telephone;
+    }
+
+    /**
+     * @param string $telephone
+     */
+    public function setTelephone($telephone)
+    {
+        $this->telephone = $telephone;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSpecialite()
+    {
+        return $this->specialite;
+    }
+
+    /**
+     * @param string $specialite
+     */
+    public function setSpecialite($specialite)
+    {
+        $this->specialite = $specialite;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSexe()
+    {
+        return $this->sexe;
+    }
+
+    /**
+     * @param string $sexe
+     */
+    public function setSexe($sexe)
+    {
+        $this->sexe = $sexe;
+    }
+
 
 }
 
