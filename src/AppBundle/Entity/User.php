@@ -26,7 +26,12 @@ class User extends  BaseUser
      * @ORM\Column(name="prenom", type="string", length=255, nullable=true)
      */
     protected $prenom;
-
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="role", type="string", length=255, nullable=true)
+     */
+    protected $role;
     /**
      * @var string
      *
@@ -248,6 +253,22 @@ class User extends  BaseUser
     public function setSexe($sexe)
     {
         $this->sexe = $sexe;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * @param string $role
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
     }
 
 
