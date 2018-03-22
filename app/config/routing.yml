@@ -24,3 +24,4 @@ fos_user_change_password:
 admin:
     path:     /admin
     defaults: { _controller: AppBundle:Admin:admin }
+
