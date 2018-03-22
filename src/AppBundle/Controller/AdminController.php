@@ -21,4 +21,15 @@ class AdminController extends Controller
         ]);
 
     }
+
+
+
+    public function testaction()
+    {
+
+        return $this->render('Forum/forum.html.twig', [
+
+        ]);
+
+    }
 }

@@ -25,3 +25,6 @@ admin:
     path:     /admin
     defaults: { _controller: AppBundle:Admin:admin }
 
+forum:
+    path:     /forum
+    defaults: { _controller: AppBundle:Admin:test }
