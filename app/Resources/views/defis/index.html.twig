@@ -1,0 +1,42 @@
+{% extends "default/home.html.twig"  %}
+
+
+
+
+
+
+{% block content %}
+
+
+
+            <!--gallery-->
+            <div class="container">
+                <div  style="margin-bottom: 10px" class="col-md-offset-10">
+                    <a href="#" class="btn btn-success">Start your own battle Battle</a>
+                </div>
+                {% for d in defis  %}
+                <div class="col-md-4" style="margin-top: 10px" >
+                    <div class="card " style="width: 18rem;background-color:#f5f5ef">
+                        <img class="card-img-top" src="{{ asset('admin/images/ga1.jpg') }}" alt="Card image cap">
+                        <div class="card-body">
+                            <h2 class="card-title">{{ d.titre }}</h2>
+                            <p class="card-text">{{ d.description }}</p>
+                            <center><a href="#" class="btn btn-primary">Join Battle</a></center>
+                        </div>
+                    </div>
+                </div>
+
+                {%  endfor %}
+                <div class="clearfix"> </div>
+            </div>
+            <!--//gallery-->
+            <!---->
+
+
+    <div class="clearfix"> </div>
+    </div>
+
+
+{% endblock content %}
+
+

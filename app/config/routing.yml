@@ -25,6 +25,7 @@ admin:
     path:     /admin
     defaults: { _controller: AppBundle:Admin:admin }
 
-forum:
-    path:     /forum
-    defaults: { _controller: AppBundle:Admin:test }
+defis:
+    path:     /listdefis
+    defaults: { _controller: AppBundle:Defis:index }
+

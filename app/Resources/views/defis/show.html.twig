@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Defi</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ defi.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ defi.titre }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ defi.description }}</td>
+            </tr>
+            <tr>
+                <th>Deadline</th>
+                <td>{{ defi.deadline }}</td>
+            </tr>
+            <tr>
+                <th>Startsat</th>
+                <td>{% if defi.startsAt %}{{ defi.startsAt|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Maxmember</th>
+                <td>{{ defi.maxmember }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('defis_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}
