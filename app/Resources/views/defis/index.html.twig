@@ -12,7 +12,30 @@
             <!--gallery-->
             <div class="container">
                 <div  style="margin-bottom: 10px" class="col-md-offset-10">
-                    <a href="#" class="btn btn-success ">Start your own  Battle</a>
+                    <button type="button" class="btn btn-success"  data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Start Your Battle <Battle></Battle></button>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">add your battle</h5>
+
+                                </div>
+                                <div class="modal-body">
+                                {{ form_start(form) }}
+                                    {{ form_end(form) }}
+                                </div>
+                                <div class="modal-footer">
+                                    <div></div>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
                 </div>
                 {% for d in defis  %}
                 <div class="col-md-4 " style="margin-top: 10px ;" >
@@ -24,7 +47,7 @@
                             <p class="card-text"><i class="fa fa-users"></i> {{ d.maxmember }} Places Dispoible</p>
                             <p class="card-text"><i class="fa fa-calendar"></i> {{ d.startsAt|date('Y-m-d') }} </p>
 
-                            <center><a href="#" class="btn btn-primary">See Battle</a></center>
+                            <center><a href="{{ path('battle',{'defi':d.id}) }}" class="btn btn-primary">See Battle</a></center>
                         </div>
                     </div>
                 </div>

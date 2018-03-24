@@ -29,3 +29,7 @@ defis:
     path:     /listdefis
     defaults: { _controller: AppBundle:Defis:index }
 
+battle:
+    path:     /listedefis/{defi}
+    defaults: { _controller: AppBundle:Defis:show }
+

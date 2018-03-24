@@ -1,6 +1,6 @@
-{% extends 'base.html.twig' %}
+{% extends "default/home.html.twig"  %}
 
-{% block body %}
+{% block content %}
     <h1>Defi</h1>
 
     <table>
@@ -37,4 +37,4 @@
             <a href="{{ path('defis_index') }}">Back to the list</a>
         </li>
     </ul>
-{% endblock %}
+{% endblock content %}

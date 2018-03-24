@@ -3,9 +3,11 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Defis;
+use AppBundle\Form\DefisType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Defi controller.
@@ -20,14 +22,25 @@ class DefisController extends Controller
      * @Route("/", name="defis_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
         $defis = $em->getRepository('AppBundle:Defis')->findAll();
+        $defi = new Defis();
+        $form = $this->createForm(DefisType::class,$defi);
+        $form->handleRequest($request);
+        if ($form->isSubmitted())
+        {
+            $em->persist($defi);
+            $em->flush();
+            return $this->redirectToRoute('defis');
+        }
+
 
         return $this->render('defis/index.html.twig', array(
             'defis' => $defis,
+            'form'=>$form->createView()
         ));
     }
 
@@ -44,4 +57,7 @@ class DefisController extends Controller
             'defi' => $defi,
         ));
     }
+
+
+
 }
