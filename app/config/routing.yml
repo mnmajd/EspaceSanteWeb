@@ -24,3 +24,23 @@ fos_user_change_password:
 admin:
     path:     /admin
     defaults: { _controller: AppBundle:Admin:admin }
+
+AjoutAnnonce:
+    path:     /AjoutAnnonce
+    defaults: { _controller: AppBundle:Annonce:AjoutAnnonce }
+
+AfficherOffre:
+    path:     /AfficherOffre
+    defaults: { _controller: AppBundle:Annonce:AfficherOffre }
+
+AfficherOffreDetail:
+    path:     /AfficherOffre/{id}
+    defaults: { _controller: AppBundle:Annonce:AfficherOffreDetail }
+
+AfficherEvent:
+    path:     /AfficherEvent
+    defaults: { _controller: AppBundle:Annonce:AfficherEvent }
+
+AfficherEventDetail:
+    path:     /AfficherEvent/{id}
+    defaults: { _controller: AppBundle:Annonce:AfficherEventDetail }

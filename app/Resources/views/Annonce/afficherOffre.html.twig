@@ -1,0 +1,35 @@
+{% extends "default/home.html.twig" %}
+
+{% block content %}
+    <center>
+<div class="list-group"style="width:1000px">
+
+
+
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table table-bordered table-hover">
+
+                    <thead class="bg-primary" >
+                    <tr>
+
+                        <th style="color:blanchedalmond">Titre de l'Offre </th>
+                        <th style="color:blanchedalmond">Date de l'Offre</th>
+                        <th> </th>
+                    </tr>
+                    </thead>
+
+    {% for Offre in Offre %}
+                    <tr>
+                        <td align="center" class="card-title" height="20"><h5 class="card-title" style="color: black" >{{Offre.titreAnnonce}}</h5></td>
+                        <td class="service">  <p class="card-text">{{Offre.dateAnnonce}}</p></td>
+                        <td><button  type="button" style="background-color: #0a6aa1"><a href="{{ path("AfficherOffreDetail" ,{"id":Offre.idAnnonce}) }} " style="color: blanchedalmond"> En savoir +</a></button></td>
+                    </tr>
+    {% endfor %}
+                </table>
+
+
+
+</div>
+
+    </center>
+{% endblock content %}
+
