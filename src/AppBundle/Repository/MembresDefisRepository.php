@@ -10,4 +10,14 @@ namespace AppBundle\Repository;
  */
 class MembresDefisRepository extends \Doctrine\ORM\EntityRepository
 {
+    public  function joinBattle()
+    {
+        $req = $this->getEntityManager()->createQuery(
+            "select  m from EspritPArcBundle:Modele m where m.pays=:p"
+        )->setParameter('p',$pays);
+         $req->execute();
+    }
+
+
+
 }

@@ -3,7 +3,9 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Defis;
+use AppBundle\Entity\MembresDefis;
 use AppBundle\Form\DefisType;
+use AppBundle\Form\MembresDefisType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -53,8 +55,11 @@ class DefisController extends Controller
     public function showAction(Defis $defi)
     {
 
+
+
         return $this->render('defis/show.html.twig', array(
             'defi' => $defi,
+
         ));
     }
 

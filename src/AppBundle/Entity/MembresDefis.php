@@ -48,5 +48,38 @@ class MembresDefis
     {
         return $this->id;
     }
+
+    /**
+     * @return User
+     */
+    public function getIdUser()
+    {
+        return $this->idUser;
+    }
+
+    /**
+     * @param User $idUser
+     */
+    public function setIdUser($idUser)
+    {
+        $this->idUser = $idUser;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdDefis()
+    {
+        return $this->idDefis;
+    }
+
+    /**
+     * @param mixed $idDefis
+     */
+    public function setIdDefis($idDefis)
+    {
+        $this->idDefis = $idDefis;
+    }
+
 }
 
