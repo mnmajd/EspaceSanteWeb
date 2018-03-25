@@ -15,15 +15,18 @@
                         <img src="{{ asset('images/banner2.jpg') }}" alt=" " class="img-responsive" />
                         <p>"{{ defi.description }}r</p>
                         <ul>
-                            <li><a href="#"><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i>Join this Battle</a></li>
-                            <li><a href="#"><i class=" fa fa-check-circle" aria-hidden="true" ></i> Joined</a></li>
-                            <li>
-                                <a href="{{ path('defis_index') }}" ><i class="fa fa-backward" aria-hidden="true"></i> Back to the list</a>
-                            </li>
+                            <form method="post">
+                                <li> <button type="submit" href="{{ path('join',{'id':defi.id} )}}" name=""></button>Join this Battle</li>
+                                <li><a href="#"><i class=" fa fa-check-circle" aria-hidden="true" ></i> Joined</a></li>
+                                <li>
+                                    <a href="{{ path('defis_index') }}" ><i class="fa fa-backward" aria-hidden="true"></i> Back to the list</a>
+                                </li>
+                            </form>
+
+
                         </ul>
                     </div>
                     <div class="clearfix"> </div>
-
 
 
                 </div>

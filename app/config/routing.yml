@@ -33,3 +33,7 @@ battle:
     path:     /listedefis/{defi}
     defaults: { _controller: AppBundle:Defis:show }
 
+join:
+    path:     /listedefis/{id}
+    defaults: { _controller: AppBundle:MembresDefis:Join }
+
