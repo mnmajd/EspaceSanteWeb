@@ -17,18 +17,40 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">add your battle</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel" style="text-shadow: #0b0b0b">add your battle</h5>
 
                                 </div>
                                 <div class="modal-body">
                                 {{ form_start(form) }}
-                                    {{ form_end(form) }}
+                                    <div class="form-group">
+                                        {{ form_widget(form.titre, { 'attr': {'class': 'form-control', 'placeholder': 'Titre'} }) }}
+                                        {{ form_errors(form.titre) }}
+                                    </div>
+                                    <div class="form-group" style="margin-top: 20px">
+                                        {{ form_widget(form.maxmember, { 'attr': {'class': 'form-control', 'placeholder': 'maxmember'} }) }}
+                                        {{ form_errors(form.maxmember) }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ form_widget(form.startsAt, { 'attr': {'class': 'form-control datepicker', 'placeholder': 'maxmember'} }) }}
+                                        {{ form_errors(form.startsAt) }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ form_widget(form.deadline, { 'attr': {'class': 'form-control datepicker', 'placeholder': 'deadline'} }) }}
+                                        {{ form_errors(form.deadline) }}
+                                    </div>
+
+                                    <div class="form-group">
+                                        {{ form_widget(form.description, { 'attr': {'class': 'form-control', 'placeholder': 'description'} }) }}
+                                        {{ form_errors(form.description) }}
+                                    </div>
+
+
                                 </div>
                                 <div class="modal-footer">
-                                    <div></div>
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
 
+                                    {{ form_widget(form.ajout, { 'attr': {'class': 'btn btn-primary btn-block'} }) }}
+                                    {{ form_end(form) }}
                                 </div>
                             </div>
                         </div>

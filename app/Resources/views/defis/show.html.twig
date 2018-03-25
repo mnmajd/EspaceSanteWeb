@@ -1,40 +1,38 @@
 {% extends "default/home.html.twig"  %}
 
 {% block content %}
-    <h1>Defi</h1>
+    <div class="container">
+        <h2 class="w3_heade_tittle_agile" style="color: darkred">{{ defi.titre }}</h2>
+        <div class="single-grid">
+            <div class="col-md-10 w3ls-blog-left">
+                <div class="w3-blog-left-grid">
+                    <div class="w3ls-blog-leftl">
+                        <h4>{% if defi.startsAt %}{{ defi.startsAt|date('Y-m-d') }}{% endif %} <span>Starts At</span></h4>
+                        <a href="#"><i class="fa fa-users" aria-hidden="true"></i>{{ defi.maxmember }}</a>
+                        <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>{{ defi.deadline }}</a>
+                    </div>
+                    <div class="w3ls-blog-leftr">
+                        <img src="{{ asset('images/banner2.jpg') }}" alt=" " class="img-responsive" />
+                        <p>"{{ defi.description }}r</p>
+                        <ul>
+                            <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i>User Name</a></li>
+                            <li><a href="#"><i class="fa fa-tags" aria-hidden="true"></i>0 Tags</a></li>
+                            <li>
+                                <a href="{{ path('defis_index') }}" ><i class="fa fa-backward" aria-hidden="true"></i> Back to the list</a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>10 Comments</a></li>
+                        </ul>
+                    </div>
+                    <div class="clearfix"> </div>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ defi.id }}</td>
-            </tr>
-            <tr>
-                <th>Titre</th>
-                <td>{{ defi.titre }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ defi.description }}</td>
-            </tr>
-            <tr>
-                <th>Deadline</th>
-                <td>{{ defi.deadline }}</td>
-            </tr>
-            <tr>
-                <th>Startsat</th>
-                <td>{% if defi.startsAt %}{{ defi.startsAt|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Maxmember</th>
-                <td>{{ defi.maxmember }}</td>
-            </tr>
-        </tbody>
-    </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('defis_index') }}">Back to the list</a>
-        </li>
-    </ul>
+
+                </div>
+            </div>
+
+            <div class="clearfix"> </div>
+        </div>
+        <!-- //single -->
+    </div>
+
 {% endblock content %}
