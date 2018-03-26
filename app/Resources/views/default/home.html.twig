@@ -80,10 +80,13 @@ Smartphone Compatible web template, free web designs for Nokia, Samsung, LG, Son
                             <li class="m_nav_item menu__item" id="moble_nav_item_2"> <a href="about.html" class="menu__link">forum</a> </li>
                             <li class="m_nav_item menu__item" id="moble_nav_item_4"> <a href="appointment.html" class="menu__link">Service  </a> </li>
                             <li class="m_nav_item menu__item" id="moble_nav_item_3 dropdown"> <a href="#" class="menu__link dropdown-toggle" data-toggle="dropdown">Annonces  <b class="caret"></b></a>
+
                                 <ul class="dropdown-menu agile_short_dropdown">
-                                    <li><a href="{{ path("AfficherOffre" ) }} ">Offre d'emplois</a></li>
-                                    <li><a href="{{ path("AfficherEvent" ) }}">Evenements</a></li>
+                                    <li><a href="{{ path('AfficherOffre' , {'typeAnnonce':"Offre d'emploi"}) }} ">Offre d'emplois</a></li>
+                                    <li><a href="{{ path('AfficherEvent' , {'typeAnnonce':"Evenement"} )}} ">Evenements</a></li>
                                 </ul>
+
+
                             </li>
                             <li class="m_nav_item menu__item" id="moble_nav_item_5"> <a href="gallery.html" class="menu__link">Quiz</a> </li>
                             <li class="m_nav_item menu__item" id="moble_nav_item_6"> <a href="#" class="menu__link"> Defis </a> </li>

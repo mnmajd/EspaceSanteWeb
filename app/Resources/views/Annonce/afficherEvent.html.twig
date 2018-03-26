@@ -1,11 +1,15 @@
 {% extends "default/home.html.twig" %}
 
 {% block content %}
+
+    <h4>Rechercher Nom Evenement</h4>
+    <form METHOD="POST">
+
+        <input type="text" name="titreAnnonce">
+        <input type="submit" name="submit" value="recherche">
+
     <center>
         <div class="list-group"style="width:1000px">
-
-
-
             <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table table-bordered table-hover">
 
                 <thead class="bg-primary" >
@@ -25,11 +29,8 @@
                     </tr>
                 {% endfor %}
             </table>
-
-
-
         </div>
-
     </center>
+</form>
 {% endblock content %}
 

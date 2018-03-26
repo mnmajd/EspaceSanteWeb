@@ -1,6 +1,13 @@
 {% extends "default/home.html.twig" %}
 
 {% block content %}
+
+<h4>Rechercher Nom Evenement</h4>
+<form METHOD="POST">
+
+    <input type="text" name="titreAnnonce">
+    <input type="submit" name="submit" value="recherche">
+
     <center>
 <div class="list-group"style="width:1000px">
 
@@ -31,5 +38,6 @@
 </div>
 
     </center>
+</form>
 {% endblock content %}
 

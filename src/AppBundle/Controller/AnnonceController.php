@@ -13,6 +13,7 @@ use AppBundle\Form\AnnonceType;
 use \Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+
 class AnnonceController extends Controller
 
 {
@@ -37,35 +38,40 @@ class AnnonceController extends Controller
     }
 
 
-    public function afficherOffreAction(Request $request)
+    public function afficherOffreAction(Request $request , $typeAnnonce)
     {
         $em = $this->getDoctrine()->getManager();
-        $Offre=$em->getRepository("AppBundle:Annonce")->findAll();
-
+        $Offre=$em->getRepository("AppBundle:Annonce")
+            ->afficherOffreDQL($typeAnnonce);
+        if ($request->isMethod('POST')){
+            $titreAnnonce=$request->get('titreAnnonce');
+            $Offre=$em->getRepository("AppBundle:Annonce")->findBy(array('titreAnnonce'=>$titreAnnonce));
+        }
         return $this->render('Annonce/afficherOffre.html.twig', array(
             'Offre'=>$Offre ));
 
     }
-
-
 
     public function afficherOffreDetailAction($id)
     {
         $em = $this->getDoctrine()->getManager();
         $Offre=$em->getRepository("AppBundle:Annonce")->find($id);
 
-        return $this->render('Annonce/afficheOffreDetail.html.twig', array(
+        return $this->render('Annonce/afficheOffreDetail.html.twig ', array(
             'Offre'=>$Offre ));
 
     }
-    public function afficherEventAction(Request $request)
+
+    Public function afficherEventAction(Request $request , $typeAnnonce)
     {
         $em = $this->getDoctrine()->getManager();
-        $Event=$em->getRepository("AppBundle:Annonce")->findAll();
-
-        return $this->render('Annonce/afficherEvent.html.twig', array(
-            'Event'=>$Event ));
-
+        $Event = $em->getRepository("AppBundle:Annonce")
+               ->afficherEventDQL($typeAnnonce);
+        if ($request->isMethod('POST')){
+            $titreAnnonce=$request->get('titreAnnonce');
+            $Event=$em->getRepository("AppBundle:Annonce")->findBy(array('titreAnnonce'=>$titreAnnonce));
+        }
+        return $this->render("Annonce/afficherEvent.html.twig", array('Event'=>$Event));
     }
 
     public function afficherEventDetailAction($id)
@@ -73,10 +79,9 @@ class AnnonceController extends Controller
         $em = $this->getDoctrine()->getManager();
         $Event=$em->getRepository("AppBundle:Annonce")->find($id);
 
-        return $this->render('Annonce/afficherEventDetail.html.twig', array(
+        return $this->render('Annonce/afficherEventDetail.html.twig ', array(
             'Event'=>$Event ));
 
     }
-
 
 }

@@ -30,17 +30,19 @@ AjoutAnnonce:
     defaults: { _controller: AppBundle:Annonce:AjoutAnnonce }
 
 AfficherOffre:
-    path:     /AfficherOffre
+    path:     /AfficherOffre/{typeAnnonce}
     defaults: { _controller: AppBundle:Annonce:AfficherOffre }
 
 AfficherOffreDetail:
-    path:     /AfficherOffre/{id}
+    path:     /AfficherOffreDetail/{id}
     defaults: { _controller: AppBundle:Annonce:AfficherOffreDetail }
 
 AfficherEvent:
-    path:     /AfficherEvent
+    path:     /AfficherEvent/{typeAnnonce}
     defaults: { _controller: AppBundle:Annonce:AfficherEvent }
 
 AfficherEventDetail:
-    path:     /AfficherEvent/{id}
+    path:     /AfficherEventDetail/{id}
     defaults: { _controller: AppBundle:Annonce:AfficherEventDetail }
+
+
