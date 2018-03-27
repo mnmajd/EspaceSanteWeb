@@ -10,4 +10,12 @@ namespace AppBundle\Repository;
  */
 class DefisRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function FindDisc($id)
+    {
+        $req = $this->getEntityManager()->createQuery(
+            "select  m from AppBundle:Discussion m where m.idDefis=:p"
+        )->setParameter('p',$id);
+        return $req->getResult();
+
+    }
 }

@@ -150,5 +150,10 @@ class Defis
     {
         return $this->titre;
     }
+
+    public function toInt() {
+
+        return $this->id;
+    }
 }
 

@@ -287,6 +287,28 @@ class User extends  BaseUser
         $this->id = $id;
     }
 
+    /**
+     * @return string
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * @param string $username
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+    }
+
+
+    public function __toString() {
+
+        return $this->id;
+    }
+
 
 }
 

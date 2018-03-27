@@ -15,16 +15,41 @@
                         <img src="{{ asset('images/banner2.jpg') }}" alt=" " class="img-responsive" />
                         <p>"{{ defi.description }}r</p>
                         <ul>
-                            <form method="post">
-                                <li> <button type="submit" href="{{ path('join',{'id':defi.id} )}}" name=""></button>Join this Battle</li>
-                                <li><a href="#"><i class=" fa fa-check-circle" aria-hidden="true" ></i> Joined</a></li>
+
+                            <li><a href="#" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class=" fa  fa-linux" aria-hidden="true" ></i> Join this battle</a></li>
+                            <li><a href="#"><i class=" fa fa-check-circle" aria-hidden="true" ></i> Joined</a></li>
                                 <li>
                                     <a href="{{ path('defis_index') }}" ><i class="fa fa-backward" aria-hidden="true"></i> Back to the list</a>
                                 </li>
-                            </form>
+
 
 
                         </ul>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel" style="text-shadow: #0b0b0b">add your battle</h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        {% if u == null %}
+                                            <p>you sould be authentificated</p>
+                                        {% endif %}
+                                        {% if not u == null  %}
+                                        <form method="post">
+
+                                            <input type="number" value="{{ u.id }}" name="iduser">
+                                            <input type="number" value="{{ defi.id }}">
+                                            <input type="submit" name="join" value="join">
+                                        </form>
+                                            {%  endif %}
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                     <div class="clearfix"> </div>
 
@@ -35,6 +60,102 @@
             <div class="clearfix"> </div>
         </div>
         <!-- //single -->
-    </div>
 
+        <div class="tabs tabs-style-bar">
+            <nav>
+                <ul>
+                    <li><a href="#" class="icon icon-box"><span>Discussion</span></a></li>
+                    <li><a href="#" class="icon icon-display"><span>Challenge</span></a></li>
+
+                </ul>
+            </nav>
+
+            <div class="content-wrap">
+
+
+                <section id="section-bar-1" class="agileits w3layouts">
+
+                    {% for di in d  %}
+
+
+                        <div class="panel panel-default">
+                        <div class="media">
+                            <div class="media-left">
+
+                                <img class="media-object" src="{{ asset('images/') }}" alt={{ di.idUser.username }}>
+
+                            </div>
+                            <div class="media-body">
+
+                                {{ di.contenu }}
+                            </div>
+                        </div>
+                        </div>
+                    {%  endfor %}
+                    <div class="coment-form">
+                        <h4>Leave your comment</h4>
+                        <form action="#" method="post">
+                            <textarea name="message" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your Comment...';}" required="">Your Comment...</textarea>
+                            <input type="submit" value="Submit Comment" >
+                        </form>
+                    </div>
+                </section>
+                <!-- //Tab-1 -->
+
+                <!-- Tab-2 -->
+                <section id="section-bar-2" >
+
+                </section>
+                <!-- //Tab-2 -->
+
+
+
+            </div>
+            <script src="{{ asset('js/jquery-2.2.3.min.js') }}"></script>
+
+            <script src="{{ asset('js/cbpFWTabs.js') }}"></script>
+            <script>
+                (function() {
+                    [].slice.call( document.querySelectorAll( '.tabs' ) ).forEach( function( el ) {
+                        new CBPFWTabs( el );
+                    });
+                })();
+            </script>
+            <!-- //Gallery-Tab-JavaScript -->
+
+
+            <!-- Swipe-Box-JavaScript -->
+            <script src="{{ asset('js/jquery.swipebox.min.js') }}"></script>
+            <script type="text/javascript">
+                jQuery(function($) {
+                    $(".swipebox").swipebox();
+                });
+            </script>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
 {% endblock content %}

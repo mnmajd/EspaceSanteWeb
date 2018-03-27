@@ -42,7 +42,8 @@ class DefisController extends Controller
 
         return $this->render('defis/index.html.twig', array(
             'defis' => $defis,
-            'form'=>$form->createView()
+            'form'=>$form->createView(),
+
         ));
     }
 
@@ -52,13 +53,30 @@ class DefisController extends Controller
      * @Route("/{id}", name="defis_show")
      * @Method("GET")
      */
-    public function showAction(Defis $defi)
+    public function showAction(Defis $defi , Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+            $m = new MembresDefis();
 
 
+        $disc = $em->getRepository('AppBundle:Defis')->FindDisc($defi->getId());
+        if ($request->isMethod('post'))
+        {
 
+            $em->persist($m);
+            $em->flush();
+
+        }
+
+        $em->clear();
         return $this->render('defis/show.html.twig', array(
             'defi' => $defi,
+           /* 'f'=>$form->createView(),*/
+            'u'=>$user,
+            'd'=>$disc
+
+
 
         ));
     }

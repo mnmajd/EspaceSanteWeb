@@ -47,18 +47,10 @@ class MembresDefisController extends Controller
     }
 
 
-    public function Joinaction( Request $request)
+    public function Joinaction($defi,$user)
     {
-        $em = $this->getDoctrine()->getManager();
-        $user = $this->getUser();
-        $defiM = new MembresDefis();
-        if($request->isMethod('post'))
-            $defiM->setIdDefis(1);
-            $defiM->setIdUser(2);
-            $em->persist($defiM);
-            $em->flush();
 
-        return new Response('Saved new product with id');
+        return $this->render('defis/show.html.twig');
 
     }
 

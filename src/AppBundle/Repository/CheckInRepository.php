@@ -10,4 +10,5 @@ namespace AppBundle\Repository;
  */
 class CheckInRepository extends \Doctrine\ORM\EntityRepository
 {
+
 }
