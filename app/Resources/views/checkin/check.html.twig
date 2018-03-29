@@ -1,0 +1,26 @@
+{% extends "default/home.html.twig"  %}
+
+{% block content %}
+    <div class="container">
+            <div class="panel panel-default">
+
+
+        <h2 class="w3_heade_tittle_agile" > Mr {{ u.username }} </h2>
+            <p class="sub_t_agileits">Do you confirm that you did you task today?</p>
+
+                <form method="post">
+
+                    <button type="submit" class="btn btn-success btn-lg btn-block"><i class=" fa fa-thumbs-up"></i>yes</button>
+
+                </form>
+
+                <a href="{{ path('join' ,{'defi' :d}) }}"><button type="button" class="btn btn-danger btn-lg btn-block"><i class=" fa fa-thumbs-down"></i> Not Yet </button></a>
+
+
+
+
+            </div>
+
+
+    </div>
+{% endblock content %}

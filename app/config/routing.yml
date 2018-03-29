@@ -37,12 +37,14 @@ join:
     path:     /listedefis/{defi}
     defaults: { _controller: AppBundle:MembresDefis:Join }
 
-check:
-    path:     /listedefis/{defi}
-    defaults: { _controller: AppBundle:Checkin:check }
-
 add:
     path:     /add/{defi}
     defaults: { _controller: AppBundle:Discussion:add }
 
+check:
+    path:     /check/{defi}
+    defaults: { _controller: AppBundle:Checkin:check }
 
+checked:
+    path:     /check/{defi}
+    defaults: { _controller: AppBundle:Checkin:do }

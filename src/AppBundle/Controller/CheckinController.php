@@ -10,29 +10,34 @@ use Symfony\Component\HttpFoundation\Request;
 class CheckinController extends Controller
 {
 
-    public  function check($defi)
+    public function checkAction($defi,Request $request)
 
     {
-
         $em = $this->getDoctrine()->getManager();
-
-        $c = new CheckIn();
-        $user = $this->getUser();
+        $m = new CheckIn();
+        $user  = $this->getUser();
         $Defi = $em->getRepository('AppBundle:Defis')->find($defi);
-        $c->setIdDefis($Defi);
-        $c->setIdUser($user);
-        $c->isChecked(true);
 
-        $em->persist($c);
-        $em->flush();
+        if ($request->isMethod('post'))
+        {
+            $m->setChecked(true);
+            $m->setIdUser($user);
+            $m->setIdDefis($Defi);
+            $em->persist($m);
+            $em->flush();
+           return $this->redirectToRoute('battle',array(
+               'defi'=>$defi
+           ));
+        }
+        $em->clear();
 
-
-        return $this->render('defis/show.html.twig',array(
-            'd'=>$defi,
-            't'=>$user
-
+        return $this->render('checkin/check.html.twig',array(
+                'u' => $user,
+            'd'=>$defi
         ));
 
 
     }
+
+
 }
