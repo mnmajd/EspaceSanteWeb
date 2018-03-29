@@ -62,5 +62,76 @@ class CheckIn
     {
         return $this->id;
     }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * @param \DateTime $date
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+    }
+
+    /**
+     * @return User
+     */
+    public function getIdUser()
+    {
+        return $this->idUser;
+    }
+
+    /**
+     * @param User $idUser
+     */
+    public function setIdUser($idUser)
+    {
+        $this->idUser = $idUser;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdDefis()
+    {
+        return $this->idDefis;
+    }
+
+    /**
+     * @param mixed $idDefis
+     */
+    public function setIdDefis($idDefis)
+    {
+        $this->idDefis = $idDefis;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isChecked()
+    {
+        return $this->checked;
+    }
+
+    /**
+     * @param bool $checked
+     */
+    public function setChecked($checked)
+    {
+        $this->checked = $checked;
+    }
+
+    public function __construct()
+    {
+        $this->date = new \DateTime();
+    }
+
+
 }
 
