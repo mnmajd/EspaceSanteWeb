@@ -151,9 +151,9 @@ class Defis
         return $this->titre;
     }
 
-    public function toInt() {
+    public function __toString() {
 
-        return $this->id;
+        return $this->titre;
     }
 }
 

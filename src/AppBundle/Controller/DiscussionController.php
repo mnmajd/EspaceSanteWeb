@@ -1,0 +1,41 @@
+<?php
+
+namespace AppBundle\Controller;
+
+use AppBundle\Entity\Discussion;
+use AppBundle\Form\DiscussionType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+
+class DiscussionController extends Controller
+{
+    public function addaction(Request $request,$defi)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $user  = $this->getUser();
+        $Defi = $em->getRepository('AppBundle:Defis')->find($defi);
+
+        $d = new Discussion();
+      //  $form = $this->createForm(DiscussionType::class,$d);
+      //  $form->handleRequest($request);
+        if ($request->isMethod('post'))
+        {
+            $d->setIdDefis($Defi);
+            $d->setIdUser($user);
+            $d->setContenu($request->get('message'));
+
+            $em->persist($d);
+            $em->flush();
+
+        }
+        $em->clear();
+        return $this->render('discussion/add.html.twig', array(
+
+            'user'=>$user,
+            'd'=>$defi
+
+        ));
+    }
+}

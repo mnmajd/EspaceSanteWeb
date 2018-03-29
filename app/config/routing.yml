@@ -37,3 +37,7 @@ join:
     path:     /listedefis/{defi}
     defaults: { _controller: AppBundle:MembresDefis:Join }
 
+add:
+    path:     /add/{defi}
+    defaults: { _controller: AppBundle:Discussion:add }
+

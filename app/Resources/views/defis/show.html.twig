@@ -17,33 +17,35 @@
                         <ul>
 
                             <li><a href="#" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class=" fa  fa-linux" aria-hidden="true" ></i> Join this battle</a></li>
-                            <li><a href="#"><i class=" fa fa-check-circle" aria-hidden="true" ></i> Joined</a></li>
+                            
                                 <li>
                                     <a href="{{ path('defis_index') }}" ><i class="fa fa-backward" aria-hidden="true"></i> Back to the list</a>
                                 </li>
-
-
 
                         </ul>
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel" style="text-shadow: #0b0b0b">add your battle</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel" style="text-shadow: #0b0b0b">JOIN THIS BATTLE </h5>
                                     </div>
                                     <div class="modal-body">
                                         {% if u == null %}
                                             <p>you sould be authentificated</p>
                                         {% endif %}
-                                        {% if not u == null  %}
-                                        <form method="post">
+                                        {% if not u == null %}
 
-                                            <input type="number" value="{{ u.id }}" name="iduser">
-                                            <input type="number" value="{{ defi.id }}">
-                                            <input type="submit" name="join" value="join">
+                                              <p style="font-style: oblique"> Click To Join</p> 
+
+                                      <form method="post">
+                                    
+                                    
+                                    
+                                    
+                                        <input type="submit" name="join" value="join" class="btn btn-primary btn-block">
+                                           
                                         </form>
-                                            {%  endif %}
-
+                                        {% endif %}
 
                                     </div>
                                 </div>
@@ -82,23 +84,33 @@
                         <div class="media">
                             <div class="media-left">
 
-                                <img class="media-object" src="{{ asset('images/') }}" alt={{ di.idUser.username }}>
+                                <img class="media-object" src="{{ asset('images/') }}" alt={{ di.idUser }}>
 
                             </div>
                             <div class="media-body">
-
+                                   
                                 {{ di.contenu }}
                             </div>
                         </div>
                         </div>
                     {%  endfor %}
-                    <div class="coment-form">
-                        <h4>Leave your comment</h4>
-                        <form action="#" method="post">
-                            <textarea name="message" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your Comment...';}" required="">Your Comment...</textarea>
-                            <input type="submit" value="Submit Comment" >
-                        </form>
+
+                        {% if u == null %}
+                            <div class="alert alert-info" role="alert">
+                              You Should join this battle to comment
+                            </div>
+
+
+                        {%  endif %}
+                        {% if not u == null %}
+                    <div class="coment-form" >  
+                        <h4>Add You Motivation</h4>
+
+
+                                   <a href="{{ path('add',{'defi':defi.id }) }}"><input type="submit" value="Click Here"  >    </a>
+
                     </div>
+                    {% endif %}
                 </section>
                 <!-- //Tab-1 -->
 

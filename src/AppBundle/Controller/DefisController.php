@@ -3,8 +3,10 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Defis;
+use AppBundle\Entity\Discussion;
 use AppBundle\Entity\MembresDefis;
 use AppBundle\Form\DefisType;
+use AppBundle\Form\DiscussionType;
 use AppBundle\Form\MembresDefisType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -58,23 +60,31 @@ class DefisController extends Controller
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
             $m = new MembresDefis();
-
+            $discussion = new Discussion();
+            //$exist= $em->getRepository('AppBundle:Defis')->existBattle($defi->getId(),$user->getId());
 
         $disc = $em->getRepository('AppBundle:Defis')->FindDisc($defi->getId());
-        if ($request->isMethod('post'))
-        {
+        $Defi = $em->getRepository('AppBundle:Defis')->find($defi->getId());
 
+       if ($request->isMethod('post'))
+        {
+            $m->setIdUser($user);
+            $m->setIdDefis($Defi);
             $em->persist($m);
             $em->flush();
 
         }
+
+
 
         $em->clear();
         return $this->render('defis/show.html.twig', array(
             'defi' => $defi,
            /* 'f'=>$form->createView(),*/
             'u'=>$user,
-            'd'=>$disc
+            'd'=>$disc,
+
+            //'exist'=>$exist
 
 
 

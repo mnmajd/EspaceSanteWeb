@@ -1,0 +1,15 @@
+{% extends "default/home.html.twig"  %}
+
+{% block content %}
+    <div class="container">
+<div class="coment-form">
+    <h4>Leave your comment</h4>
+    <form  method="post">
+
+        <textarea name="message" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your Comment...';}" required="">Your Comment...</textarea>
+        <input type="submit" value="Submit Comment" >
+    </form>
+</div>
+    </div>
+
+{% endblock content %}

@@ -18,4 +18,15 @@ class DefisRepository extends \Doctrine\ORM\EntityRepository
         return $req->getResult();
 
     }
+    public function existBattle($idf , $idu)
+    {
+        $req = $this->getEntityManager()->createQuery(
+            " SELECT COUNT(u)
+             FROM AppBundle:MembresDefis u
+                   WHERE u.idDefis=:p and u.idUser=:t"
+        )->setParameter('p',$idf)
+        ->setParameter('t',$idu);
+        return $req->getResult();
+
+    }
 }
