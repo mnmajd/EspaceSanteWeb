@@ -116,9 +116,13 @@
 
                 <!-- Tab-2 -->
                 <section id="section-bar-2" >
-
+                    <ul>
+                      {% for list in list %}
+                               <li> {{  list.idUser.username}}</li>
+                    {%  endfor %}
+                        </ul>
                 </section>
-                <!-- //Tab-2 -->
+
 
 
 

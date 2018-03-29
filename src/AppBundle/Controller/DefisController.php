@@ -65,7 +65,7 @@ class DefisController extends Controller
 
         $disc = $em->getRepository('AppBundle:Defis')->FindDisc($defi->getId());
         $Defi = $em->getRepository('AppBundle:Defis')->find($defi->getId());
-
+        $list =$em->getRepository('AppBundle:Defis')->FindUsers($defi->getId());
        if ($request->isMethod('post'))
         {
             $m->setIdUser($user);
@@ -83,6 +83,7 @@ class DefisController extends Controller
            /* 'f'=>$form->createView(),*/
             'u'=>$user,
             'd'=>$disc,
+            'list'=>$list
 
             //'exist'=>$exist
 

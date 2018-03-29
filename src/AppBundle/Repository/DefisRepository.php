@@ -29,4 +29,13 @@ class DefisRepository extends \Doctrine\ORM\EntityRepository
         return $req->getResult();
 
     }
+    public function FindUsers($id)
+    {
+        $req = $this->getEntityManager()->createQuery(
+            "select  m from AppBundle:MembresDefis m where m.idDefis=:p"
+        )->setParameter('p',$id);
+        return $req->getResult();
+
+    }
+
 }
