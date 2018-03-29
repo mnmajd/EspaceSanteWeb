@@ -61,7 +61,7 @@ class DefisController extends Controller
         $user = $this->getUser();
             $m = new MembresDefis();
             $discussion = new Discussion();
-            //$exist= $em->getRepository('AppBundle:Defis')->existBattle($defi->getId(),$user->getId());
+            $exist= $em->getRepository('AppBundle:Defis')->existBattle($defi->getId(),$user->getId());
 
         $disc = $em->getRepository('AppBundle:Defis')->FindDisc($defi->getId());
         $Defi = $em->getRepository('AppBundle:Defis')->find($defi->getId());
@@ -71,8 +71,9 @@ class DefisController extends Controller
             $m->setIdUser($user);
             $m->setIdDefis($Defi);
             $em->persist($m);
-            $em->flush();
 
+            $em->getRepository('AppBundle:Defis')->updatememebermax($defi->getId());
+            $em->flush();
         }
 
 
@@ -83,9 +84,9 @@ class DefisController extends Controller
            /* 'f'=>$form->createView(),*/
             'u'=>$user,
             'd'=>$disc,
-            'list'=>$list
+            'list'=>$list,
 
-            //'exist'=>$exist
+            'exist'=>$exist
 
 
 

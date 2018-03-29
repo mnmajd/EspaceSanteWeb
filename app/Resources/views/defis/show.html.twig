@@ -16,13 +16,17 @@
                         <p>"{{ defi.description }}r</p>
                         <ul>
 
-                            <li><a href="#" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class=" fa  fa-linux" aria-hidden="true" ></i> Join this battle</a></li>
-                            
+                            <li><a href="#" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class=" fa fa-ticket" aria-hidden="true" ></i> Join this battle</a></li>
+                            <li hidden>
+                                <a href="#" ><i class=" fa fa-check-square-o" aria-hidden="true"></i> Already joined</a>
+                            </li>
                                 <li>
                                     <a href="{{ path('defis_index') }}" ><i class="fa fa-backward" aria-hidden="true"></i> Back to the list</a>
                                 </li>
 
+
                         </ul>
+
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -63,6 +67,7 @@
         </div>
         <!-- //single -->
 
+
         <div class="tabs tabs-style-bar">
             <nav>
                 <ul>
@@ -75,7 +80,10 @@
             <div class="content-wrap">
 
 
+
                 <section id="section-bar-1" class="agileits w3layouts">
+                    {% if date(defi.StartsAt) <= date() %}
+
 
                     {% for di in d  %}
 
@@ -111,11 +119,16 @@
 
                     </div>
                     {% endif %}
+                    {% endif %}
+                    {% if  date(defi.StartsAt) > date() %}
+                        <p> the Challenge hasn't started yet</p>
+                    {% endif %}
                 </section>
                 <!-- //Tab-1 -->
 
                 <!-- Tab-2 -->
                 <section id="section-bar-2" >
+                    {% if date(defi.StartsAt) <= date() %}
                         <div >
                       {% for list in list %}
 
@@ -155,6 +168,11 @@
                         </div>
                       {%  endfor %}
                         </div>
+                    {% endif %}
+                    {% if  date(defi.StartsAt) > date() %}
+                        <p style="background-color: #93a1a1"> the Challenge hasn't started yet</p>
+
+                    {% endif %}
                 </section>
 
 

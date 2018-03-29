@@ -37,5 +37,15 @@ class DefisRepository extends \Doctrine\ORM\EntityRepository
         return $req->getResult();
 
     }
+    public function updatememebermax ($id)
+    {
+        $req = $this->getEntityManager()->createQuery(
+
+            "update AppBundle:Defis m set m.maxmember = m.maxmember - 1
+     where m.id=:p")
+            ->setParameter('p',$id);
+
+        return $req->execute();
+    }
 
 }
