@@ -116,11 +116,45 @@
 
                 <!-- Tab-2 -->
                 <section id="section-bar-2" >
-                    <ul>
+                        <div >
                       {% for list in list %}
-                               <li> {{  list.idUser.username}}</li>
-                    {%  endfor %}
-                        </ul>
+
+                        <div class="panel panel-default">
+                            {% if not u == null %}
+                       <div class="row">
+                           <div class="col-md-offset-10" style="margin-top: 10px">
+                                <button type="button" class="btn btn-success" > Did you do it ? </button>
+                           </div>
+
+                       </div>
+                            {% endif %}
+                        <div class="media response-info">
+                            <div class="media-left response-text-left">
+                                <a href="#">
+                                    <img class="img-circle" src="{{ asset('images/ad.jpg') }}" alt=""/>
+                                </a>
+                                <h5><a href="#">{{ list.idUser.username }}</a></h5>
+                            </div>
+                            <div class="media-body response-text-right">
+                                <div class="w3-agile-poll">
+                                    <h3> Achievement</h3>
+                                    <div class="progress p">
+                                        <div class="progress-bar bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                                           30%
+                                        </div>
+                                    </div>
+                                </div>
+                                <ul style="margin-left: 20px">
+                                    <li> Today is Mar 15, 2017</li>
+                                </ul>
+
+
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                        </div>
+                      {%  endfor %}
+                        </div>
                 </section>
 
 
