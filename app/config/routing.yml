@@ -25,9 +25,9 @@ admin:
     path:     /admin
     defaults: { _controller: AppBundle:Admin:admin }
 
-AjoutAnnonce:
-    path:     /AjoutAnnonce
-    defaults: { _controller: AppBundle:Annonce:AjoutAnnonce }
+AjoutEvent:
+    path:     /AjoutEvent
+    defaults: { _controller: AppBundle:Annonce:AjoutEvent }
 
 AfficherOffre:
     path:     /AfficherOffre/{typeAnnonce}
@@ -45,4 +45,22 @@ AfficherEventDetail:
     path:     /AfficherEventDetail/{id}
     defaults: { _controller: AppBundle:Annonce:AfficherEventDetail }
 
+DeleteEvent:
+    path:     /DeleteEvent/{id}
+    defaults: { _controller: AppBundle:Annonce:DeleteEvent }
 
+modifierEvent:
+    path:     /modifierEvent/{id}
+    defaults: { _controller: AppBundle:Annonce:modifierEvent }
+
+modifierOffre:
+    path:     /modifierOffre/{id}
+    defaults: { _controller: AppBundle:Annonce:modifierOffre }
+
+AjoutOffre:
+    path:     /AjoutOffre
+    defaults: { _controller: AppBundle:Annonce:AjoutOffre }
+
+DeleteOffre:
+    path:     /DeleteOffre/{id}
+    defaults: { _controller: AppBundle:Annonce:DeleteOffre }

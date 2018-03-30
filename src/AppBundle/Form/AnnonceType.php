@@ -23,6 +23,7 @@ class AnnonceType extends AbstractType
             ->add('addrAnnonce')
             ->add('telAnnonce')
             ->add('imgAnnonce')
+
             ->add('Ajouter',SubmitType::class);
     }
     

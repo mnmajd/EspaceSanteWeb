@@ -2,11 +2,13 @@
 
 {% block content %}
 
-<h4>Rechercher Nom Evenement</h4>
-<form METHOD="POST">
+    <button  type="button" style="background-color: #0a6aa1"><a href="{{ path("AjoutOffre") }} " style="color: blanchedalmond"> ajouté un Offre d'emploi </a></button></td>
 
-    <input type="text" name="titreAnnonce">
-    <input type="submit" name="submit" value="recherche">
+    <form METHOD="POST">
+    <h4 style="text-align: right">Rechercher Nom Offre d'emploi</h4>
+    <tr><th><input type="text" name="titreAnnonce" class="pull-right"></th>
+        <th>  <input type="submit" name="submit" value="recherche" class="pull-right"></th></tr>
+    <br><br>
 
     <center>
 <div class="list-group"style="width:1000px">
@@ -28,7 +30,10 @@
                     <tr>
                         <td align="center" class="card-title" height="20"><h5 class="card-title" style="color: black" >{{Offre.titreAnnonce}}</h5></td>
                         <td class="service">  <p class="card-text">{{Offre.dateAnnonce}}</p></td>
-                        <td><button  type="button" style="background-color: #0a6aa1"><a href="{{ path("AfficherOffreDetail" ,{"id":Offre.idAnnonce}) }} " style="color: blanchedalmond"> En savoir +</a></button></td>
+                        <td><button  type="button" style="background-color: #0a6aa1"><a href="{{ path("AfficherOffreDetail" ,{"id":Offre.idAnnonce}) }} " style="color: blanchedalmond"> En savoir +</a></button>
+                            &nbsp;
+                            <button  type="button" style="background-color: #0a6aa1"><a href="{{ path("DeleteOffre" ,{"id":Offre.idAnnonce}) }} " style="color: blanchedalmond"> Supprimer</a></button>
+                        </td>
                     </tr>
     {% endfor %}
                 </table>
