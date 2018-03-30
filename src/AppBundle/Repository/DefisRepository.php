@@ -48,4 +48,16 @@ class DefisRepository extends \Doctrine\ORM\EntityRepository
         return $req->execute();
     }
 
+    public function check ($idf , $idu)
+    {
+
+        $req = $this->getEntityManager()->createQuery(
+            "select  m from AppBundle:CheckIn m where m.idDefis=:p
+
+                  and m.idUser=:i and m.date = CURRENT_DATE()"
+        )->setParameter('p',$idf)
+        ->setParameter('i',$idu);
+        return $req->getResult();
+    }
+
 }

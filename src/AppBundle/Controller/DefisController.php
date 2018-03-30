@@ -61,11 +61,12 @@ class DefisController extends Controller
         $user = $this->getUser();
             $m = new MembresDefis();
             $exist = false;
+            $check = null ;
             $discussion = new Discussion();
             if($user != null)
             {
                 $exist= $em->getRepository('AppBundle:Defis')->existBattle($defi->getId(),$user->getId());
-
+                $check = $em->getRepository('AppBundle:Defis')->check($defi->getId(),$user->getId());
             }
 
         $disc = $em->getRepository('AppBundle:Defis')->FindDisc($defi->getId());
@@ -88,7 +89,8 @@ class DefisController extends Controller
             'u'=>$user,
             'd'=>$disc,
             'list'=>$list,
-            'exist'=>$exist
+            'exist'=>$exist,
+            'check'=>$check
 
 
 

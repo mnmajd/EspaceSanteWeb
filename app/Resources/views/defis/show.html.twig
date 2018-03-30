@@ -104,7 +104,7 @@
 
                             </div>
                             <div class="media-body">
-
+                        {{ di.contenu }}
                             </div>
 
                         </div>
@@ -150,13 +150,25 @@
 
                         <div class="panel panel-default">
                             {% if not u == null %}
-                       <div class="row">
-                           <div class="col-md-offset-10" style="margin-top: 10px">
+                                {% if check == null %}
+                                    <div class="row">
+                                        <div class="col-md-offset-10" style="margin-top: 10px">
 
-                               <a href="{{ path('check',{'defi':defi.id }) }}"><button type="button" class="btn btn-success" > Did you do it ? </button></a>
-                           </div>
+                                            <a href="{{ path('check',{'defi':defi.id }) }}"><button type="button" class="btn btn-success" > Did you do it ? </button></a>
+                                        </div>
 
-                       </div>
+                                    </div>
+
+                                    {% endif %}
+                            {% if not check == null %}
+                                <div class="row">
+                                    <div class="col-md-offset-10" style="margin-top: 10px">
+                                        <i class="fa fa-check-circle" style="color: green ; size: 20px"> <span>Verified</span></i>
+                                    </div>
+
+                                </div>
+                                {%  endif %}
+
                             {% endif %}
                         <div class="media response-info">
                             <div class="media-left response-text-left">
@@ -175,7 +187,7 @@
                                     </div>
                                 </div>
                                 <ul style="margin-left: 20px">
-                                    <li> Today is Mar 15, 2017</li>
+                                    <li> Today is {{ date()|date('Y-m-d')}}  </li>
                                 </ul>
 
 
