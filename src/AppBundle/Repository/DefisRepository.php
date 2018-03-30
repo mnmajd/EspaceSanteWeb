@@ -21,7 +21,7 @@ class DefisRepository extends \Doctrine\ORM\EntityRepository
     public function existBattle($idf , $idu)
     {
         $req = $this->getEntityManager()->createQuery(
-            " SELECT COUNT(u)
+            " SELECT COUNT(u) as number
              FROM AppBundle:MembresDefis u
                    WHERE u.idDefis=:p and u.idUser=:t"
         )->setParameter('p',$idf)
@@ -32,7 +32,7 @@ class DefisRepository extends \Doctrine\ORM\EntityRepository
     public function FindUsers($id)
     {
         $req = $this->getEntityManager()->createQuery(
-            "select  m from AppBundle:MembresDefis m where m.idDefis=:p"
+            "select DISTINCT m from AppBundle:MembresDefis m where m.idDefis=:p"
         )->setParameter('p',$id);
         return $req->getResult();
 

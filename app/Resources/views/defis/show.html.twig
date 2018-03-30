@@ -17,9 +17,7 @@
                         <ul>
 
                             <li><a href="#" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class=" fa fa-ticket" aria-hidden="true" ></i> Join this battle</a></li>
-                            <li hidden>
-                                <a href="#" ><i class=" fa fa-check-square-o" aria-hidden="true"></i> Already joined</a>
-                            </li>
+
                                 <li>
                                     <a href="{{ path('defis_index') }}" ><i class="fa fa-backward" aria-hidden="true"></i> Back to the list</a>
                                 </li>
@@ -38,17 +36,28 @@
                                             <p>you sould be authentificated</p>
                                         {% endif %}
                                         {% if not u == null %}
+                                          {% for value in exist %}
+                                              {% if value.number == 0 %}
+                                                  {%  if defi.maxmember != 0 %}
+                                                      <p style="font-style: oblique"> Click To Join</p>
+                                                      <form method="post">
+                                                          <input type="submit" name="join" value="join" class="btn btn-primary btn-block">
 
-                                              <p style="font-style: oblique"> Click To Join</p> 
+                                                      </form>
+                                                  {% endif %}
+                                                  {% if   defi.maxmember == 0 %}
+                                                    <p> we are sorry there's no place </p>
+                                                      {% endif %}
 
-                                      <form method="post">
-                                    
-                                    
-                                    
-                                    
-                                        <input type="submit" name="join" value="join" class="btn btn-primary btn-block">
-                                           
-                                        </form>
+                                                {% endif %}
+
+                                        {% if not value.number == 0 %}
+                                            <p> you already joined this battle</p>
+                                            {% endif %}
+
+                                        {% endfor %}
+
+
                                         {% endif %}
 
                                     </div>
@@ -87,7 +96,6 @@
 
                     {% for di in d  %}
 
-
                         <div class="panel panel-default">
                         <div class="media">
                             <div class="media-left">
@@ -96,28 +104,36 @@
 
                             </div>
                             <div class="media-body">
-                                   
-                                {{ di.contenu }}
+
                             </div>
+
                         </div>
                         </div>
                     {%  endfor %}
 
                         {% if u == null %}
                             <div class="alert alert-info" role="alert">
-                              You Should join this battle to comment
+                              You login to comment
                             </div>
 
 
                         {%  endif %}
                         {% if not u == null %}
-                    <div class="coment-form" >  
-                        <h4>Add You Motivation</h4>
+                            {% for value in exist %}
+                                {% if value.number != 0 %}
+                                    <div class="coment-form" >
+                                        <h4>Add You Motivation</h4>
+                                        <a href="{{ path('add',{'defi':defi.id }) }}"><input type="submit" value="Click Here" ></a>
+                                    </div>
+                                    {% endif %}
+                          {% if not value.number != 0 %}
+                              <p> you should join this battle to comment</p>
+                                {% endif %}
 
 
-                                   <a href="{{ path('add',{'defi':defi.id }) }}"><input type="submit" value="Click Here"  >    </a>
+                                {% endfor %}
 
-                    </div>
+
                     {% endif %}
                     {% endif %}
                     {% if  date(defi.StartsAt) > date() %}

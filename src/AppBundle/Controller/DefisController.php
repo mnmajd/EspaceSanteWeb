@@ -60,8 +60,13 @@ class DefisController extends Controller
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
             $m = new MembresDefis();
+            $exist = false;
             $discussion = new Discussion();
-            $exist= $em->getRepository('AppBundle:Defis')->existBattle($defi->getId(),$user->getId());
+            if($user != null)
+            {
+                $exist= $em->getRepository('AppBundle:Defis')->existBattle($defi->getId(),$user->getId());
+
+            }
 
         $disc = $em->getRepository('AppBundle:Defis')->FindDisc($defi->getId());
         $Defi = $em->getRepository('AppBundle:Defis')->find($defi->getId());
@@ -71,13 +76,11 @@ class DefisController extends Controller
             $m->setIdUser($user);
             $m->setIdDefis($Defi);
             $em->persist($m);
-
             $em->getRepository('AppBundle:Defis')->updatememebermax($defi->getId());
             $em->flush();
+            return $this->redirectToRoute('battle',array(
+                'defi'=>$defi->getId()));
         }
-
-
-
         $em->clear();
         return $this->render('defis/show.html.twig', array(
             'defi' => $defi,
@@ -85,7 +88,6 @@ class DefisController extends Controller
             'u'=>$user,
             'd'=>$disc,
             'list'=>$list,
-
             'exist'=>$exist
 
 
