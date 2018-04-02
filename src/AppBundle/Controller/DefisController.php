@@ -98,6 +98,16 @@ class DefisController extends Controller
     }
 
 
+    public  function deleteaction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $defi = $em->getRepository("AppBundle:Defis")->find($id);
+        $em->remove($defi);
+        $em->flush();
+        return $this->redirectToRoute(  'defis');
+    }
+
+
 
 
 

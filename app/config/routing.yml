@@ -48,3 +48,7 @@ check:
 checked:
     path:     /check/{defi}
     defaults: { _controller: AppBundle:Checkin:do }
+
+delete:
+    path:     /delete/{id}
+    defaults: { _controller: AppBundle:Defis:delete }

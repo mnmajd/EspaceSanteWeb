@@ -28,6 +28,9 @@ class DiscussionController extends Controller
 
             $em->persist($d);
             $em->flush();
+            return $this->redirectToRoute('battle',array(
+                'defi'=>$defi
+            ));
 
         }
         $em->clear();
