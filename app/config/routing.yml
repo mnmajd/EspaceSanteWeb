@@ -56,3 +56,7 @@ delete:
 deletediscussion:
     path:     /deletediscussion/{defi}/{id}
     defaults: { _controller: AppBundle:Discussion:deletediscussion }
+
+update:
+    path:     /edit/{defi}/{id}
+    defaults: { _controller: AppBundle:Discussion:update }

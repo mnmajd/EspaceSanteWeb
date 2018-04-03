@@ -53,4 +53,29 @@ class DiscussionController extends Controller
 
     }
 
+    public function updateaction($defi ,$id ,Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $Disc = new Discussion();
+        $Disc = $em->getRepository("AppBundle:Discussion")->find($id);
+            if ($request->isMethod('post'))
+            {
+                $Disc->setContenu($request->get('message'));
+                $em->flush();
+                return $this->redirectToRoute('battle',array(
+                    'defi'=>$defi
+                ));
+
+            }
+
+
+
+        return $this->render('discussion/edit.html.twig', array(
+           'disc' =>$Disc
+
+        ));
+    }
+
+
+
 }
