@@ -52,3 +52,7 @@ checked:
 delete:
     path:     /delete/{id}
     defaults: { _controller: AppBundle:Defis:delete }
+
+deletediscussion:
+    path:     /deletediscussion/{defi}/{id}
+    defaults: { _controller: AppBundle:Discussion:deletediscussion }

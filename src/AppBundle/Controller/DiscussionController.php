@@ -41,4 +41,16 @@ class DiscussionController extends Controller
 
         ));
     }
+    public  function deletediscussionaction($defi,$id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $disc = $em->getRepository("AppBundle:Discussion")->find($id);
+        $em->remove($disc);
+        $em->flush();
+        return $this->redirectToRoute('battle',array(
+            'defi'=>$defi
+        ));
+
+    }
+
 }

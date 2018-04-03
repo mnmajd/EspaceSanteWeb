@@ -100,17 +100,32 @@
                     {% for di in d  %}
 
                         <div class="panel panel-default">
-                        <div class="media">
-                            <div class="media-left">
+                            <div class="row">
+                                <div class="col-md-11">
+                                    <div class="media">
+                                        <div class="media-left">
 
-                                <img class="media-object" src="{{ asset('images/') }}" alt={{ di.idUser }}>
+                                            <img class="media-object" src="{{ asset('images/') }}" alt={{ di.idUser }}>
+
+                                        </div>
+
+                                        <div class="media-body">
+                                            {{ di.contenu }}
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <a href="{{ path('deletediscussion',{'defi':defi.id ,'id':di.id}) }}"><i class="fa fa-remove" aria-hidden="true"></i></a><br>
+                                    <a href="#"><i class=" fa fa-edit (alias)" aria-hidden="true"></i></a>
+
+
+                                </div>
 
                             </div>
-                            <div class="media-body">
-                        {{ di.contenu }}
-                            </div>
 
-                        </div>
+
+
                         </div>
                     {%  endfor %}
 
