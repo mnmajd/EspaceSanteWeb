@@ -11,4 +11,15 @@ namespace AppBundle\Repository;
 class CheckInRepository extends \Doctrine\ORM\EntityRepository
 {
 
+    public function updatescore($idf,$idu)
+    {
+        $req = $this->getEntityManager()->createQuery(
+
+            "update AppBundle:MembresDefis m set m.score = m.score + 1
+     where m.idDefis=:p and m.idUser=:s")
+            ->setParameter('p',$idf)
+        ->setParameter('s',$idu);
+
+        return $req->execute();
+    }
 }

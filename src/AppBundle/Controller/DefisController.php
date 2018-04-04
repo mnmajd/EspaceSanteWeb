@@ -3,11 +3,9 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Defis;
-use AppBundle\Entity\Discussion;
 use AppBundle\Entity\MembresDefis;
+use AppBundle\Entity\Score;
 use AppBundle\Form\DefisType;
-use AppBundle\Form\DiscussionType;
-use AppBundle\Form\MembresDefisType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -71,7 +69,6 @@ class DefisController extends Controller
             $m = new MembresDefis();
             $exist = false;
             $check = null ;
-            $discussion = new Discussion();
             if($user != null)
             {
                 $exist= $em->getRepository('AppBundle:Defis')->existBattle($defi->getId(),$user->getId());
@@ -85,7 +82,9 @@ class DefisController extends Controller
         {
             $m->setIdUser($user);
             $m->setIdDefis($Defi);
+            $m->setScore(0);
             $em->persist($m);
+
             $em->getRepository('AppBundle:Defis')->updatememebermax($defi->getId());
             $em->flush();
             return $this->redirectToRoute('battle',array(
@@ -100,6 +99,7 @@ class DefisController extends Controller
             'list'=>$list,
             'exist'=>$exist,
             'check'=>$check
+
 
 
 

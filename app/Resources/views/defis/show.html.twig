@@ -7,9 +7,10 @@
             <div class="col-md-10 w3ls-blog-left">
                 <div class="w3-blog-left-grid">
                     <div class="w3ls-blog-leftl">
-                        <h4>{% if defi.startsAt %}{{ defi.startsAt|date('Y-m-d') }}{% endif %} <span>Starts At</span></h4>
+                        <h4>{{ defi.startsAt|date('Y-m-d') }} <span>Starts At</span></h4>
                         <a href="#"><i class="fa fa-users" aria-hidden="true"></i>{{ defi.maxmember }}</a>
                         <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>{{ defi.deadline }}</a>
+
                         <a href="{{ path('delete',{'id':defi.id}) }}"><i class=" fa fa-trash-o" aria-hidden="true"></i></a>
                     </div>
                     <div class="w3ls-blog-leftr">
@@ -178,6 +179,7 @@
                                     </div>
 
                                     {% endif %}
+
                             {% if not check == null %}
                                 <div class="row">
                                     <div class="col-md-offset-10" style="margin-top: 10px">
@@ -196,14 +198,13 @@
                                 <h5><a href="#">{{ list.idUser.username }}</a></h5>
                             </div>
                             <div class="media-body response-text-right">
-                                <div class="w3-agile-poll">
-                                    <h3> Achievement</h3>
-                                    <div class="progress p">
-                                        <div class="progress-bar bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                                           30%
-                                        </div>
-                                    </div>
+                                <h4><span>Achievement</span></h4>
+
+                                <div class="progress">
+
+                                    <div class="progress-bar progress-bar-success" style="width: {{ (100 /defi.deadline) * list.score }}% "></div>
                                 </div>
+
                                 <ul style="margin-left: 20px">
                                     <li> Today {{ date()|date('Y-m-d')}}  </li>
                                 </ul>

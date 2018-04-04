@@ -18,12 +18,14 @@ class CheckinController extends Controller
         $user  = $this->getUser();
         $Defi = $em->getRepository('AppBundle:Defis')->find($defi);
 
+
         if ($request->isMethod('post'))
         {
             $m->setChecked(true);
             $m->setIdUser($user);
             $m->setIdDefis($Defi);
             $em->persist($m);
+            $em->getRepository('AppBundle:checkIn')->updatescore($defi,$user->getId());
             $em->flush();
            return $this->redirectToRoute('battle',array(
                'defi'=>$defi

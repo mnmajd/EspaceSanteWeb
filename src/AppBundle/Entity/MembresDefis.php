@@ -40,6 +40,12 @@ class MembresDefis
      */
     private $idDefis;
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="score", type="integer")
+     */
+    private $score;
+    /**
      * Get id
      *
      * @return int
@@ -79,6 +85,22 @@ class MembresDefis
     public function setIdDefis($idDefis)
     {
         $this->idDefis = $idDefis;
+    }
+
+    /**
+     * @return int
+     */
+    public function getScore()
+    {
+        return $this->score;
+    }
+
+    /**
+     * @param int $score
+     */
+    public function setScore($score)
+    {
+        $this->score = $score;
     }
 
 
