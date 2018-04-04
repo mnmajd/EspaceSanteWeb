@@ -21,6 +21,10 @@
 
                                 </div>
                                 <div class="modal-body">
+                                    {% if user == null %}
+                                        <p> you should be authentificated </p>
+                                    {%  endif %}
+                                    {% if not user == null %}
                                 {{ form_start(form) }}
                                     <div class="form-group">
                                         {{ form_widget(form.titre, { 'attr': {'class': 'form-control', 'placeholder': 'Titre'} }) }}
@@ -51,6 +55,7 @@
 
                                     {{ form_widget(form.ajout, { 'attr': {'class': 'btn btn-primary btn-block'} }) }}
                                     {{ form_end(form) }}
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -88,6 +93,9 @@
 
 
     <div class="clearfix"> </div>
+    </div>
+    <div class="navigation" >
+        {{ knp_pagination_render(defis) }}
     </div>
 
 

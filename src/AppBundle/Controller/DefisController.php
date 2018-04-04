@@ -32,6 +32,14 @@ class DefisController extends Controller
 
         $defis = $em->getRepository('AppBundle:Defis')->findAll();
         $defi = new Defis();
+        $user = $this->getUser();
+        $paginator  = $this->get('knp_paginator');
+        $pag = $paginator->paginate(
+            $defis,
+            $request->query->getInt('page',1),
+            $request->query->getInt('limit',6)
+
+        );
         $form = $this->createForm(DefisType::class,$defi);
         $form->handleRequest($request);
         if ($form->isSubmitted())
@@ -43,7 +51,8 @@ class DefisController extends Controller
 
 
         return $this->render('defis/index.html.twig', array(
-            'defis' => $defis,
+            'defis' => $pag,
+            'user' => $user,
             'form'=>$form->createView(),
 
         ));
