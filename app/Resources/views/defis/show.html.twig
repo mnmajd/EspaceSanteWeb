@@ -27,6 +27,9 @@
 
                         </ul>
 
+
+
+
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -170,23 +173,28 @@
                         <div class="panel panel-default">
                             {% if not u == null %}
                                 {% if check == null %}
+                                    {% if u.id == list.idUser.id %}
                                     <div class="row">
                                         <div class="col-md-offset-10" style="margin-top: 10px">
 
                                             <a href="{{ path('check',{'defi':defi.id }) }}"><button type="button" class="btn btn-success" > Did you do it ? </button></a>
                                         </div>
+                                        {% endif %}
 
                                     </div>
 
                                     {% endif %}
 
                             {% if not check == null %}
-                                <div class="row">
+                                {% if u.id == list.idUser.id %}
+
+                                    <div class="row">
                                     <div class="col-md-offset-10" style="margin-top: 10px">
                                         <i class="fa fa-check-circle" style="color: green ; size: 20px"> <span>Verified</span></i>
                                     </div>
 
                                 </div>
+                                    {% endif %}
                                 {%  endif %}
 
                             {% endif %}
