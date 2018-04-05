@@ -5,10 +5,10 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Question
+ * CheckIn
  *
- * @ORM\Table(name="question", indexes={@ORM\Index(name="id_catF", columns={"id_user"}), @ORM\Index(name="nom_catF", columns={"nom_catF"})})
- * @ORM\Entity
+ * @ORM\Table(name="question")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\QuestionRepository")
  */
 class Question
 {
@@ -22,7 +22,7 @@ class Question
     /**
      * @var boolean
      *
-     * @ORM\Column(name="Approved_Question", type="boolean", nullable=false)
+     * @ORM\Column(name="Approved_Question", type="boolean", nullable=true)
      */
     private $approvedQuestion;
 
@@ -67,14 +67,146 @@ class Question
     private $idUser;
 
     /**
-     * @var \AppBundle\Entity\CategorieForum
+     * @var string
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\CategorieForum")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="nom_catF", referencedColumnName="nom_catF")
-     * })
+     * @ORM\Column(name="nom_catF", type="string", length=30, nullable=false)
      */
     private $nomCatf;
+
+    /**
+     * @return string
+     */
+    public function getContenuQuest()
+    {
+        return $this->contenuQuest;
+    }
+
+    /**
+     * @param string $contenuQuest
+     */
+    public function setContenuQuest($contenuQuest)
+    {
+        $this->contenuQuest = $contenuQuest;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isApprovedQuestion()
+    {
+        return $this->approvedQuestion;
+    }
+
+    /**
+     * @param bool $approvedQuestion
+     */
+    public function setApprovedQuestion($approvedQuestion)
+    {
+        $this->approvedQuestion = $approvedQuestion;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSujetQuestion()
+    {
+        return $this->sujetQuestion;
+    }
+
+    /**
+     * @param string $sujetQuestion
+     */
+    public function setSujetQuestion($sujetQuestion)
+    {
+        $this->sujetQuestion = $sujetQuestion;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDatePublication()
+    {
+        return $this->datePublication;
+    }
+
+    /**
+     * @param \DateTime $datePublication
+     */
+    public function setDatePublication($datePublication)
+    {
+        $this->datePublication = $datePublication;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNbrRep()
+    {
+        return $this->nbrRep;
+    }
+
+    /**
+     * @param int $nbrRep
+     */
+    public function setNbrRep($nbrRep)
+    {
+        $this->nbrRep = $nbrRep;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIdQuestion()
+    {
+        return $this->idQuestion;
+    }
+
+    /**
+     * @param int $idQuestion
+     */
+    public function setIdQuestion($idQuestion)
+    {
+        $this->idQuestion = $idQuestion;
+    }
+
+    /**
+     * @return User
+     */
+    public function getIdUser()
+    {
+        return $this->idUser;
+    }
+
+    /**
+     * @param User $idUser
+     */
+    public function setIdUser($idUser)
+    {
+        $this->idUser = $idUser;
+    }
+
+    /**
+     * @return CategorieForum
+     */
+    public function getNomCatf()
+    {
+        return $this->nomCatf;
+    }
+
+    /**
+     * @param CategorieForum $nomCatf
+     */
+    public function setNomCatf($nomCatf)
+    {
+        $this->nomCatf = $nomCatf;
+    }
+
+    public function __construct()
+    {
+        $this->datePublication = new \DateTime();
+    }
+
+
 
 
 }

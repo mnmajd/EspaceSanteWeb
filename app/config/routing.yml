@@ -60,3 +60,15 @@ deletediscussion:
 update:
     path:     /edit/{defi}/{id}
     defaults: { _controller: AppBundle:Discussion:update }
+
+forum:
+    path:     /forum
+    defaults: { _controller: AppBundle:Question:show }
+
+forumcat:
+    path:     /forum/{cat}
+    defaults: { _controller: AppBundle:Question:findQues }
+
+Question:
+    path:     /AddQuestion
+    defaults: { _controller: AppBundle:Question:addQuest }

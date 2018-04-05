@@ -1,0 +1,35 @@
+{% extends "default/home.html.twig"  %}
+
+{% block content %}
+    <div class="container" style="text-align: center">
+
+        <h2 class="w3_heade_tittle_agile">Forum Espace</h2>
+            <p class="sub_t_agileits">& Bien Etre</p>
+        <div CLASS="row">
+            <div class="col-md-offset-10">
+                <button class="btn btn-success"  style="margin-bottom: 20px "><a href="{{ path('Question') }}"><span>Propose your question</span></a> </button></div>
+            </div>
+
+        </div>
+
+
+        <div class="tabs tabs-style-bar">
+
+            <nav>
+                <ul>
+                    {% for categorie in categorie %}
+                        <li><a href="{{ path('forumcat',{'cat':categorie.NomCatf}) }}" class="icon icon-box" style="background-color: #6A6A6A"><span> {{ categorie.NomCatf }}</span></a></li>
+                        {% endfor %}
+                </ul>
+            </nav>
+
+            <div class="content-wrap">
+               {% for quest in question  %}
+                   <p> {{ quest.contenuQuest }}</p>
+                {% endfor %}
+
+            </div><!-- //Content -->
+        </div><!-- //Tabs -->
+
+
+{%  endblock content %}
