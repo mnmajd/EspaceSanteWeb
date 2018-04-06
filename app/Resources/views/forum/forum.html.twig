@@ -18,14 +18,32 @@
             <nav>
                 <ul>
                     {% for categorie in categorie %}
-                        <li><a href="{{ path('forumcat',{'cat':categorie.NomCatf}) }}" class="icon icon-box" style="background-color: #6A6A6A"><span> {{ categorie.NomCatf }}</span></a></li>
+                        <li><a href="{{ path('forumcat',{'cat':categorie.NomCatf}) }}" class="icon icon-box" style="background-color: #f5fffa"><span> {{ categorie.NomCatf }}</span></a></li>
                         {% endfor %}
                 </ul>
             </nav>
 
             <div class="content-wrap">
                {% for quest in question  %}
-                   <p> {{ quest.contenuQuest }}</p>
+                   <div class="container">
+                   <div class="panel panel-info" style="background-color: #fff5ee">
+                   <div class="media" >
+                       <div class="media-left media-top">
+                           <img src="{{ asset('images/') }}" class="media-object" style="width:80px" alt="">
+                       </div>
+                       <div class="media-body">
+                           <h4 class="media-heading" style="margin-bottom: 15px ; margin-top: 10px"><i class="fa fa-user" style="color: blue"></i>  {{ quest.idUser.username }}</h4>
+                           <h4 class="media-heading" style="margin-bottom: 15px"><span><i class="fa fa-tasks" style="color: blue"></i> Subject : </span>{{ quest.sujetQuestion}}</h4>
+
+                           <h4 class="media-heading"> <span><i class="fa fa-calendar" style="color: blue"> </i> Published at </span> {{ quest.datePublication|date() }}</h4>
+
+                           <div class="col-md-offset-10" style="margin-bottom: 10px"><a href="#">Response <span class="badge" style="margin-right: 10px">{{ quest.nbrRep }}</span></a><br>
+                           </div>
+                       </div>
+
+                   </div>
+                   </div>
+                   </div>
                 {% endfor %}
 
             </div><!-- //Content -->

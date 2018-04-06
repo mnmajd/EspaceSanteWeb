@@ -11,6 +11,7 @@ class QuestionController extends Controller
 {
  public function showaction()
  {
+
      $em = $this->getDoctrine()->getManager();
      $question = $em->getRepository('AppBundle:Question')->findAll();
      $categorie = $em->getRepository('AppBundle:CategorieForum')->findAll();
