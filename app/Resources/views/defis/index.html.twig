@@ -47,6 +47,10 @@
                                         {{ form_widget(form.description, { 'attr': {'class': 'form-control', 'placeholder': 'description'} }) }}
                                         {{ form_errors(form.description) }}
                                     </div>
+                                    <div class="form-group">
+                                        {{ form_widget(form.image, { 'attr': {'class': 'form-control'} }) }}
+                                        {{ form_errors(form.image) }}
+                                    </div>
 
 
                                 </div>
@@ -70,7 +74,7 @@
                     <div class="panel panel-default" style="background-color: #f5f5ef">
                     <div class="card " style="width: 18rem;background-color:#f5f5ef ;margin-left: 33px" >
 
-                        <img class="card-img-top" src="{{ asset('admin/images/ga1.jpg') }}" alt="Card image cap" style="margin-left: 5px ">
+                        <img class="card-img-top" src="{{ asset('images/defi/'~d.image) }}" alt="Card image cap" style="margin-left: 5px " height="200" width="250">
 
                         <div class="card-body">
                             <h2 class="card-title icon-subheading">{{ d.titre }}</h2>

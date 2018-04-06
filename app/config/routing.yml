@@ -72,3 +72,7 @@ forumcat:
 Question:
     path:     /AddQuestion
     defaults: { _controller: AppBundle:Question:addQuest }
+
+reponse:
+    path:     /Question
+    defaults: { _controller: AppBundle:Reponse:Show }

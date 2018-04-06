@@ -14,7 +14,8 @@
                         <a href="{{ path('delete',{'id':defi.id}) }}"><i class=" fa fa-trash-o" aria-hidden="true"></i></a>
                     </div>
                     <div class="w3ls-blog-leftr">
-                        <img src="{{ asset('images/banner2.jpg') }}" alt=" " class="img-responsive" />
+
+                        <img src="{{ asset('images/defi/'~defi.image) }}" alt=" "  height="300" width="650"/>
                         <p>"{{ defi.description }}r</p>
                         <ul>
 
@@ -201,7 +202,7 @@
                         <div class="media response-info">
                             <div class="media-left response-text-left">
                                 <a href="#">
-                                    <img class="img-circle" src="{{ asset('images/ad.jpg') }}" alt=""/>
+                                    <img class="img-circle" src="{{ asset('images/images/ad.jpg') }}" alt="" height="50" width="50"/>
                                 </a>
                                 <h5><a href="#">{{ list.idUser.username }}</a></h5>
                             </div>

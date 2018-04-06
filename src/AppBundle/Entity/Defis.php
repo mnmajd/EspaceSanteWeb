@@ -52,6 +52,12 @@ class Defis
      * @ORM\Column(name="maxmember", type="integer")
      */
     private $maxmember;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string")
+     */
+    private $image;
 
     /**
      * Get id
@@ -155,5 +161,22 @@ class Defis
 
         return $this->titre;
     }
+
+    /**
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param string $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
 }
 
