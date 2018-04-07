@@ -1,0 +1,71 @@
+{% extends 'default/home.html.twig' %}
+
+{% block body %}
+    <br>
+    <center> <h1>Quizs</h1></center>
+    <br>
+    <form>
+
+
+
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" >
+        </script>
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+        <script>
+
+            $('#nom').keyup(function(){
+                var input= $("#nom").val();
+                $.ajax({
+                    type: "POST",
+                    url: "{{ path('admin') }}",
+                    data: {'nom': input},
+                    success: function (data) {
+
+                        console.log(data);
+
+                        $("#res9").html(data);
+
+
+
+
+
+                    }
+                });
+
+            });
+
+
+        </script>
+
+
+
+    </form>
+
+<center>
+    <table class="table"  style="max-width: 800px">
+        <thead>
+            <tr>
+
+                <th>Titre</th>
+
+                <th> <input class="form-control" type="text" nom="nom" placeholder="Chercher"></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for quiz in quizzes %}
+            <tr>
+
+                <td>{{ quiz.titre }}</td>
+                <td><center>
+
+                            <a class="btn btn-info" href="{{ path('quiz_show', { 'id': quiz.id }) }}">Jouer</a>
+
+                    </center>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+</center>
+{% endblock %}

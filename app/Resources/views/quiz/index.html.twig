@@ -1,0 +1,89 @@
+{% extends 'Admin/admin.html.twig' %}
+
+{% block body %}
+    <div class="container" style="max-width: 150%">
+    <br>
+    <h1>Liste des Quizs</h1>
+    <br>
+
+     <a class="btn btn-success" href="{{ path('quiz_new') }}">Ajouter un Quiz</a>
+
+<br>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+
+                <th>Titre</th>
+                <th>Actions</th>
+                <th><form><input id="noom"  class="form-control" onkeyup="search_func(this.value)" type="text" nom="noom" placeholder="Chercher"></form> </th>
+            </tr>
+        </thead>
+        <tbody id="res">
+        {% for quiz in quizzes %}
+            <tr>
+
+                <td>{{ quiz.titre }}</td>
+                <td colspan="2">
+                    <ul>
+                        <li style="display: inline">
+                            <a class="btn btn-info" href="{{ path('quiz_show', { 'id': quiz.id }) }}">show</a>
+                        </li>
+                        <li style="display: inline">
+                            <a class="btn btn-warning" href="{{ path('quiz_edit', { 'id': quiz.id }) }}">edit</a>
+                        </li>
+                        {% if quiz.isValide==1 %}
+                        <li style="display: inline">
+                            <a class="btn btn-primary" href="{{ path('quiz_desactiver', { 'id': quiz.id }) }}">Desactiver</a>
+                        </li>
+                        {% else %}
+                        <li style="display: inline">
+                            <a class="btn btn-primary" href="{{ path('quiz_valide', { 'id': quiz.id }) }}">Activer</a>
+                        </li>
+                        {% endif %}
+
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    </div>
+
+
+{% endblock %}
+{% block javascripts %}
+
+    <script>
+        var searching =false;
+
+        function search_func(value)
+        {
+            if(searching==false){
+            searching=true;
+            $.ajax({
+                type: "POST",
+                url: "{{ path('quiz_search') }}",
+                data: {'nom': value},
+                success: function (data) {
+
+                    console.log(data);
+
+                    $("#res").html(data);
+
+                    searching=false;
+
+
+
+                }
+            });
+        }else{
+                console.log("wait");
+            }
+
+        }
+       ;
+    </script>
+
+
+{% endblock %}

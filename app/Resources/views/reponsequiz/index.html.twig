@@ -1,0 +1,43 @@
+{% extends 'Admin/admin.html.twig' %}
+
+{% block body %}
+    <br>
+
+<div class="container" style="width: 150%">
+    <h1>Liste des Réponses</h1>
+    <br>
+    <a class="btn btn-success" href="{{ path('reponsequiz_new') }}">Ajouter une réponse</a>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+
+                <th>Reponse</th>
+                <th>Pour la question</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reponseQuiz in reponseQuizzes %}
+            <tr>
+
+                <td>{{ reponseQuiz.reponse }}</td>
+                <td>{{ reponseQuiz.idQuestion }}</td>
+                <td>
+
+                    <ul>
+                        <li style="display: inline">
+                            <a class="btn btn-primary" href="{{ path('reponsequiz_show', { 'id': reponseQuiz.id }) }}">show</a>
+                        </li>
+                        <li style="display: inline">
+                            <a class="btn btn-warning" href="{{ path('reponsequiz_edit', { 'id': reponseQuiz.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+</div>
+{% endblock %}

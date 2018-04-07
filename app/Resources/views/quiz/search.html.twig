@@ -1,0 +1,28 @@
+
+    {% for quiz in quizzes %}
+        <tr>
+
+            <td>{{ quiz.titre }}</td>
+            <td>
+                <ul>
+                    <li style="display: inline">
+                        <a class="btn btn-info" href="{{ path('quiz_show', { 'id': quiz.id }) }}">show</a>
+                    </li>
+                    <li style="display: inline">
+                        <a class="btn btn-warning" href="{{ path('quiz_edit', { 'id': quiz.id }) }}">edit</a>
+                    </li>
+                    {% if quiz.isValide==1 %}
+                        <li style="display: inline">
+                            <a class="btn btn-primary" href="{{ path('quiz_desactiver', { 'id': quiz.id }) }}">Desactiver</a>
+                        </li>
+                    {% else %}
+                        <li style="display: inline">
+                            <a class="btn btn-primary" href="{{ path('quiz_valide', { 'id': quiz.id }) }}">Activer</a>
+                        </li>
+                    {% endif %}
+
+
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}

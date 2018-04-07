@@ -1,0 +1,45 @@
+quiz_index:
+    path:     /
+    defaults: { _controller: "AppBundle:Quiz:index" }
+    methods:  GET
+quiz_index_front:
+    path:     /userquiz
+    defaults: { _controller: "AppBundle:Quiz:indexFront" }
+    methods:  GET
+quiz_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:Quiz:show" }
+    methods:  [GET,POST]
+quiz_search:
+    path:     /search
+    defaults: { _controller: "AppBundle:Quiz:recherche" }
+    methods:  [GET,POST]
+quiz_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:Quiz:new" }
+    methods:  [GET, POST]
+
+quiz_valide:
+    path:     /{id}/activer
+    defaults: { _controller: "AppBundle:Quiz:valider" }
+    methods:  [GET, POST]
+
+quiz_desactiver:
+    path:     /{id}/desactiver
+    defaults: { _controller: "AppBundle:Quiz:desactiver" }
+    methods:  [GET, POST]
+
+quiz_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:Quiz:edit" }
+    methods:  [GET, POST]
+
+quiz_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:Quiz:delete" }
+    methods:  DELETE
+quiz_question:
+    path:     /{id}/question
+    defaults: { _controller: "AppBundle:Quiz:AddQuestion" }
+    methods:  [GET,POST]
+

@@ -1,0 +1,13 @@
+{% extends 'default/home.html.twig' %}
+
+{% block body %}
+    <br>
+   <center> <h1>Résultat</h1>  </center>
+<br>
+   <center> <h2> Vous Avez {{ resulatQuiz.score }} Reponses corrects</h2> </center>
+    <br>
+
+   <center> <a class="btn btn-info" href="{{ path('quiz_show', { 'id': resulatQuiz.idQuiz.id }) }}">Rejouer</a></center>
+    <br>
+    <br>
+{% endblock %}

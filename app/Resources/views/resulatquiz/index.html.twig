@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Resulatquizzes list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Iduser</th>
+                <th>Score</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for resulatQuiz in resulatQuizzes %}
+            <tr>
+                <td><a href="{{ path('resulatquiz_show', { 'id': resulatQuiz.id }) }}">{{ resulatQuiz.id }}</a></td>
+                <td>{{ resulatQuiz.idUser }}</td>
+                <td>{{ resulatQuiz.score }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('resulatquiz_show', { 'id': resulatQuiz.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('resulatquiz_edit', { 'id': resulatQuiz.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('resulatquiz_new') }}">Create a new resulatQuiz</a>
+        </li>
+    </ul>
+{% endblock %}

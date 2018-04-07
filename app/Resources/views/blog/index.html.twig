@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Blogs list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Idcat</th>
+                <th>Idarticle</th>
+                <th>Nbrlike</th>
+                <th>Idblog</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for blog in blogs %}
+            <tr>
+                <td><a href="{{ path('blog_show', { 'idBlog': blog.idBlog }) }}">{{ blog.idCat }}</a></td>
+                <td>{{ blog.idArticle }}</td>
+                <td>{{ blog.nbrLike }}</td>
+                <td>{{ blog.idBlog }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('blog_show', { 'idBlog': blog.idBlog }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('blog_edit', { 'idBlog': blog.idBlog }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('blog_new') }}">Create a new blog</a>
+        </li>
+    </ul>
+{% endblock %}

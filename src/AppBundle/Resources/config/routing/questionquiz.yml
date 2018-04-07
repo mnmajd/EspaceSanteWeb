@@ -1,0 +1,24 @@
+questionquiz_index:
+    path:     /
+    defaults: { _controller: "AppBundle:questionQuiz:index" }
+    methods:  GET
+
+questionquiz_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:questionQuiz:show" }
+    methods:  GET
+
+questionquiz_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:questionQuiz:new" }
+    methods:  [GET, POST]
+
+questionquiz_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:questionQuiz:edit" }
+    methods:  [GET, POST]
+
+questionquiz_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:questionQuiz:delete" }
+    methods:  DELETE

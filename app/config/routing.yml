@@ -2,6 +2,22 @@ app:
     resource: '@AppBundle/Controller/'
     type: annotation
 
+app_res:
+    resource: "@AppBundle/Resources/config/routing/resulatquiz.yml"
+    prefix:   /resultatquiz
+app_quiz:
+    resource: "@AppBundle/Resources/config/routing/quiz.yml"
+    prefix:   /quiz
+
+app_quiz_questions:
+    resource: "@AppBundle/Resources/config/routing/questionquiz.yml"
+    prefix:   /questionquiz
+
+app_quiz_reponses:
+    resource: "@AppBundle/Resources/config/routing/reponsequiz.yml"
+    prefix:   /reponsequiz
+
+
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 
@@ -23,4 +39,19 @@ fos_user_change_password:
 
 admin:
     path:     /admin
+
     defaults: { _controller: AppBundle:Admin:admin }
+
+    defaults: { _controller: AppBundle:Admin:admin }
+
+defis:
+    path:     /listdefis
+    defaults: { _controller: AppBundle:Defis:index }
+
+ajout_article:
+    path:     /ajoutArticle
+    defaults: { _controller: AppBundle:Article:ajoutArticle }
+calcul_imc:
+    path:     imc
+    defaults: { _controller: AppBundle:CalculController:calculImc }
+
