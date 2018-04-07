@@ -37,7 +37,7 @@
 
                            <h4 class="media-heading"> <span><i class="fa fa-calendar" style="color: blue"> </i> Published at </span> {{ quest.datePublication|date() }}</h4>
 
-                           <div class="col-md-offset-10" style="margin-bottom: 10px"><a href="{{ path('reponse') }}">Response <span class="badge" style="margin-right: 10px">{{ quest.nbrRep }}</span></a><br>
+                           <div class="col-md-offset-10" style="margin-bottom: 10px"><a href="{{ path('reponse',{'id':quest.idQuestion}) }}">Response <span class="badge" style="margin-right: 10px">{{ quest.nbrRep }}</span></a><br>
                            </div>
                        </div>
 

@@ -5,7 +5,6 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * CheckIn
  *
  * @ORM\Table(name="question")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\QuestionRepository")

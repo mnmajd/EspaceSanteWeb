@@ -6,9 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Reponse
- *
- * @ORM\Table(name="reponse", indexes={@ORM\Index(name="id_question", columns={"id_question", "id_user"}), @ORM\Index(name="FK_5FB6DEC76B3CA4B", columns={"id_user"}), @ORM\Index(name="IDX_5FB6DEC7E62CA5DB", columns={"id_question"})})
- * @ORM\Entity
+ * @ORM\Table(name="reponse")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ReponseRepository")
  */
 class Reponse
 {
@@ -62,6 +61,106 @@ class Reponse
      */
     private $idQuestion;
 
+    /**
+     * @return string
+     */
+    public function getContenuRep()
+    {
+        return $this->contenuRep;
+    }
 
+    /**
+     * @param string $contenuRep
+     */
+    public function setContenuRep($contenuRep)
+    {
+        $this->contenuRep = $contenuRep;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNbrAimeRep()
+    {
+        return $this->nbrAimeRep;
+    }
+
+    /**
+     * @param int $nbrAimeRep
+     */
+    public function setNbrAimeRep($nbrAimeRep)
+    {
+        $this->nbrAimeRep = $nbrAimeRep;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDatePublication()
+    {
+        return $this->datePublication;
+    }
+
+    /**
+     * @param \DateTime $datePublication
+     */
+    public function setDatePublication($datePublication)
+    {
+        $this->datePublication = $datePublication;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIdRep()
+    {
+        return $this->idRep;
+    }
+
+    /**
+     * @param int $idRep
+     */
+    public function setIdRep($idRep)
+    {
+        $this->idRep = $idRep;
+    }
+
+    /**
+     * @return User
+     */
+    public function getIdUser()
+    {
+        return $this->idUser;
+    }
+
+    /**
+     * @param User $idUser
+     */
+    public function setIdUser($idUser)
+    {
+        $this->idUser = $idUser;
+    }
+
+    /**
+     * @return Question
+     */
+    public function getIdQuestion()
+    {
+        return $this->idQuestion;
+    }
+
+    /**
+     * @param Question $idQuestion
+     */
+    public function setIdQuestion($idQuestion)
+    {
+        $this->idQuestion = $idQuestion;
+    }
+
+    public function __construct()
+    {
+        $this->nbrAimeRep = 0;
+        $this->datePublication = new \DateTime();
+    }
 }
 

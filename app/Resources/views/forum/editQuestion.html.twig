@@ -1,0 +1,27 @@
+{% extends "default/home.html.twig"  %}
+{% block content %}
+
+    <div class="container" >
+        <h2 class="w3_heade_tittle_agile" style="margin-top: 20px">Edit</h2>
+        <p class="sub_t_agileits">Your Question</p>
+        <form method="post" style="text-align: center ; margin-top: 30px ;">
+
+
+
+
+            <div class="form-group row">
+                <label for="inputPassword3" class="col-sm-2 col-form-label">Question</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" required="" name="contenu" style="height: 200px">{{ question.contenuQuest }}</textarea>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-offset-10">
+                    <button type="submit" class="btn btn-success">Edit Question</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+{% endblock content %}

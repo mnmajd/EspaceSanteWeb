@@ -57,6 +57,37 @@ class QuestionController extends Controller
          'categorie'=>$categorie
      ));
  }
+ public function editQuestionaction( $id , Request $request)
+ {
+     $em = $this->getDoctrine()->getManager();
+     $question = new Question();
+     $question = $em->getRepository('AppBundle:Question')->find($id);
+     if ($request->isMethod('post'))
+     {
+         $question->setContenuQuest($request->get('contenu'));
+         $em->flush();
+         return $this->redirectToRoute('reponse',array(
+             'id'=>$id
+             )
+             );
+     }
+     return $this->render('forum/editQuestion.html.twig',array(
+
+         'question'=>$question
+     ));
+ }
+
+ public function deletequestionaction($id)
+ {
+     $em = $this->getDoctrine()->getManager();
+     $question = $em->getRepository('AppBundle:Question')->find($id);
+     $em->remove($question);
+     $em->flush();
+     return $this->redirectToRoute('forum'
+     );
+
+
+ }
 
 
 }

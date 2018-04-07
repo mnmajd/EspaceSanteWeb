@@ -1,42 +1,72 @@
 {% extends "default/home.html.twig"  %}
 {% block content %}
-    <div class="container">
+    <h2 class="w3_heade_tittle_agile" style="margin-top: 20px">Form Espace Sante</h2>
+    <p class="sub_t_agileits">& Bien Etre</p>
+    <div class="media panel panel-default" style="margin-left: 30px; margin-right: 30px" >
+        <a class="pull-left" href="#">
+            <img class="media-object" src="https://s3.amazonaws.com/uifaces/faces/twitter/dancounsell/128.jpg">
+        </a>
+        <div class="media-body">
+            <h4 class="media-heading">{{ question.sujetQuestion}}</h4>
+            <p class="text-right">By {{ question.idUser.username }}</p>
+            <p>{{ question.contenuQuest }}</p>
+            <ul class="list-inline list-unstyled" style="margin-top: 10px">
+                <li><span><i class="glyphicon glyphicon-calendar"></i> {{ question.datePublication|date() }}</span></li>
+                <li> <span><i class="fa fa-edit"></i> <a href="{{ path('editQuestion',{'id' :question.idQuestion}) }}">Edit</a></span></li>
+                <li> <span><i class="fa fa-trash"></i> <a href="{{ path('deleteQuestion',{'id':question.idQuestion}) }}">Delete</a></span>  </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container" style="margin-top: 30px">
+
     <ul class="media-list">
+        {% for reponse in reponses %}
         <li class="media">
             <a class="pull-left" href="#">
                 <img class="media-object img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/dancounsell/128.jpg" alt="profile">
             </a>
             <div class="media-body">
                 <div class="well well-lg">
-                    <h4 class="media-heading text-uppercase reviews">Marco </h4>
+                    <h4 class="media-heading text-uppercase reviews">{{ reponse.idUser.username }} </h4>
+                    <h4 class="media-heading text-uppercase reviews"><i class="fa fa-calendar-check-o"></i>{{ reponse.datePublication|date() }} </h4>
                     <ul class="media-date text-uppercase reviews list-inline">
 
                     </ul>
                     <p class="media-comment">
-                        Great snippet! Thanks for sharing.
+                        {{ reponse.contenuRep }}
                     </p>
-                    <a class="btn btn-info btn-circle text-uppercase" href="#" id="reply"><span class="glyphicon glyphicon-share-alt"></span> Reply</a>
-                    <a class="btn btn-warning btn-circle text-uppercase" data-toggle="collapse" href="#replyOne"><span class="glyphicon glyphicon-comment"></span> 2 comments</a>
+                    <a class="btn btn-info btn-circle text-uppercase" href="{{ path('editResponse',{'idq':question.idQuestion ,'idr':reponse.idRep}) }}" id="reply"><span><i class="fa fa-edit"></i></span> Edit</a>
+                    <a class="btn btn-danger btn-circle text-uppercase" href="{{ path('deleteResponse',{'idq':question.idQuestion ,'idr':reponse.idRep}) }}"><span><i class="fa fa-trash"></i></span> Delete</a>
                 </div>
             </div>
 
         </li>
+            {% endfor %}
 
 
     </ul>
+        {% if user == null %}
+            <div class="alert alert-info">
+                <strong>You should be authenticated to respond</strong>
+            </div>
+            {% endif %}
+        {% if not user == null %}
+
         <form action="#" method="post" class="form-horizontal" id="commentForm" role="form">
             <div class="form-group">
                 <label for="email" class="col-sm-2 control-label">Reponse</label>
                 <div class="col-sm-10">
-                    <textarea class="form-control" name="addComment" id="addComment" rows="5" ></textarea>
+                    <textarea class="form-control" name="addRep" id="addComment" rows="5"  required=""></textarea>
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button class="btn btn-success btn-circle text-uppercase " type="submit" id="submitComment"><span class="glyphicon glyphicon-send"></span>  Respond</button>
+                    <button class="btn btn-success btn-circle text-uppercase " type="submit" id="submitComment" >  Respond</button>
                 </div>
             </div>
         </form>
+            {% endif %}
     </div>
 {% endblock content %}

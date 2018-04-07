@@ -74,5 +74,25 @@ Question:
     defaults: { _controller: AppBundle:Question:addQuest }
 
 reponse:
-    path:     /Question
+    path:     /Question/{id}
     defaults: { _controller: AppBundle:Reponse:Show }
+
+editQuestion:
+    path:     /editQuestion/{id}
+    defaults: { _controller: AppBundle:Question:editQuestion }
+
+deleteQuestion:
+    path:     /deleteQuestion/{id}
+    defaults: { _controller: AppBundle:Question:editQuestion }
+
+editResponse:
+    path:     /editRep/{idq}/{idr}
+    defaults: { _controller: AppBundle:Reponse:editReponse }
+
+deleteResponse:
+    path:     /delete/{idq}/{idr}
+    defaults: { _controller: AppBundle:Reponse:deleteresponse }
+
+addrep:
+    path:     /Question/{id}
+    defaults: { _controller: AppBundle:Reponse:addRep }
