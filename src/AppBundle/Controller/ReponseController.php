@@ -2,6 +2,8 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\LikedQuestion;
+use AppBundle\Entity\Question;
 use AppBundle\Entity\Reponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -15,13 +17,16 @@ class ReponseController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
+        /*$likedquestions = $em->getRepository('AppBundle:Reponse')->likedrepuser($user->getId());*/
         $question = $em->getRepository('AppBundle:Question')->find($id);
+        $em->getRepository('AppBundle:Question')->SetRepNbr($id);
         $reponses = $em->getRepository('AppBundle:Reponse')->findrep($id);
         $reponse = new Reponse();
 
         if ($request->isMethod('post'))
         {
             $reponse->setIdUser($user);
+
             $reponse->setContenuRep($request->get('addRep'));
             $reponse->setIdQuestion($question);
             $em->persist($reponse);
@@ -33,7 +38,8 @@ class ReponseController extends Controller
         return $this->render('forum/reponse.html.twig', array(
             'question' => $question,
             'reponses' => $reponses,
-            'user'=>$user
+            'user'=>$user,
+            /*'likedrep'=>$likedquestions*/
         ));
     }
 
@@ -69,23 +75,21 @@ class ReponseController extends Controller
 
 
     }
-    /*public function addRepaction(Request $request , $id)
+    public function likeaction($idq,$idr, Request $request )
     {
         $em = $this->getDoctrine()->getManager();
-        $user= $this->getUser();
-        $question = $em->getRepository('AppBundle:Question')->find($id);
-        $reponse = new Reponse();
-        if ($request->isMethod('post'))
-        {
-            $reponse->setIdUser($user);
-            $reponse->getContenuRep($request->get('addComment'));
-            $reponse->setIdQuestion($question);
-            $em->persist($reponse);
-            $em->flush();
-        }
+        $user = $this->getUser();
+        $likedQuestion = new LikedQuestion();
+        $likedQuestion->setIdUser($user);
+        $likedQuestion->setIdLikedReponse($idr);
+        $em->getRepository('AppBundle:Reponse')->like($idr);
 
+        $em->persist($likedQuestion);
+        $em->flush();
         return $this->redirectToRoute('reponse',array(
-            'id'=>$id
+            'id'=>$idq
         ));
-    }*/
+
+    }
+
 }

@@ -6,9 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * LikedQuestion
- *
- * @ORM\Table(name="Liked_question", indexes={@ORM\Index(name="id_liked_reponse", columns={"id_liked_reponse", "id_user"}), @ORM\Index(name="FK_EDE0815B6B3CA4B", columns={"id_user"})})
- * @ORM\Entity
+ * @ORM\Table(name="reponse")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\LikedQuestionRepository")
  */
 class LikedQuestion
 {
@@ -30,6 +29,38 @@ class LikedQuestion
      * })
      */
     private $idUser;
+
+    /**
+     * @return int
+     */
+    public function getIdLikedReponse()
+    {
+        return $this->idLikedReponse;
+    }
+
+    /**
+     * @param int $idLikedReponse
+     */
+    public function setIdLikedReponse($idLikedReponse)
+    {
+        $this->idLikedReponse = $idLikedReponse;
+    }
+
+    /**
+     * @return User
+     */
+    public function getIdUser()
+    {
+        return $this->idUser;
+    }
+
+    /**
+     * @param User $idUser
+     */
+    public function setIdUser($idUser)
+    {
+        $this->idUser = $idUser;
+    }
 
 
 }

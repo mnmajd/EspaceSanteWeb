@@ -29,15 +29,24 @@
             <div class="media-body">
                 <div class="well well-lg">
                     <h4 class="media-heading text-uppercase reviews">{{ reponse.idUser.username }} </h4>
-                    <h4 class="media-heading text-uppercase reviews"><i class="fa fa-calendar-check-o"></i>{{ reponse.datePublication|date() }} </h4>
+
+
+                            <h4 class="media-heading text-uppercase reviews"><i class="fa fa-calendar-check-o"></i>{{ reponse.datePublication|date() }} </h4>
+
+
+
+
                     <ul class="media-date text-uppercase reviews list-inline">
 
                     </ul>
                     <p class="media-comment">
                         {{ reponse.contenuRep }}
                     </p>
+                    {% if not user == null %}
+                    {% if user.id == reponse.idUser.id %}
                     <a class="btn btn-info btn-circle text-uppercase" href="{{ path('editResponse',{'idq':question.idQuestion ,'idr':reponse.idRep}) }}" id="reply"><span><i class="fa fa-edit"></i></span> Edit</a>
-                    <a class="btn btn-danger btn-circle text-uppercase" href="{{ path('deleteResponse',{'idq':question.idQuestion ,'idr':reponse.idRep}) }}"><span><i class="fa fa-trash"></i></span> Delete</a>
+                    <a class="btn btn-danger btn-circle text-uppercase" href="{{ path('deleteResponse',{'idq':question.idQuestion ,'idr':reponse.idRep}) }}"><span><i class="fa fa-trash"></i></span> Delete</a>{% endif %}
+                    <a href="{{ path('like',{'idq':question.idQuestion ,'idr':reponse.idRep}) }}"> <i class="fa fa-thumbs-up" style="font-size: 20px"></i><strong>Like</strong></a> {% endif %}<strong >{{ reponse.nbrAimeRep }}</strong>
                 </div>
             </div>
 

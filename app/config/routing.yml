@@ -96,3 +96,7 @@ deleteResponse:
 addrep:
     path:     /Question/{id}
     defaults: { _controller: AppBundle:Reponse:addRep }
+
+like:
+    path:     /Question/{idq}/{idr}
+    defaults: { _controller: AppBundle:Reponse:like }

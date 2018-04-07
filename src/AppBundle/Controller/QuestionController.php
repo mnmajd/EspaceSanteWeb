@@ -60,6 +60,7 @@ class QuestionController extends Controller
  public function editQuestionaction( $id , Request $request)
  {
      $em = $this->getDoctrine()->getManager();
+      $em->getRepository('AppBundle:Question')->SetRepNbr($id);
      $question = new Question();
      $question = $em->getRepository('AppBundle:Question')->find($id);
      if ($request->isMethod('post'))

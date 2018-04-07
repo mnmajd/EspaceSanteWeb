@@ -11,6 +11,8 @@ namespace AppBundle\Repository;
 
 class QuestionRepository extends \Doctrine\ORM\EntityRepository
 {
+
+
 public function catquestion($cat)
 {
     $req = $this->getEntityManager()->createQuery(
@@ -18,4 +20,22 @@ public function catquestion($cat)
     )->setParameter('p',$cat);
     return $req->getResult();
 }
+
+    public function SetRepNbr($id)
+    {
+        {$req = $this->getEntityManager()->createQuery(
+
+            "update AppBundle:Question m set m.nbrRep=(select COUNT(s) from AppBundle:Reponse s
+          where s.idQuestion=:p) WHERE m.idQuestion=:p")
+            ->setParameter('p', $id);
+        }
+        return $req->execute();
+
+
+    }
+
+
+
+
+
 }
