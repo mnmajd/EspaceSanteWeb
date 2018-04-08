@@ -33,6 +33,10 @@ AfficherOffre:
     path:     /AfficherOffre/{typeAnnonce}
     defaults: { _controller: AppBundle:Annonce:AfficherOffre }
 
+AfficherOffreAdmin:
+    path:     /AfficherOffreAdmin/{typeAnnonce}
+    defaults: { _controller: AppBundle:Annonce:afficherOffreAdmin }
+
 AfficherOffreDetail:
     path:     /AfficherOffreDetail/{id}
     defaults: { _controller: AppBundle:Annonce:AfficherOffreDetail }
@@ -46,7 +50,7 @@ AfficherEventDetail:
     defaults: { _controller: AppBundle:Annonce:AfficherEventDetail }
 
 DeleteEvent:
-    path:     /DeleteEvent/{id}
+    path:     /DeleteEvent/{id}/{typeAnnonce}
     defaults: { _controller: AppBundle:Annonce:DeleteEvent }
 
 modifierEvent:
@@ -62,5 +66,13 @@ AjoutOffre:
     defaults: { _controller: AppBundle:Annonce:AjoutOffre }
 
 DeleteOffre:
-    path:     /DeleteOffre/{id}
+    path:     /DeleteOffre/{id}/{typeAnnonce}
     defaults: { _controller: AppBundle:Annonce:DeleteOffre }
+
+pdf:
+    path:     /pdf/{id}
+    defaults: { _controller: AppBundle:Annonce:pdf }
+
+pdf2:
+    path:     /pdf2/{id}
+    defaults: { _controller: AppBundle:Annonce:pdf2 }

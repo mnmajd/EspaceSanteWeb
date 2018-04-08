@@ -1,23 +1,22 @@
 {% extends "default/home.html.twig" %}
-
 {% block content %}
 
-    <button  type="button" style="background-color: #0a6aa1"><a href="{{ path("AjoutOffre") }} " style="color: blanchedalmond"> ajouté un Offre d'emploi </a></button></td>
-
     <form METHOD="POST">
+        <div>
     <h4 style="text-align: right">Rechercher Nom Offre d'emploi</h4>
     <tr><th><input type="text" name="titreAnnonce" class="pull-right"></th>
         <th>  <input type="submit" name="submit" value="recherche" class="pull-right"></th></tr>
-    <br><br>
+
+        <button  type="button" href="{{ asset('css/button.css')}}"><a href="{{ path("AjoutOffre") }} " > ajouté un Offre d'emploi </a></button>
+        </div>
+
+        <br><br>
 
     <center>
-<div class="list-group"style="width:1000px">
+        <div class="list-group"style="width:1000px">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table table-bordered table-hover">
 
-
-
-                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table table-bordered table-hover">
-
-                    <thead class="bg-primary" >
+                <thead class="bg-primary" >
                     <tr>
 
                         <th style="color:blanchedalmond">Titre de l'Offre </th>
@@ -26,23 +25,23 @@
                     </tr>
                     </thead>
 
-    {% for Offre in Offre %}
+    {% for Offre in pagination  %}
                     <tr>
                         <td align="center" class="card-title" height="20"><h5 class="card-title" style="color: black" >{{Offre.titreAnnonce}}</h5></td>
-                        <td class="service">  <p class="card-text">{{Offre.dateAnnonce}}</p></td>
-                        <td><button  type="button" style="background-color: #0a6aa1"><a href="{{ path("AfficherOffreDetail" ,{"id":Offre.idAnnonce}) }} " style="color: blanchedalmond"> En savoir +</a></button>
+                        <td class="service">  <p class="card-text">{{Offre.dateAnnonce| date("m/d/y")}}</p></td>
+                        <td><button  type="button"  ><a href="{{ path("AfficherOffreDetail" ,{"id":Offre.idAnnonce}) }} href="{{ asset('css/button.css')}}" > En savoir + </button>
                             &nbsp;
-                            <button  type="button" style="background-color: #0a6aa1"><a href="{{ path("DeleteOffre" ,{"id":Offre.idAnnonce}) }} " style="color: blanchedalmond"> Supprimer</a></button>
+                            <button  type="button"><a href="{{ path("DeleteOffre" ,{"id":Offre.idAnnonce, "typeAnnonce":Offre.typeAnnonce}) }} "  href="{{ asset('css/button.css')}}"> Supprimer</a></button>
                         </td>
                     </tr>
     {% endfor %}
                 </table>
 
-
-
 </div>
 
     </center>
-</form>
+    {# display navigation #}
+    <div class="navigation text-center">
+        {{ knp_pagination_render(pagination) }}
+    </div>
 {% endblock content %}
-

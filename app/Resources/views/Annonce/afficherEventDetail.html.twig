@@ -10,16 +10,16 @@
                     <br><br>
                     <h4 class="card-title">Titre de l'Evenement : {{Event.titreAnnonce}}</h4><br><br>
                     <p class="card-text">Description de l'Evenement :  {{Event.descAnnonce}}</p><br>
-                    <p class="card-text">Date de l'Evenement : {{Event.dateAnnonce}}</p><br>
+                    <p class="card-text">Date de l'Evenement : {{Event.dateAnnonce| date("m/d/y")}}</p><br>
                     <p class="card-text">Adresse de l'Evenement : {{Event.addrAnnonce}}</p><br>
                     <p class="card-text">Telephone de l'Evenement : {{Event.telAnnonce}}</p><br>
                 </div>
                 <br>
-                <img class="card-img-bottom" src="https://tiny.pictures/api/demo/main/example1.jpg" alt="Card image" style="width:100%">
+                <img src="{{ asset('image/')}}{{ Event.NomImage }}"  style="width:200px;height: 100px">
                 <br><br>
-                <td><button  type="button" style="background-color: #0a6aa1"><a href="{{ path("modifierEvent" ,{"id":Event.idAnnonce}) }} " style="color: blanchedalmond"> Modifier </a></button>
+                <td><button  type="button" ><a href="{{ path("modifierEvent" ,{"id":Event.idAnnonce}) }} " href="{{ asset('css/button.css')}}"> Modifier </a></button>
                     <br><br>
-
+                    <button  type="button"><a href="{{ path("pdf2" ,{"id":Event.idAnnonce}) }} " href="{{ asset('css/button.css')}}"> pdf </a></button>
 
             </div>
         </div>

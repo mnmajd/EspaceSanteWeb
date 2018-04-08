@@ -8,17 +8,19 @@
         <div class="card" style="width:500px">
             <div class="card-body" align="left" style="font-style: italic">
                <br><br>
-                <h4 class="card-title">Titre de l'Offre : {{Offre.titreAnnonce}}</h4><br><br>
-                <p class="card-text">Description de l'Offre :  {{Offre.descAnnonce}}</p><br>
-                <p class="card-text">Date de l'Offre : {{Offre.dateAnnonce}}</p><br>
-                <p class="card-text">Adresse de l'Offre : {{Offre.addrAnnonce}}</p><br>
-                <p class="card-text">Telephone de l'Offre : {{Offre.telAnnonce}}</p><br>
+                <h4 class="card-title">Titre de l'Offre : {{offre.titreAnnonce}}</h4><br><br>
+                <p class="card-text">Description de l'Offre :  {{offre.descAnnonce}}</p><br>
+                <p class="card-text">Date de l'Offre : {{offre.dateAnnonce| date("m/d/y")}}</p><br>
+                <p class="card-text">Adresse de l'Offre : {{offre.addrAnnonce}}</p><br>
+                <p class="card-text">Telephone de l'Offre : {{offre.telAnnonce}}</p><br>
             </div>
             <br>
-            <img class="card-img-bottom" src="https://tiny.pictures/api/demo/main/example1.jpg" alt="Card image" style="width:100%">
+            <img src="{{ asset('image/')}}{{ offre.NomImage }}"  style="width:200px;height: 100px">
             <br><br>
-            <td><button  type="button" style="background-color: #0a6aa1"><a href="{{ path("modifierOffre" ,{"id":Offre.idAnnonce}) }} " style="color: blanchedalmond"> Modifier </a></button>
+            <button  type="button"><a href="{{ path("modifierOffre" ,{"id":offre.idAnnonce}) }} " href="{{ asset('css/button.css')}}"> Modifier </a></button>
                 <br><br>
+            <button  type="button"><a href="{{ path("pdf" ,{"id":offre.idAnnonce}) }} " href="{{ asset('css/button.css')}}"> pdf </a></button>
+
         </div>
     </div>
 </center>

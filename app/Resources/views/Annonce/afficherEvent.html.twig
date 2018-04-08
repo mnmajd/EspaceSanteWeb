@@ -2,13 +2,17 @@
 
 {% block content %}
 
-    <button  type="button" style="background-color: #0a6aa1"><a href="{{ path("AjoutEvent") }} " style="color: blanchedalmond"> ajouté un Evenement </a></button></td>
 
     <form METHOD="POST">
+        <div>
 
         <h4 style="text-align: right">Rechercher Nom Evenement</h4>
         <tr>  <th>  <input type="text" name="titreAnnonce" class="pull-right"></th>
             <th>  <input type="submit" name="submit" value="recherche" class="pull-right"></th></tr>
+
+        <button  type="button"><a href="{{ path("AjoutEvent") }} " href="{{ asset('css/button.css')}}"> ajouté un Evenement </a></button></td>
+        </div>
+
         <br><br>
 
     <center>
@@ -23,19 +27,22 @@
                 </tr>
                 </thead>
 
-                {% for Event in Event %}
+                {% for Event in pagination %}
                     <tr>
                         <td align="center" class="card-title" height="20"><h5 class="card-title" style="color: black" >{{Event.titreAnnonce}}</h5></td>
-                        <td class="service">  <p class="card-text">{{Event.dateAnnonce}}</p></td>
-                        <td><button  type="button" style="background-color: #0a6aa1"><a href="{{ path("AfficherEventDetail" ,{"id":Event.idAnnonce}) }} " style="color: blanchedalmond"> En savoir +</a></button>
+                        <td class="service">  <p class="card-text">{{Event.dateAnnonce| date("m/d/y")}}</p></td>
+                        <td><button  type="button"><a href="{{ path("AfficherEventDetail" ,{"id":Event.idAnnonce}) }} " href="{{ asset('css/button.css')}}"> En savoir +</a></button>
                             &nbsp;
-                            <button  type="button" style="background-color: #0a6aa1"><a href="{{ path("DeleteEvent" ,{"id":Event.idAnnonce}) }} " style="color: blanchedalmond"> Supprimer</a></button>
+                            <button  type="button"><a href="{{ path("DeleteEvent" ,{"id":Event.idAnnonce,"typeAnnonce":Event.TypeAnnonce}) }} " href="{{ asset('css/button.css')}}"> Supprimer</a></button>
 
                     </tr>
                 {% endfor %}
             </table>
         </div>
     </center>
-</form>
-{% endblock content %}
+        {# display navigation #}
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
 
+{% endblock content %}

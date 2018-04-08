@@ -1,2 +1,52 @@
-{{ form_start (form) }}
-{{ form_end(form) }}
+{% extends "default/home.html.twig" %}
+{% block content %}
+    <br><br>
+    <center>
+        <div style="width: 400px" >
+
+            {{ form_start(form) }}
+            <fieldset>
+                <legend>Modifier un Offre d'emploi</legend>
+
+                <div class="form-group">
+                    {{ form_widget(form.titreAnnonce, { 'attr': {'class': 'form-control', 'placeholder': 'titreAnnonce'} }) }}
+                    {{ form_errors(form.titreAnnonce) }}
+                </div>
+                <br><br>
+                <div class="form-group">
+                    {{ form_widget(form.dateAnnonce, { 'attr': {'class': 'form-control', 'placeholder': 'date'} }) }}
+                    {{ form_errors(form.dateAnnonce) }}
+                </div>
+                <br><br>
+                <div class="form-group">
+                    {{ form_widget(form.descAnnonce, { 'attr': {'class': 'form-control', 'placeholder': 'Description'} }) }}
+                    {{ form_errors(form.descAnnonce) }}
+                </div>
+                <br><br>
+                <div class="form-group">
+                    {{ form_widget(form.addrAnnonce, { 'attr': {'class': 'form-control', 'placeholder': 'adress'} }) }}
+                    {{ form_errors(form.addrAnnonce) }}
+                </div>
+
+                <br><br>
+                <div class="form-group">
+                    {{ form_widget(form.telAnnonce, { 'attr': {'class': 'form-control', 'placeholder': 'telephone'} }) }}
+                    {{ form_errors(form.telAnnonce) }}
+                </div>
+                <br><br>
+                <div class="form-group">
+                    {{ form_widget(form.file) }}
+                    {{ form_errors(form.file) }}
+                </div>
+                <div>
+                    <input type="submit" value="Modifier"  href="{{ asset('css/button.css')}}"/>
+
+                </div>
+                <br><br>
+            </fieldset>
+            {{ form_end(form) }}
+        </div>
+
+    </center>
+    <br><br>
+{% endblock content %}

@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\user;
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Annonce
  *
@@ -36,7 +37,7 @@ class Annonce
     /**
      * @var string
      *
-     * @ORM\Column(name="date_annonce", type="string", length=30, nullable=false)
+     * @ORM\Column(name="date_annonce", type="date", length=30, nullable=false)
      */
     private $dateAnnonce;
 
@@ -54,12 +55,39 @@ class Annonce
      */
     private $telAnnonce;
 
+
     /**
-     * @var string
+     * @var boolean
      *
-     * @ORM\Column(name="img_annonce", type="string", length=255, nullable=false)
+     * @ORM\Column(name="published", type="boolean", nullable=false)
      */
-    private $imgAnnonce;
+    private $published;
+
+
+    /**
+     * @ORM\Column(name="nom_image", type="string",length=255, nullable=true)
+     */
+    public $NomImage;
+    /**
+     * @Assert\File(maxSize="500k")
+     */
+    public $file;
+
+    /**
+     * @return mixed
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * @param mixed $file
+     */
+    public function setFile($file)
+    {
+        $this->file = $file;
+    }
 
     /**
      * @var integer
@@ -176,21 +204,47 @@ class Annonce
         $this->telAnnonce = $telAnnonce;
     }
 
-    /**
-     * @return string
-     */
-    public function getImgAnnonce()
+    public function getWebPath()
     {
-        return $this->imgAnnonce;
+        return null===$this->NomImage ? null : $this->getUploadDir.'/'.$this->NomImage ;
+    }
+    protected function getUploadRootDir()
+{
+    //var_dump(__DIR__);
+    //die;
+
+    return __DIR__.'/../../../web/'.$this->getUploadDir();
+        }
+    protected function getUploadDir(){
+
+        return 'image';
+}
+    public function uploadProfilePicture(){
+
+        $this->file->move($this->getUploadRootDir(), $this->file->getClientOriginalName());
+        $this->NomImage=$this->file->getClientOriginalName();
+        $this->file=null;
+}
+
+    /**
+     * @return mixed
+     */
+    public function getNomImage()
+    {
+        return $this->NomImage;
     }
 
     /**
-     * @param string $imgAnnonce
+     * @param mixed $NomImage
      */
-    public function setImgAnnonce($imgAnnonce)
+    public function setNomImage($NomImage)
     {
-        $this->imgAnnonce = $imgAnnonce;
+        $this->NomImage = $NomImage;
     }
+
+
+
+
 
     /**
      * @return int
@@ -222,6 +276,22 @@ class Annonce
     public function setIdUser($idUser)
     {
         $this->idUser = $idUser;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPublished()
+    {
+        return $this->published;
+    }
+
+    /**
+     * @param bool $published
+     */
+    public function setPublished($published)
+    {
+        $this->published = $published;
     }
 
 

@@ -13,6 +13,7 @@ use AppBundle\Form\AnnonceType;
 use \Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Workflow\Event\Event;
+use Symfony\Component\HttpFoundation\Response;
 
 
 class AnnonceController extends Controller
@@ -21,45 +22,70 @@ class AnnonceController extends Controller
 
     public function AjoutEventAction(Request $request){
 
-        $Annonce = new Annonce();
+        $event = new Annonce();
         $em=$this->getDoctrine()->getManager();
-        $form=$this->createForm(AnnonceType::class,$Annonce);
+        $form=$this->createForm(AnnonceType::class,$event);
         $form->handleRequest($request);
         if($form->isSubmitted()) {
+            $event->setTypeAnnonce("Evenement");
+           // $Annonce->uploadProfilePicture();
+            $file = $event->getFile();
+            $event->setPublished(false);
+            $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
+            // moves the file to the directory where brochures are stored
+            $file->move(
+                $this->getUploadRootDir(),
+                $fileName
+            );
 
-            $em->persist($Annonce);
+            $event->setNomImage($fileName);
+            $em->persist($event);
             $em->flush();
 
-            //return $this->redirectToRoute ("");
+            return $this->redirectToRoute ("AfficherEvent", array('typeAnnonce'=>$event->getTypeAnnonce()));
         }
-
-        return $this->render("AjoutEvent.html.twig", array(
+        return $this->render("Annonce/AjoutEvent.html.twig", array(
             'form'=>$form->createView()
         ));
     }
 
-
     public function afficherOffreAction(Request $request , $typeAnnonce)
     {
+//        $em = $this->getDoctrine()->getManager();
+//        $Offre=$em->getRepository("AppBundle:Annonce")
+//            ->afficherOffreDQL($typeAnnonce);
+//        $dql   = "SELECT * FROM AppBundle:Annonce a";
+//        $query = $em->createQuery($dql);
+//
+//       $paginator  = $this->get('knp_paginator');
+//       $result = $paginator->paginate(
+//        $Offre,
+//        $request->query->getInt('page', 1),
+//        $request->query->getInt('page', 10)
+//        );
+//        return $this->render('Annonce/afficherOffre.html.twig', array('blog_Post' => $result));
+//
+//
+//        if ($request->isMethod('POST')){
+//            $titreAnnonce=$request->get('titreAnnonce');
+//            $Offre=$em->getRepository("AppBundle:Annonce")->findBy(array('titreAnnonce'=>$titreAnnonce));
+//        }
         $em = $this->getDoctrine()->getManager();
         $Offre=$em->getRepository("AppBundle:Annonce")
             ->afficherOffreDQL($typeAnnonce);
-        if ($request->isMethod('POST')){
-            $titreAnnonce=$request->get('titreAnnonce');
-            $Offre=$em->getRepository("AppBundle:Annonce")->findBy(array('titreAnnonce'=>$titreAnnonce));
-        }
+
+
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $Offre, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            5/*limit per page*/
+        );
+
+        // parameters to template
         return $this->render('Annonce/afficherOffre.html.twig', array(
-            'Offre'=>$Offre ));
-
-    }
-
-    public function afficherOffreDetailAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $Offre=$em->getRepository("AppBundle:Annonce")->find($id);
-
-        return $this->render('Annonce/afficheOffreDetail.html.twig ', array(
-            'Offre'=>$Offre ));
+            'Offre'=>$Offre,
+            'pagination' => $pagination));
 
     }
 
@@ -67,13 +93,28 @@ class AnnonceController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $Event = $em->getRepository("AppBundle:Annonce")
-               ->afficherEventDQL($typeAnnonce);
-        if ($request->isMethod('POST')){
-            $titreAnnonce=$request->get('titreAnnonce');
-            $Event=$em->getRepository("AppBundle:Annonce")->findBy(array('titreAnnonce'=>$titreAnnonce));
-        }
-        return $this->render("Annonce/afficherEvent.html.twig", array('Event'=>$Event));
+            ->afficherEventDQL($typeAnnonce);
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $Event, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            5/*limit per page*/
+        );
+        return $this->render("Annonce/afficherEvent.html.twig", array('Event'=>$Event,
+            'pagination' => $pagination));
     }
+
+
+    public function afficherOffreDetailAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $offre=$em->getRepository("AppBundle:Annonce")->find($id);
+
+        return $this->render('Annonce/afficheOffreDetail.html.twig ', array(
+            'offre'=>$offre ));
+
+    }
+
 
     public function afficherEventDetailAction($id)
     {
@@ -86,14 +127,17 @@ class AnnonceController extends Controller
     }
 
 
-    public function DeleteEventAction(Request $request ,$id){
+    public function DeleteEventAction($id,$typeAnnonce ){
 
         $Event = new Annonce();
         $em=$this->getDoctrine()->getManager();
         $Event=$em->getRepository("AppBundle:Annonce")->find($id);
         $em->remove($Event);
         $em->flush();
-        return $this->redirectToRoute("AfficherEvent");
+        return $this->redirectToRoute("AfficherEvent" ,array(
+
+         'typeAnnonce'=>$typeAnnonce
+        ));
     }
 
 
@@ -108,7 +152,7 @@ class AnnonceController extends Controller
             $em->persist($Event);
             $em->flush();
 
-            return $this->redirectToRoute ("AfficherEventDetail");
+            return $this->redirectToRoute ("AfficherEventDetail", array( 'id'=>$id));
         }
 
         return $this->render("Annonce/modifierEvent.html.twig", array( 'form'=>$form->createView()
@@ -130,19 +174,40 @@ class AnnonceController extends Controller
         return $this->render("Annonce/afficherEvent.html.twig",array('Event'=>$Event));
 
     }
-
+    private function generateUniqueFileName()
+    {
+        // md5() reduces the similarity of the file names generated by
+        // uniqid(), which is based on timestamps
+        return md5(uniqid());
+    }
     public function AjoutOffreAction(Request $request){
 
-        $Annonce = new Annonce();
+        $annonce = new Annonce();
         $em=$this->getDoctrine()->getManager();
-        $form=$this->createForm(AnnonceType::class,$Annonce);
+        $form=$this->createForm(AnnonceType::class,$annonce);
         $form->handleRequest($request);
         if($form->isSubmitted()) {
+            $annonce->setTypeAnnonce("offre d'emploi");
+           // $annonce->uploadProfilePicture();
+            $file = $annonce->getFile();
+            $annonce->setPublished(false);
+            $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
 
-            $em->persist($Annonce);
+            // moves the file to the directory where brochures are stored
+            $file->move(
+                $this->getUploadRootDir(),
+                $fileName
+            );
+
+            // updates the 'brochure' property to store the PDF file name
+            // instead of its contents
+            $annonce->setNomImage($fileName);
+
+            $em->persist($annonce);
+
             $em->flush();
 
-            //return $this->redirectToRoute ("");
+            return $this->redirectToRoute ("AfficherOffre", array('typeAnnonce'=>$annonce->getTypeAnnonce()));
         }
 
         return $this->render("Annonce/AjoutOffre.html.twig", array(
@@ -150,14 +215,39 @@ class AnnonceController extends Controller
         ));
     }
 
-    public function DeleteOffreAction(Request $request ,$id){
+
+    public function modifierOffreAction(Request $request ,$id){
+
+        $em=$this->getDoctrine()->getManager();
+        $offre=$em->getRepository("AppBundle:Annonce")->find($id);
+        $form=$this->createForm(AnnonceType::class , $offre);
+        $form->handleRequest($request);
+        if($form->isSubmitted()) {
+
+            $em->persist($offre);
+            $em->flush();
+
+            return $this->redirectToRoute ("AfficherOffreDetail" , array( 'id'=>$id));
+        }
+
+        return $this->render("Annonce/modifierOffre.html.twig", array( 'form'=>$form->createView()
+        ));
+    }
+
+
+
+    public function DeleteOffreAction($id,$typeAnnonce){
 
         $Offre = new Annonce();
         $em=$this->getDoctrine()->getManager();
         $Offre=$em->getRepository("AppBundle:Annonce")->find($id);
         $em->remove($Offre);
         $em->flush();
-        return $this->redirectToRoute("AfficherOffre");
+        return $this->redirectToRoute("AfficherOffre",array(
+
+            'typeAnnonce'=>$typeAnnonce
+        ));
+
     }
 
     public function RechercheOffreAction(Request $request )
@@ -175,21 +265,75 @@ class AnnonceController extends Controller
 
     }
 
-    public function modifierOffreAction(Request $request ,$id){
 
-        $em=$this->getDoctrine()->getManager();
-        $Offre=$em->getRepository("AppBundle:Annonce")->find($id);
-        $form=$this->createForm(AnnonceType::class , $Offre);
-        $form->handleRequest($request);
-        if($form->isSubmitted()) {
-            $em->persist($Offre);
-            $em->flush();
+    protected function getUploadRootDir()
+    {
+        //var_dump(__DIR__);
+        //die;
 
-            return $this->redirectToRoute ("AfficherOffreDetail");
-        }
+        return __DIR__.'/../../../web/'.$this->getUploadDir();
+    }
+    protected function getUploadDir(){
 
-        return $this->render("Annonce/modifierOffre.html.twig", array( 'form'=>$form->createView()
-        ));
+        return 'image';
+    }
+
+
+    public function pdfAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $offre=$em->getRepository("AppBundle:Annonce")->find($id);
+
+//var_dump($offre); die;
+        $snappy = $this->get('knp_snappy.pdf');
+
+        $html = $this->renderView('Annonce/pdf.html.twig ', array(
+            'offre'=>$offre ));
+
+        $filename = 'myFirstSnappyPDF';
+
+        return new Response(
+            $snappy->getOutputFromHtml($html),
+            200,
+            array(
+                'Content-Type'          => 'application/pdf',
+                'Content-Disposition'   => 'inline; filename="'.$filename.'.pdf"'
+            )
+        );
+    }
+
+
+
+    public function pdf2Action($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $event=$em->getRepository("AppBundle:Annonce")->find($id);
+
+//var_dump($offre); die;
+        $snappy = $this->get('knp_snappy.pdf');
+
+        $html = $this->renderView('Annonce/pdf2.html.twig ', array(
+            'event'=>$event ));
+
+        $filename = 'myFirstSnappyPDF';
+
+        return new Response(
+            $snappy->getOutputFromHtml($html),
+            200,
+            array(
+                'Content-Type'          => 'application/pdf',
+                'Content-Disposition'   => 'inline; filename="'.$filename.'.pdf"'
+            )
+        );
+    }
+    public function afficherOffreAdminAction(Request $request , $typeAnnonce)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $Offre=$em->getRepository("AppBundle:Annonce")
+            ->afficherOffreAdminDQL($typeAnnonce);
+
+        return $this->render('Annonce/afficherOffreAdmin.html.twig', array(
+            'Offre'=>$Offre ));
     }
 
 
