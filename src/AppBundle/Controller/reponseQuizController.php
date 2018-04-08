@@ -3,8 +3,11 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\reponseQuiz;
+use CMEN\GoogleChartsBundle\GoogleCharts\Charts\PieChart;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+
+
 
 /**
  * Reponsequiz controller.
@@ -16,14 +19,71 @@ class reponseQuizController extends Controller
      * Lists all reponseQuiz entities.
      *
      */
-    public function indexAction()
+
+
+
+
+    public function statAction()
+    {
+
+        $pieChart = new PieChart();
+        $em = $this->getDoctrine()->getManager();
+        $questionApps = $em->getRepository('AppBundle:reponseQuiz')->findBy(array('isCorrect'=> 1));
+        $questionNot = $em->getRepository('AppBundle:reponseQuiz')->findBy(array('isCorrect'=> 0));
+        $nbr1 = 1;
+        $nbr2 = 1 ;
+        foreach ($questionApps as $questionApp)
+        {
+            $nbr1 = $nbr1 + 1 ;
+        }
+        foreach ($questionNot as $questionNot)
+        {
+            $nbr2 = $nbr2+1;
+        }
+
+        $pieChart->getData()->setArrayToDataTable(
+            [['reponseQuiz', 'Apprové'],
+                ['reponseQuiz correct',     $nbr1],
+                ['reponseQuiz not correct',      $nbr2],
+
+            ]
+        );
+
+        $pieChart->getOptions()->setTitle('Pourcentages des questions correcte');
+        $pieChart->getOptions()->setHeight(500);
+        $pieChart->getOptions()->setWidth(900);
+        $pieChart->getOptions()->getTitleTextStyle()->setBold(true);
+        $pieChart->getOptions()->getTitleTextStyle()->setColor('#009900');
+        $pieChart->getOptions()->getTitleTextStyle()->setItalic(true);
+        $pieChart->getOptions()->getTitleTextStyle()->setFontName('Arial');
+        $pieChart->getOptions()->getTitleTextStyle()->setFontSize(20);
+
+
+
+
+        return $this->render('reponsequiz/statistique.html.twig', array(
+            'piechart'=>$pieChart
+        ));
+    }
+
+
+
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
         $reponseQuizzes = $em->getRepository('AppBundle:reponseQuiz')->findAll();
 
+        $paginator  = $this->get('knp_paginator');
+        $pag = $paginator->paginate(
+            $reponseQuizzes,
+            $request->query->getInt('page',1),
+            $request->query->getInt('limit',6)
+
+        );
+
         return $this->render('reponsequiz/index.html.twig', array(
-            'reponseQuizzes' => $reponseQuizzes,
+            'reponseQuizzes' => $pag,
         ));
     }
 

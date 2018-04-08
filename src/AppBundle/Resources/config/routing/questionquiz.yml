@@ -22,3 +22,4 @@ questionquiz_delete:
     path:     /{id}/delete
     defaults: { _controller: "AppBundle:questionQuiz:delete" }
     methods:  DELETE
+

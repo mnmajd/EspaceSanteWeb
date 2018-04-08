@@ -26,7 +26,6 @@ class questionQuizController extends Controller
             'questionQuizzes' => $questionQuizzes,
         ));
     }
-
     /**
      * Creates a new questionQuiz entity.
      *

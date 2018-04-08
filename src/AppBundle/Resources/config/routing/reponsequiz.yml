@@ -22,3 +22,9 @@ reponsequiz_delete:
     path:     /{id}/delete
     defaults: { _controller: "AppBundle:reponseQuiz:delete" }
     methods:  DELETE
+
+reponsequiz_stat:
+    path:     /stat
+    defaults: { _controller: "AppBundle:reponseQuiz:stat" }
+    methods:
+
