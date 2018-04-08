@@ -1,0 +1,37 @@
+{% extends 'Admin/admin.html.twig' %}
+   {% block head %}
+       <h1>Confirmer Question</h1>
+   {% endblock %}
+{% block body %}
+    <table class="table table-hover"  style="margin-left: 200px; margin-top: 30px">
+        <thead>
+        <tr>
+            <th scope="col">Id Question</th>
+            <th scope="col">User NAme</th>
+            <th scope="col">Contenu Question</th>
+            <th scope="col">Verify</th>
+
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            {% for quest in quest %}
+            <td scope="row">{{ quest.idQuestion }}</td>
+            <td>{{ quest.idUser.username }}</td>
+            <td style="width: 100px">{{ quest.contenuQuest }}</td>
+            <td><a href="#"><button type="button" class="btn btn-success " >
+                    Verifier
+                </button></a></td>
+
+
+
+        </tr>
+                {% endfor %}
+
+
+        </tbody>
+    </table>
+
+
+{% endblock %}

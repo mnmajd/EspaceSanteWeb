@@ -100,3 +100,12 @@ addrep:
 like:
     path:     /Question/{idq}/{idr}
     defaults: { _controller: AppBundle:Reponse:like }
+
+stat:
+    path:     /stat
+    defaults: { _controller: AppBundle:Admin:stat}
+
+confquest:
+    path:     /ConfirmQuestion
+    defaults: { _controller: AppBundle:Admin:Question}
+

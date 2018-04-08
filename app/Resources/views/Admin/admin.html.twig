@@ -1,4 +1,3 @@
-
 <!--
 Author: W3layouts
 Author URL: http://w3layouts.com
@@ -18,10 +17,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- Custom Theme files -->
     <link href="{{ asset('admin/css/style.css')}}" rel='stylesheet' type='text/css' />
     <link href="{{ asset('admin/css/font-awesome.css')}}" rel="stylesheet">
-    <script src="{{ asset('admin/js/jquery.min.js')}}"> </script>
-    <!-- Mainly scripts -->
-    <script src="{{ asset('admin/js/jquery.metisMenu.js')}}"></script>
-    <script src="{{ asset('admin/js/jquery.slimscroll.min.js')}}"></script>
+
     <!-- Custom and plugin javascript -->
     <link href="{{ asset('admin/css/custom.css')}}" rel="stylesheet">
     <script src="{{ asset('admin/js/custom.js')}}"></script>
@@ -206,7 +202,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <a href="index.html" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Dashboards</span> </a>
                         </li>
                         <li>
-                            <a href="index.html" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Confirmer Question</span> </a>
+                            <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Quizz</span> </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('confquest') }}" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Confirmer Questions</span> </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('stat') }}" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Statitiques</span> </a>
                         </li>
 
 
@@ -232,8 +234,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!--//banner-->
             <!--content-->
             <div class="content-top">
-
-
+            {% block head %}
+            {% endblock %}
 
 
 
@@ -243,9 +245,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
         </div>
         <div class="col-md-8 content-top-2">
-            <!---start-chart---->
-            <!----->
-
+            {% block body %}{% endblock %}
 
         </div>
     </div>
@@ -276,10 +276,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 </div>
 <!---->
+<script src="{{ asset('admin/js/jquery.min.js')}}"> </script>
+<!-- Mainly scripts -->
+<script src="{{ asset('admin/js/jquery.metisMenu.js')}}"></script>
+<script src="{{ asset('admin/js/jquery.slimscroll.min.js')}}"></script>
 <!--scrolling js-->
 <script src="{{ asset('admin/js/jquery.nicescroll.js')}}"></script>
+
 <script src="{{ asset('admin/js/scripts.js')}}"></script>
 <!--//scrolling js-->
 <script src="{{ asset('admin/js/bootstrap.min.js')}}"> </script>
+{% block javascripts %}{% endblock %}
+
 </body>
 </html>
