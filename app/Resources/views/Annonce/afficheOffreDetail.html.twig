@@ -6,7 +6,7 @@
 <center>
     <div class="container">
         <div class="card" style="width:500px">
-            <div class="card-body" align="left" style="font-style: italic">
+            <div class="card-body" align="left" style="font-style: initial">
                <br><br>
                 <h4 class="card-title">Titre de l'Offre : {{offre.titreAnnonce}}</h4><br><br>
                 <p class="card-text">Description de l'Offre :  {{offre.descAnnonce}}</p><br>
@@ -15,12 +15,12 @@
                 <p class="card-text">Telephone de l'Offre : {{offre.telAnnonce}}</p><br>
             </div>
             <br>
-            <img src="{{ asset('image/')}}{{ offre.NomImage }}"  style="width:200px;height: 100px">
+            <img src="{{ asset('image/')}}{{ offre.NomImage }}"  style="width:400px;height: 150px">
             <br><br>
             <button  type="button"><a href="{{ path("modifierOffre" ,{"id":offre.idAnnonce}) }} " href="{{ asset('css/button.css')}}"> Modifier </a></button>
                 <br><br>
             <button  type="button"><a href="{{ path("pdf" ,{"id":offre.idAnnonce}) }} " href="{{ asset('css/button.css')}}"> pdf </a></button>
-
+            <br><br>
         </div>
     </div>
 </center>

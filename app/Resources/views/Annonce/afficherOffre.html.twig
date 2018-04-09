@@ -3,34 +3,28 @@
 
     <form METHOD="POST">
         <div>
-    <h4 style="text-align: right">Rechercher Nom Offre d'emploi</h4>
-    <tr><th><input type="text" name="titreAnnonce" class="pull-right"></th>
-        <th>  <input type="submit" name="submit" value="recherche" class="pull-right"></th></tr>
-
-        <button  type="button" href="{{ asset('css/button.css')}}"><a href="{{ path("AjoutOffre") }} " > ajouté un Offre d'emploi </a></button>
+        <button href="{{ asset('css/button.css')}}"> <a href="{{ path("AjoutOffre") }} " > ajouté un Offre d'emploi </a></button>
         </div>
 
         <br><br>
 
     <center>
         <div class="list-group"style="width:1000px">
-            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table table-bordered table-hover">
-
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table table-bordered table-hover" id="mytable">
                 <thead class="bg-primary" >
                     <tr>
-
                         <th style="color:blanchedalmond">Titre de l'Offre </th>
                         <th style="color:blanchedalmond">Date de l'Offre</th>
                         <th> </th>
                     </tr>
                     </thead>
 
-    {% for Offre in pagination  %}
+    {% for Offre in Offre  %}
                     <tr>
                         <td align="center" class="card-title" height="20"><h5 class="card-title" style="color: black" >{{Offre.titreAnnonce}}</h5></td>
                         <td class="service">  <p class="card-text">{{Offre.dateAnnonce| date("m/d/y")}}</p></td>
                         <td><button  type="button"  ><a href="{{ path("AfficherOffreDetail" ,{"id":Offre.idAnnonce}) }} href="{{ asset('css/button.css')}}" > En savoir + </button>
-                            &nbsp;
+                            &nbsp
                             <button  type="button"><a href="{{ path("DeleteOffre" ,{"id":Offre.idAnnonce, "typeAnnonce":Offre.typeAnnonce}) }} "  href="{{ asset('css/button.css')}}"> Supprimer</a></button>
                         </td>
                     </tr>
@@ -41,7 +35,18 @@
 
     </center>
     {# display navigation #}
-    <div class="navigation text-center">
-        {{ knp_pagination_render(pagination) }}
-    </div>
+    {#<div class="navigation text-center">#}
+        {#{{ knp_pagination_render(pagination) }}#}
+    {#</div>#}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+        <script>
+            $(document).ready( function () {
+                $('#mytable').DataTable({
+
+                });
+
+            } );
+        </script>
 {% endblock content %}

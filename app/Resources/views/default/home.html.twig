@@ -8,7 +8,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="Health Plus Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
 Smartphone Compatible web template, free web designs for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-
+    <script src="{{ asset('js/jquery-2.2.3.min.js')}}"></script>
+    <script src="{{ asset('js/JiSlider.js')}}"></script>
 
     <link href="{{ asset('css/bootstrap.css')}}" rel="stylesheet" type="text/css" media="all" />
     <link rel="stylesheet" href="{{asset('css/flexslider.css')}}" type="text/css" media="screen" Department="" />
@@ -213,8 +214,7 @@ Smartphone Compatible web template, free web designs for Nokia, Samsung, LG, Son
     {% block scripts %}
     <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
     <!-- js -->
-    <script src="{{ asset('js/jquery-2.2.3.min.js')}}"></script>
-    <script src="{{ asset('js/JiSlider.js')}}"></script>
+
     <script>
         $(window).load(function () {
             $('#JiSlider').JiSlider({color: '#fff', start: 3, reverse: true}).addClass('ff')

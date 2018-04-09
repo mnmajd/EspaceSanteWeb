@@ -8,7 +8,7 @@
             <tr><th><input type="text" name="titreAnnonce" class="pull-right"></th>
                 <th>  <input type="submit" name="submit" value="recherche" class="pull-right"></th></tr>
 
-            <button  type="button" href="{{ asset('css/button.css')}}"><a href="{{ path("AjoutOffre") }} " > ajouté un Offre d'emploi </a></button>
+            <button  href="{{ asset('css/button.css')}}"><a href="{{ path("AjoutOffre") }} " > ajouté un Offre d'emploi </a></button>
         </div>
 
         <br><br>
@@ -33,14 +33,14 @@
                         <tr>
                             <td align="center" class="card-title" height="20"><h5 class="card-title" style="color: black" >{{Offre.titreAnnonce}}</h5></td>
                             <td class="service">  <p class="card-text">{{Offre.dateAnnonce| date("m/d/y")}}</p></td>
-                            <td><button  type="button"  ><a href="{{ path("AfficherOffreDetail" ,{"id":Offre.idAnnonce}) }} href="{{ asset('css/button.css')}}" > En savoir + </button>
+                            <td><button><a href="{{ path("AfficherOffreDetail" ,{"id":Offre.idAnnonce}) }} href="{{ asset('css/button.css')}}" > En savoir + </button>
                                 &nbsp;
-                                <button  type="button"><a href="{{ path("DeleteOffre" ,{"id":Offre.idAnnonce, "typeAnnonce":Offre.typeAnnonce}) }} "  href="{{ asset('css/button.css')}}"> Supprimer</a></button>
+                                <button><a href="{{ path("DeleteOffre" ,{"id":Offre.idAnnonce, "typeAnnonce":Offre.typeAnnonce}) }} "  href="{{ asset('css/button.css')}}"> Supprimer</a></button>
                                 {% if Offre.published == 0 %}
-                                    <button>Publier</button>
+                                <button><a href="{{ path("publishOffre" ,{"id":Offre.idAnnonce, "typeAnnonce":Offre.typeAnnonce}) }}" href="{{ asset('css/button.css')}}"> Publié </a> </button>
                                 {% endif %}
                                 {% if Offre.published == 1 %}
-                                    <button>Dépublier</button>
+                                    <button><a href="{{ path("unpublishOffre" ,{"id":Offre.idAnnonce , "typeAnnonce":Offre.typeAnnonce}) }}" href="{{ asset('css/button.css')}}"> Depublié </a> </button>
                                 {% endif %}
 
 
@@ -48,12 +48,9 @@
                         </tr>
                     {% endfor %}
                 </table>
-
-
-
             </div>
-
         </center>
+
     </form>
 {% endblock content %}
 

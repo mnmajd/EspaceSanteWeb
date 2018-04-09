@@ -37,6 +37,10 @@ AfficherOffreAdmin:
     path:     /AfficherOffreAdmin/{typeAnnonce}
     defaults: { _controller: AppBundle:Annonce:afficherOffreAdmin }
 
+AfficherEventAdmin:
+    path:     /AfficherEventAdmin/{typeAnnonce}
+    defaults: { _controller: AppBundle:Annonce:AfficherEventAdmin }
+
 AfficherOffreDetail:
     path:     /AfficherOffreDetail/{id}
     defaults: { _controller: AppBundle:Annonce:AfficherOffreDetail }
@@ -76,3 +80,19 @@ pdf:
 pdf2:
     path:     /pdf2/{id}
     defaults: { _controller: AppBundle:Annonce:pdf2 }
+
+publishOffre:
+    path:     /publishOffre/{id}/{typeAnnonce}
+    defaults: { _controller: AppBundle:Annonce:publishOffre }
+
+publishEvent:
+    path:     /publishEvent/{id}/{typeAnnonce}
+    defaults: { _controller: AppBundle:Annonce:publisheEvent }
+
+unpublishEvent:
+    path:     /unpublishEvent/{id}/{typeAnnonce}
+    defaults: { _controller: AppBundle:Annonce:unpublishEvent }
+
+unpublishOffre:
+    path:     /unpublishOffre/{id}/{typeAnnonce}
+    defaults: { _controller: AppBundle:Annonce:unpublishOffre }

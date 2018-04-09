@@ -1,0 +1,50 @@
+{% extends "default/home.html.twig" %}
+
+{% block content %}
+
+
+    <form METHOD="POST">
+    <div>
+
+        <h4 style="text-align: right">Rechercher Nom Evenement</h4>
+        <tr>  <th>  <input type="text" name="titreAnnonce" class="pull-right"></th>
+            <th>  <input type="submit" name="submit" value="recherche" class="pull-right"></th></tr>
+
+        <button  type="button"><a href="{{ path("AjoutEvent") }} " href="{{ asset('css/button.css')}}"> ajouté un Evenement </a></button></td>
+    </div>
+
+    <br><br>
+
+    <center>
+        <div class="list-group"style="width:1000px">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table table-bordered table-hover">
+
+                <thead class="bg-primary" >
+                <tr>
+                    <th style="color:blanchedalmond">Titre de l'Evenement </th>
+                    <th style="color:blanchedalmond">Date de l'Evenement</th>
+                    <th> </th>
+                </tr>
+                </thead>
+
+                {% for event in event %}
+                    <tr>
+                        <td align="center" class="card-title" height="20"><h5 class="card-title" style="color: black" >{{event.titreAnnonce}}</h5></td>
+                        <td class="service">  <p class="card-text">{{event.dateAnnonce| date("m/d/y")}}</p></td>
+                        <td><button  type="button"><a href="{{ path("AfficherEventDetail" ,{"id":event.idAnnonce}) }} " href="{{ asset('css/button.css')}}"> En savoir +</a></button>
+                            &nbsp;
+                            <button  type="button"><a href="{{ path("DeleteEvent" ,{"id":event.idAnnonce,"typeAnnonce":event.TypeAnnonce}) }} " href="{{ asset('css/button.css')}}"> Supprimer</a></button>
+                            {% if event.published == 0 %}
+                                <button><a href="{{ path("publishEvent" ,{"id":event.idAnnonce, "typeAnnonce":event.typeAnnonce}) }}" href="{{ asset('css/button.css')}}"> Publié </a> </button>
+                            {% endif %}
+                            {% if event.published == 1 %}
+                                <button><a href="{{ path("unpublishEvent" ,{"id":event.idAnnonce , "typeAnnonce":event.typeAnnonce}) }}" href="{{ asset('css/button.css')}}"> Depublié </a> </button>
+                            {% endif %}
+
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </center>
+
+{% endblock content %}

@@ -14,9 +14,18 @@ class AnnonceRepository extends \Doctrine\ORM\EntityRepository
 {
     Public function afficherEventDQL($typeAnnonce){
         $query=$this->getEntityManager()
-            ->createQuery("SELECT ann FROM AppBundle:Annonce ann WHERE ann.typeAnnonce=:p")
-            ->setParameter('p',$typeAnnonce);
-return $query->getResult();
+            ->createQuery("SELECT ann FROM AppBundle:Annonce ann WHERE ann.typeAnnonce=:p AND ann.published=:published")
+            ->setParameters(array('p' => $typeAnnonce,
+                'published' => 1));
+        return $query->getResult();
+
+    }
+
+    Public function afficherEventAdminDQL($typeAnnonce){
+        $query=$this->getEntityManager()
+            ->createQuery("SELECT ann FROM AppBundle:Annonce ann WHERE ann.typeAnnonce=:p ")
+            ->setParameters(array('p' => $typeAnnonce));
+        return $query->getResult();
 
     }
 
@@ -34,5 +43,21 @@ return $query->getResult();
             ->setParameters(array('o' => $typeAnnonce));
         return $query->getResult();
 
+    }
+    public function rechercheDQL ($motcle)
+    {
+        $query=$this->getEntityManager()
+            ->createQuery("SELECT * FROM AppBundle:Annonce AS Offre WHERE Offre.titre_annonce like :titre")
+            ->setParameters(array('titre' => $motcle ))
+            ->orderBy('Offre.titre_annonce', 'ASC');
+        return $query->getResult();
+
+
+//        $query = $this->createQueryBuilder('u')
+//            ->where('u.titreAnnonce like :titre')
+//            ->setParameter('titre', $motcle)
+//            ->orderBy('u.titreAnnonce', 'ASC')
+//            ->getQuery();
+//        return $query->getResult();
     }
 }
