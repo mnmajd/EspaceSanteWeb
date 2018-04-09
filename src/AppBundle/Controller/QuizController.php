@@ -241,6 +241,30 @@ class QuizController extends Controller
             'delete_form' => $deleteForm->createView(),
         ));
     }
+
+    public function rechercheFrontAction(Request $request)
+    {
+        //     var_dump("x");
+
+        if($request->isXmlHttpRequest() && $request->isMethod('post')){
+
+            $em = $this->getDoctrine()->getManager();
+
+
+            $nom=$request->get('nom');
+            $query=$em->getRepository('AppBundle:Quiz')->createQueryBuilder('u');
+            $quizzes= $query->where($query->expr()->like('u.titre',':p'))
+                ->setParameter('p','%'.$nom.'%')->getQuery()->getResult();
+            $response = $this->renderView('quiz/searchFront.html.twig',array('quizzes' => $quizzes,
+            ));
+            //    var_dump($response);
+            return  new JsonResponse($response) ;
+        }
+        return new JsonResponse(array("status"=>true));
+
+    }
+
+
     public function rechercheAction(Request $request)
     {
    //     var_dump("x");
@@ -315,29 +339,7 @@ class QuizController extends Controller
     }
 
 
-    private function sesndEmail(){
-        $myappContactMail = 'Helmi.bejaoui@esprit.tn';
-        $myappContactPassword = 'deathscythviyasuoekko1';
 
-        // In this case we'll use the ZOHO mail services.
-        // If your service is another, then read the following article to know which smpt code to use and which port
-        // http://ourcodeworld.com/articles/read/14/swiftmailer-send-mails-from-php-easily-and-effortlessly
-        $transport = \Swift_SmtpTransport::newInstance('smtp.googlemail.com', 2525,'tls')
-            ->setUsername($myappContactMail)
-            ->setPassword($myappContactPassword);
-
-        $mailer = \Swift_Mailer::newInstance($transport);
-
-        $message = \Swift_Message::newInstance("oui")
-            ->setFrom(array($myappContactMail => "Message by "))
-            ->setTo(array(
-                $myappContactMail => $myappContactMail
-            ))
-            ->setBody("okok");
-
-        return $mailer->send($message);
-
-    }
     public function desactiverAction(Request $request, Quiz $quiz)
     {
 

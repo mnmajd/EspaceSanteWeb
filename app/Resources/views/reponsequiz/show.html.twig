@@ -1,14 +1,13 @@
 {% extends 'Admin/admin.html.twig' %}
 
 {% block body %}
-    <h1>Reponsequiz</h1>
+<div class="container" style="max-width: 150%">
+    <br>
+    <h1>Reponse</h1>
 
     <table class="table">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ reponseQuiz.id }}</td>
-            </tr>
+
             <tr>
                 <th>Reponse</th>
                 <td>{{ reponseQuiz.reponse }}</td>
@@ -17,16 +16,17 @@
     </table>
 
     <ul>
-        <li>
-            <a href="{{ path('reponsequiz_index') }}">Back to the list</a>
+        <li style="display: inline">
+            <a class="btn btn-info" href="{{ path('reponsequiz_index') }}">Back to the list</a>
         </li>
-        <li>
-            <a href="{{ path('reponsequiz_edit', { 'id': reponseQuiz.id }) }}">Edit</a>
+        <li style="display: inline">
+            <a  class="btn btn-warning" href="{{ path('reponsequiz_edit', { 'id': reponseQuiz.id }) }}">Edit</a>
         </li>
-        <li>
+        <li style="display: inline">
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input class="btn btn-primary"  type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
     </ul>
+</div>
 {% endblock %}

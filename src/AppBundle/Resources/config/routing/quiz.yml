@@ -10,6 +10,12 @@ quiz_show:
     path:     /{id}/show
     defaults: { _controller: "AppBundle:Quiz:show" }
     methods:  [GET,POST]
+
+quiz_search_F:
+    path:     /searchF
+    defaults: { _controller: "AppBundle:Quiz:rechercheFront" }
+    methods:  [GET,POST]
+
 quiz_search:
     path:     /search
     defaults: { _controller: "AppBundle:Quiz:recherche" }

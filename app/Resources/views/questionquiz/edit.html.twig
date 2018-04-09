@@ -1,21 +1,23 @@
 {% extends 'Admin/admin.html.twig' %}
 
 {% block body %}
-    <h1>Questionquiz edit</h1>
-
+<div class="container" style="max-width: 150%">
+    <br>
+    <h1>Question edit</h1>
+<br>
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
+        <input style="width: 150px" class="btn btn-primary" type="submit" value="Edit" />
     {{ form_end(edit_form) }}
 
     <ul>
-        <li>
-            <a href="{{ path('questionquiz_index') }}">Back to the list</a>
+        <li style="display: inline">
+            <a  style="width: 150px"  class="btn btn-info" href="{{ path('questionquiz_index') }}">Back to the list</a>
         </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+        <li style="display: inline">    {{ form_start(delete_form) }}
+                <input style="width: 150px" class="btn btn-warning" type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
     </ul>
+</div>
 {% endblock %}
