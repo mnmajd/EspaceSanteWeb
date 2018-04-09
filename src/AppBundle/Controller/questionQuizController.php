@@ -16,14 +16,22 @@ class questionQuizController extends Controller
      * Lists all questionQuiz entities.
      *
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
         $questionQuizzes = $em->getRepository('AppBundle:questionQuiz')->findAll();
 
+        $paginator  = $this->get('knp_paginator');
+        $pag = $paginator->paginate(
+            $questionQuizzes,
+            $request->query->getInt('page',1),
+            $request->query->getInt('limit',6)
+
+        );
+
         return $this->render('questionquiz/index.html.twig', array(
-            'questionQuizzes' => $questionQuizzes,
+            'questionQuizzes' => $pag,
         ));
     }
     /**

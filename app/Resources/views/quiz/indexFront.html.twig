@@ -4,42 +4,41 @@
     <br>
     <center> <h1>Quizs</h1></center>
     <br>
-    <form>
+    {% block javascripts %}
 
-
-
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" >
-        </script>
-        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
         <script>
+            var searching =false;
 
-            $('#nom').keyup(function(){
-                var input= $("#nom").val();
-                $.ajax({
-                    type: "POST",
-                    url: "{{ path('admin') }}",
-                    data: {'nom': input},
-                    success: function (data) {
+            function search_func(value)
+            {
+                if(searching==false){
+                    searching=true;
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ path('quiz_search') }}",
+                        data: {'nom': value},
+                        success: function (data) {
 
-                        console.log(data);
+                            console.log(data);
 
-                        $("#res9").html(data);
+                            $("#res").html(data);
 
-
-
-
-
-                    }
-                });
-
-            });
+                            searching=false;
 
 
+
+                        }
+                    });
+                }else{
+                    console.log("wait");
+                }
+
+            }
+            ;
         </script>
 
 
-
-    </form>
+    {% endblock %}
 
 <center>
     <table class="table"  style="max-width: 800px">

@@ -35,7 +35,7 @@ class QuizController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $quizzes = $em->getRepository('AppBundle:Quiz')->findAll();
+        $quizzes = $em->getRepository('AppBundle:Quiz')->findBy(array('valide'=>1));
 
         return $this->render('quiz/indexFront.html.twig', array(
             'quizzes' => $quizzes,
@@ -289,9 +289,54 @@ class QuizController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->merge($quiz);
             $em->flush();
-
+            $this->sendEmail($quiz->getTitre());
 
         return $this->redirectToRoute('quiz_index');
+    }
+
+    private function sendEmail($quiz)
+    {
+        $transport = \Swift_SmtpTransport::newInstance('smtp.mail.yahoo.com', 465,'ssl')->setUsername('said_hmidi@yahoo.com')->setPassword('s54550468h');
+
+        $mailer = \Swift_Mailer::newInstance($transport);
+
+       // $mailer=\Swift_Mailer::newInstance();
+        $message = \Swift_Message::newInstance()
+            ->setSubject('test')
+            ->setTo($this->getAllMails())
+            ->setFrom("said_hmidi@yahoo.com")
+            ->setBody('Veuillez essayer notre nouveau quiz de '.$quiz);
+
+        $mailer->send($message);
+
+  //  var_dump($this->get('mailer'));
+    //    die();
+
+    }
+
+
+    private function sesndEmail(){
+        $myappContactMail = 'Helmi.bejaoui@esprit.tn';
+        $myappContactPassword = 'deathscythviyasuoekko1';
+
+        // In this case we'll use the ZOHO mail services.
+        // If your service is another, then read the following article to know which smpt code to use and which port
+        // http://ourcodeworld.com/articles/read/14/swiftmailer-send-mails-from-php-easily-and-effortlessly
+        $transport = \Swift_SmtpTransport::newInstance('smtp.googlemail.com', 2525,'tls')
+            ->setUsername($myappContactMail)
+            ->setPassword($myappContactPassword);
+
+        $mailer = \Swift_Mailer::newInstance($transport);
+
+        $message = \Swift_Message::newInstance("oui")
+            ->setFrom(array($myappContactMail => "Message by "))
+            ->setTo(array(
+                $myappContactMail => $myappContactMail
+            ))
+            ->setBody("okok");
+
+        return $mailer->send($message);
+
     }
     public function desactiverAction(Request $request, Quiz $quiz)
     {
@@ -301,7 +346,6 @@ class QuizController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->merge($quiz);
         $em->flush();
-
 
         return $this->redirectToRoute('quiz_index');
     }
@@ -323,4 +367,16 @@ class QuizController extends Controller
     }
 
 
+    public function getAllMails(){
+
+        $em = $this->getDoctrine()->getManager();
+            $i=0;
+        $users = $em->getRepository('AppBundle:User')->findAll();
+
+        foreach ($users as $v) {
+            $mails[$i] = $v->getEmail();
+            $i++;
+        }
+return $mails;
+    }
 }
