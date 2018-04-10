@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Blog</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Idcat</th>
+                <td>{{ blog.idCat }}</td>
+            </tr>
+            <tr>
+                <th>Idarticle</th>
+                <td>{{ blog.idArticle }}</td>
+            </tr>
+            <tr>
+                <th>Nbrlike</th>
+                <td>{{ blog.nbrLike }}</td>
+            </tr>
+            <tr>
+                <th>Idblog</th>
+                <td>{{ blog.idBlog }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('blog_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('blog_edit', { 'idBlog': blog.idBlog }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

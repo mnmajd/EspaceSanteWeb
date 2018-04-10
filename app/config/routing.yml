@@ -29,3 +29,61 @@ defis:
     path:     /listdefis
     defaults: { _controller: AppBundle:Defis:index }
 
+ajout_article:
+    path:     /ajoutArticle
+    defaults: { _controller: AppBundle:Article:ajoutArticle }
+calcul_imc:
+    path:     imc
+    defaults: { _controller: AppBundle:CalculController:calculImc }
+addservice:
+    path:     /user/addservice
+    defaults: { _controller: AppBundle:Service:new }
+profil:
+    path:     /user/profile/{idService}
+    defaults: { _controller: AppBundle:Service:profil }
+supprimeservice:
+    path:     /user/suppservice/{idService}
+    defaults: { _controller: AppBundle:Service:delete}
+modifierservice:
+    path:     /user/modifierservice/{idService}
+    defaults: { _controller: AppBundle:Service:edit}
+reclamerservice:
+    path:     /user/reclamerservice/{idService}
+    defaults: { _controller: AppBundle:Reclamation:ajouterReclamation }
+indexservice :
+    path:     /user/indexservice
+    defaults: { _controller: AppBundle:Service:index }
+
+afficherserviceback:
+    path:    /afficherserviceback
+    defaults: { _controller: AppBundle:Service:afficherserviceback }
+
+afficherreclamationback:
+    path:    /afficherreclamationback
+    defaults: { _controller: AppBundle:Reclamation:affichereclamationback }
+
+refuserreclamation:
+    path:    /refuserreclamation
+    defaults: { _controller: AppBundle:Reclamation:refuserreclamation }
+acceptreclamation:
+    path:    /acceptreclamation
+    defaults: { _controller: AppBundle:Reclamation:acceptreclamation }
+chercher_service:
+    path:     /chercher
+    defaults: { _controller: AppBundle:Service:chercher }
+supppserviceadmin:
+    path:     /supppserviceadmin/{idService}
+    defaults: { _controller: AppBundle:Service:suppserviceadmin }
+search:
+    path:     /search
+    defaults: { _controller: AppBundle:Service:search }
+
+indexmail:
+    path:    /indexmail
+    defaults: { _controller: AppBundle:Mail:indexmail }
+my_app_mail_accuse:
+    path:    /success
+    defaults: { _controller: AppBundle:Mail:success }
+my_map_homepage :
+    path:     /map
+    defaults: { _controller: AppBundle:Service:indexmap }

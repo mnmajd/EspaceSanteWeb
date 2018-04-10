@@ -1,0 +1,35 @@
+{% extends '::default/home.html.twig' %}
+
+
+{% block content  %}
+    <h1>Poids idéal </h1>
+
+
+    Dans l'organisme, on distingue schématiquement la masse grasse, qui correspond aux cellules adipeuses,
+    et la masse maigre, qui correspond aux muscles.
+    On exprime souvent ces deux éléments en pourcentage du poids. Or le corps contient toujours de la graisse, c'est physiologique.
+    <br>
+    Pour évaluer la masse grasse que contient l'organisme, on peut utiliser différentes méthodes :
+    la mesure du pli cutané (on mesure l'épaisseur d'un pincement de la peau à différents endroits du corps,
+    ce qui permet d'évaluer la graisse sous-cutanée) ; les balances à impédancemètre (on mesure un courant électrique travers le corps,
+    dont la résistance est directement liée au taux de matière grasse qu'il contient)... Mais on peut aussi utiliser une formule empirique,
+    dérivée de l'indice de masse corporelle, qui va permettre de calculer l'indice de masse grasse (IMG)
+    (attention, cette formule n'est valable que pour les personnes ayant entre 15 et 50 ans) :
+    <br>
+
+    <br>
+    <h1> Calculez votre Indice de Masse Grasse (IMG)  </h1>
+    <br>
+    {{ (form(form)) }}
+
+    <br>
+    <div> </div>
+    <br>
+    {% for flashes in app.session.flashbag.all %}
+        {% for flash in flashes %}
+            <div class="alert alert-{{ label }}">
+                {{ flash }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+{% endblock %}
