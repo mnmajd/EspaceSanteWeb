@@ -1,0 +1,127 @@
+{% extends '::Admin/admin.html.twig' %}
+
+{% block content %}
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" >
+    </script>
+
+
+
+
+    <script src="{{ asset('bootstrap.min.js') }}" crossorigin="anonymous"></script>
+    <link href="{{ asset('bootstrap.min.css') }}" rel="stylesheet">
+
+    <script>
+
+        $( document ).ready(function() {
+
+
+            $('.boutonA').on('click', function () {
+                var id_toUpdate= $(this).attr('id').replace(/A/,'');
+                console.log(id_toUpdate);
+                $.ajax({
+                    type:'POST',
+                    url: "http://localhost/EspaceSanteWeb/web/app_dev.php/acceptreclamation",
+                    data: {idReclamation : id_toUpdate},
+                    success: function(response) {
+
+                        // $(".boutonB").hide();
+                        $("#B"+id_toUpdate).hide();
+                        $("#A"+id_toUpdate).hide();
+                        // getElementsByClassName(response).hide();
+                        $("#accept").toggle();
+                        console.log("njahet");
+                        console.log(response) ;
+
+
+                    }});
+            })
+
+        });
+    </script>
+
+    <script>
+
+        $( document ).ready(function() {
+
+
+            $('.boutonB').on('click', function () {
+
+                var id_toUpdate= $(this).attr('id').replace(/B/,'');
+
+                console.log(id_toUpdate);
+                $.ajax({
+                    type:'POST',
+                    url: "http://localhost/EspaceSanteWeb/web/app_dev.php/refuserreclamation",
+
+                    data: {idReclamation : id_toUpdate},
+                    success: function(response) {
+                        $("#B"+id_toUpdate).hide();
+                        $("#A"+id_toUpdate).hide();
+
+                        console.log("ouii");
+                        console.log(response) ;
+
+
+                    }});
+            })
+
+        });
+    </script>
+
+
+
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <center> <h3 style="color: red">Reclamations Récues </h3></center>
+
+
+        </div>
+    </div>
+    <!-- /. ROW  -->
+    <hr>
+    <div class="bs-docs-example">
+        <table class="table">
+            <thead>
+            <tr>
+
+                <th style="color: #1abc9c">Utilisateur</th>
+                <th style="color: #1abc9c">Description</th>
+                <th style="color: #1abc9c">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for reclamation in reclamations %}
+                <tr class="odd gradeX">
+
+                    <td>{{ reclamation.getIdUser().prenom }}</td>
+                    <td>{{ reclamation.description }}</td>
+
+                    <td>
+                        <li hidden id="accept"> <i class="fa fa-fw fa-check "  ></i></li>
+                        <li hidden id="refuser"> <i class="fa fa-fw fa-remove " ></i></li>
+                        <ul>
+                            <button class="btn btn-default btn-sm boutonA {{reclamation.getId()}}" name="{{reclamation.getId() }}" id="A{{reclamation.getId() }}" >Approuver <i class="fa fa-share"></i></button>
+                            <button class="btn btn-default btn-sm boutonB {{reclamation.getId()}}" name="{{reclamation.getId() }}" id="B{{reclamation.getId() }}" >Désapprouver <i class="fa fa-share"></i></button>
+
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <!--End Advanced Tables -->
+
+    </div>
+
+    <!-- /. ROW  -->
+
+
+
+
+    </div>
+
+{% endblock content %}

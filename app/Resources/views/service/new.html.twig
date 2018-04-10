@@ -1,0 +1,161 @@
+{% extends '::default/home.html.twig' %}
+
+
+
+{% block content %}
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" >
+    </script>
+
+
+
+
+    <script src="{{ asset('bootstrap.min.js') }}" crossorigin="anonymous"></script>
+    <link href="{{ asset('bootstrap.min.css') }}" rel="stylesheet">
+    {{ form_start(form) }}
+    <div class="container">
+        <div class="book-appointment">
+            <h4>Service creation</h4>
+
+            <div class="left-agileits-w3layouts same">
+                <div class="gaps">
+                    <p>Nom</p>
+                    {{ form_widget(form.nom) }}
+
+                </div>
+                <div class="gaps">
+                    <p>Prenom</p>
+                    {{ form_widget(form.prenom) }}
+
+                </div>
+
+                <div class="gaps">
+                    <p>Email</p>
+                    {{ form_widget(form.eMail) }}
+                </div>
+                <div class="gaps">
+                    <p>Adresse</p>
+                    {{ form_widget(form.adresseEtab) }}
+                </div>
+
+                <div class="gaps">
+
+
+                    <input type="text" id="latitude" value={{ latitude }} class="col-sm-9" name="latitude" hidden>
+
+                </div>
+                <div class="gaps">
+
+
+                    <input type="text" id="longitude"  value={{ longitude }}  class="col-sm-9" name="longitude"hidden >
+
+                </div>
+                <div class="gaps">
+                    <p>Promotion</p>
+                    {{ form_widget(form.promotion) }}
+                </div>
+
+
+            </div>
+            <div class="right-agileinfo same">
+                <div class="gaps">
+                    <p>Telephone</p>
+                    {{ form_widget(form.telService) }}
+                </div>
+                <div class="gaps">
+                    <p>Spécialité</p>
+                    {{ form_widget(form.specialite) }}
+                </div>
+                <div class="gaps">
+                    <p>Heure de fermeture</p>
+
+                    {{ form_widget(form.heureFermeture) }}
+                </div>
+                <div class="gaps">
+                    <p>Heure d'ouverture</p>
+
+                    {{ form_widget(form.heureOuverture) }}
+                </div>
+                <div class="gaps">
+                    <p>Mode de reglement</p>
+
+                    {{ form_widget(form.modesDeReglement) }}
+                </div>
+                <div class="gaps">
+                    <p>Langues Parlées</p>
+
+                    {{ form_widget(form.languesParlees) }}
+                </div>
+                <div class="gaps">
+                    <p>Tarif</p>
+                    {{ form_widget(form.tarif) }}
+                </div>
+                <div class="gaps">
+                    <p>Photo</p>
+                    {{ form_widget(form.file) }}
+                </div>
+            </div>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSOQkgWjkcYOuWSMZCgvYha-NxRlT0vls"></script>
+            <script>
+                // In this example, we center the map, and add a marker, using a LatLng object
+                // literal instead of a google.maps.LatLng object. LatLng object literals are
+                // a convenient way to add a LatLng coordinate and, in most cases, can be used
+                // in place of a google.maps.LatLng object.
+
+                var map;
+                function initialize() {
+                    var mapOptions = {
+                        zoom: 8,
+                        center: {lat: 36.8064948, lng: 10.181531599999971}
+                    };
+                    map = new google.maps.Map(document.getElementById('map'),
+                        mapOptions);
+
+                    var marker = new google.maps.Marker({
+                        // The below line is equivalent to writing:
+                        // position: new google.maps.LatLng(-34.397, 150.644)
+                        position: {lat: 36.8064948, lng: 10.181531599999971},
+                        map: map,
+                        draggable: true
+                    });
+
+                    // You can use a LatLng literal in place of a google.maps.LatLng object when
+                    // creating the Marker object. Once the Marker object is instantiated, its
+                    // position will be available as a google.maps.LatLng object. In this case,
+                    // we retrieve the marker's position using the
+                    // google.maps.LatLng.getPosition() method.
+
+                    google.maps.event.addListener(marker, 'dragend', function() {
+                        $('#latitude').val(marker.position.lat());
+                        $('#longitude').val(marker.position.lng());
+                    });
+                }
+
+                google.maps.event.addDomListener(window, 'load', initialize);
+            </script>
+            <div id="map"></div>
+
+            <div class="clearfix"></div>
+            <input type="submit" value="Ajouter">
+
+        </div>
+
+    </div>
+
+    {{ form_end(form) }}
+
+
+    <ul>
+        <li>
+            <a href="{{ path('indexservice') }}">Back to the list</a>
+        </li>
+    </ul>
+
+{% endblock %}

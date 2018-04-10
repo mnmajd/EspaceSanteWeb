@@ -1,0 +1,189 @@
+{% extends '::default/home.html.twig' %}
+
+{% block content %}
+    <style>
+        #map {
+            height: 400px;
+            width: 50%;
+        }
+    </style>
+    <center>
+
+        {{ form_start(edit_form) }}
+        <td>&nbsp;</td>
+
+        <table>
+
+
+            <tr>
+
+                <td>
+                    <div class="form-group">
+
+                        <label class="control-label col-md-3"> Nom </label>
+                        <div class="col-md-9">
+
+                            {{ form_widget(edit_form.nom) }}
+
+                        </div>
+
+                    </div>
+                </td>
+            </tr>
+            <td>&nbsp;</td>
+            <tr>
+                <td>
+                    <div class="form-group">
+
+                        <label class="control-label col-md-3"> Prénom </label>
+                        <div class="col-md-9">
+
+                            {{ form_widget(edit_form.prenom) }}
+
+                        </div>
+
+                    </div></td>
+            </tr>
+            <td>&nbsp;</td>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Adresse mail</label>
+                        <div class="col-md-9">
+                            {{ form_widget(edit_form.eMail) }}</div> </div> </td>
+            </tr>
+            <td>&nbsp;</td>
+
+            <td>&nbsp;</td>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Télephone</label>
+                        <div class="col-md-9">
+                            {{ form_widget(edit_form.telService) }}</div> </div> </td>
+            </tr>
+            <td>&nbsp;</td>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Heure d'ouverture</label>
+                        <div class="col-md-9">
+                            {{ form_widget(edit_form.heureOuverture) }} </div></div> </td>
+            </tr>
+            <td>&nbsp;</td>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Heure de fermeture</label>
+                        <div class="col-md-9">
+                            {{ form_widget(edit_form.heureFermeture) }} </div></div> </td>
+            </tr>
+            <td>&nbsp;</td>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Mode de réglement</label>
+                        <div class="col-md-9">
+                            {{ form_widget(edit_form.modesDeReglement) }}</div> </div> </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Langues Parlées</label>
+                        <div class="col-md-9">
+                            {{ form_widget(edit_form.languesParlees) }}</div> </div> </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Promotion</label>
+                        <div class="col-md-9">
+                            {{ form_widget(edit_form.promotion) }} </div></div>
+                </td>
+            </tr>
+            <td>&nbsp;</td>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Télephone</label>
+                        <div class="col-md-9">
+                            {{ form_widget(edit_form.tarif) }} </div></div> </td>
+            </tr>
+            <td>&nbsp;</td>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Photo</label>
+                        <div class="col-md-9">
+                            {{ form_widget(edit_form.file) }} </div></div> </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Adresse</label>
+                        <div class="col-md-9">
+                            {{ form_widget(edit_form.adresseEtab) }}</div> </div> </td>
+            </tr>
+
+            <div class="gaps">
+
+
+                <input type="text" id="latitude" value={{ latitude }} class="col-sm-9" name="latitude" hidden>
+
+            </div>
+            <div class="gaps">
+
+
+                <input type="text" id="longitude"  value={{ longitude }}  class="col-sm-9" name="longitude" hidden>
+
+            </div>
+        </table>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCseQAI2fuEQElM8UxNsWEkc21B_iPGg7g"></script>
+        <script>
+            // In this example, we center the map, and add a marker, using a LatLng object
+            // literal instead of a google.maps.LatLng object. LatLng object literals are
+            // a convenient way to add a LatLng coordinate and, in most cases, can be used
+            // in place of a google.maps.LatLng object.
+
+            var map;
+            function initialize() {
+                var mapOptions = {
+                    zoom: 8,
+                    center: {lat: {{ latitude }} , lng: {{ longitude }}}
+                };
+                map = new google.maps.Map(document.getElementById('map'),
+                    mapOptions);
+
+                var marker = new google.maps.Marker({
+                    // The below line is equivalent to writing:
+                    // position: new google.maps.LatLng(-34.397, 150.644)
+                    position: {lat: {{ latitude }} , lng: {{ longitude }}},
+                    map: map,
+                    draggable: true
+                });
+
+                // You can use a LatLng literal in place of a google.maps.LatLng object when
+                // creating the Marker object. Once the Marker object is instantiated, its
+                // position will be available as a google.maps.LatLng object. In this case,
+                // we retrieve the marker's position using the
+                // google.maps.LatLng.getPosition() method.
+
+                google.maps.event.addListener(marker, 'dragend', function() {
+                    $('#latitude').val(marker.position.lat());
+                    $('#longitude').val(marker.position.lng());
+                });
+            }
+
+            google.maps.event.addDomListener(window, 'load', initialize);
+        </script>
+        <div id="map"></div>
+
+
+        <input type="submit" value="Edit" style="color: #1abc9c" width="50px"/>
+        {{ form_end(edit_form) }}
+
+    </center>
+
+{% endblock %}

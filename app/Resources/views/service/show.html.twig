@@ -1,0 +1,91 @@
+{% extends '::default/home.html.twig' %}
+
+{% block content %}
+    <h1>Service</h1>
+
+    <table>
+        <tbody>
+
+            <tr>
+                <th>Heureouverture</th>
+                <td>{{ service.heureOuverture }}</td>
+            </tr>
+            <tr>
+                <th>Heurefermeture</th>
+                <td>{{ service.heureFermeture }}</td>
+            </tr>
+            <tr>
+                <th>Promotion</th>
+                <td>{{ service.promotion }}</td>
+            </tr>
+            <tr>
+                <th>Tarif</th>
+                <td>{{ service.tarif }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ service.eMail }}</td>
+            </tr>
+            <tr>
+                <th>Adresseetab</th>
+                <td>{{ service.adresseEtab }}</td>
+            </tr>
+            <tr>
+                <th>Telservice</th>
+                <td>{{ service.telService }}</td>
+            </tr>
+            <tr>
+                <th>Imageserv</th>
+                <td><img src="{{ asset('images/') }}{{ service.imageServ }}" style="width: 70px"></td>
+            </tr>
+
+            <tr>
+                <th>Languesparlees</th>
+                <td>{{ service.languesParlees }}</td>
+            </tr>
+            <tr>
+                <th>Modesdereglement</th>
+                <td>{{ service.modesDeReglement }}</td>
+            </tr>
+
+            <tr>
+                <th>Nom</th>
+                <td>{{ service.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ service.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Specialite</th>
+                <td>{{ service.specialite }}</td>
+            </tr>
+            <tr>
+                <th>Latitude</th>
+                <td>{{ service.latitude }}</td>
+            </tr>
+            <tr>
+                <th>Longitude</th>
+                <td>{{ service.longitude }}</td>
+            </tr>
+            <tr>
+                <th>Idservice</th>
+                <td>{{ service.idService }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('indexservice') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('service_edit', { 'idService': service.idService }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

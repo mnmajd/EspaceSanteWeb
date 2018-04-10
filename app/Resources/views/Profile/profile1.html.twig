@@ -1,0 +1,173 @@
+{% extends '::default/home.html.twig' %}
+
+{% block content %}
+    {% block fos_user_content %}
+        {% for service in services %}
+            <style>
+                #map {
+                    height: 400px;
+                    width: 100%;
+                }
+            </style>
+
+            <style>
+                .container {
+                    position: relative;
+                    width: 50%;
+                }
+
+                .img-responsive {
+                    display: block;
+                    width: 100%;
+                    height: auto;
+                }
+
+                .overlay {
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    background-color: #9ddfe9;
+                    overflow: hidden;
+                    width: 0;
+                    height: 100%;
+                    transition: .5s ease;
+                }
+
+                .container:hover .overlay {
+                    width: 100%;
+                }
+
+                .text {
+                    white-space: nowrap;
+                    color: white;
+                    font-size: 20px;
+                    position: absolute;
+                    overflow: hidden;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    -ms-transform: translate(-50%, -50%);
+                }
+            </style>
+
+            <div class="single-grid">
+                <div class="col-md-8 w3ls-blog-left">
+                    <div class="w3-blog-left-grid">
+                        <div class="w3ls-blog-leftl">
+                            <h4>{{ "now"|date("H:i:s  d/m/Y") }} </h4>
+                            <a href="#"><i class="fa fa-stethoscopes" aria-hidden="true">Docteur</i>
+                                <h5> {{ service.prenom }}  {{ service.nom }}</h5>
+                            </a>
+                        </div>
+                        <div class="w3ls-blog-leftr">
+                            <div class="container">
+                                <img src="{{ asset('images/') }}{{ service.imageServ }}" alt=" " class="img-responsive" style="width: 300px;">
+                                <div class="overlay">
+                                    <div class="text">Bonjour Docteur "{{ service.prenom }} {{ service.nom }}" </div>
+                                </div>
+                            </div>
+
+                            <ul> <p> <h4 style="color:#e4606d">Diplômes et formations :</h4>
+
+                                <p> "{{ service.promotion }},
+                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                                    nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                                    reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                                    pariatur</p></ul>
+
+                            <p> <h4 style="color:#e4606d"> AUTRES INFOS :</h4></p>
+                            <h5 style="color:#e4606d"> LANGUES PARLÉES :</h5>
+                            <p>{{service.getLanguesParlees}}</p>
+
+                            <h5 style="color:#e4606d"> MODES DE RÈGLEMENT :</h5>
+                            <p>{{service.getModesDeReglement}}</p>
+                            <h5 style="color:#e4606d"> TARIF :</h5>
+                            <p>{{service.getTarif}}</p>
+                            <h5 style="color:#e4606d"> Horaire d'ouverture :</h5>
+                            <p>{{service.getHeureOuverture|date('H:i:s')}}</p>
+                            <h5 style="color:#e4606d"> Horaire de fermeture :</h5>
+
+                            <p>{{service.getHeureFermeture|date('H:i:s')}}</p>
+                            <ul>
+                                <h4 style="color:#e4606d">INFORMATIONS DE CONTACT :</h4>
+                                <p> <h5 style="color:#e4606d"> <i class="fa fa-mail-reply-all" aria-hidden="true"></i>
+                                    {{service.getEMail}}</h5></p>
+                                <p> <h5 style="color:#e4606d"> <i class="fa fa-phone-square" aria-hidden="true"></i>
+                                    {{service.getTelService}}</h5></p>
+
+                            </ul>
+                            <ul>
+                                <h4 style="color:#e4606d">INFORMATIONS D'ACCÈS :</h4>
+                                <p> Le cabinet se situe au  {{service.getAdresseEtab}}</p>
+                            </ul>
+                            <p hidden>{{service.getLatitude}}</p>
+
+                            <p hidden>{{service.getLongitude}}</p>
+
+                            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCseQAI2fuEQElM8UxNsWEkc21B_iPGg7g"></script>
+                            <script>
+                                // In this example, we center the map, and add a marker, using a LatLng object
+                                // literal instead of a google.maps.LatLng object. LatLng object literals are
+                                // a convenient way to add a LatLng coordinate and, in most cases, can be used
+                                // in place of a google.maps.LatLng object.
+
+                                var map;
+                                function initialize() {
+                                    var mapOptions = {
+                                        zoom: 8,
+                                        center: {lat: {{service.getLatitude}}, lng: {{service.getLongitude}}}
+                                    };
+                                    map = new google.maps.Map(document.getElementById('map'),
+                                        mapOptions);
+
+                                    var marker = new google.maps.Marker({
+                                        // The below line is equivalent to writing:
+                                        // position: new google.maps.LatLng(-34.397, 150.644)
+                                        position: {lat: {{service.getLatitude}}, lng: {{service.getLongitude}}},
+                                        map: map,
+                                        draggable: false
+                                    });
+
+                                    // You can use a LatLng literal in place of a google.maps.LatLng object when
+                                    // creating the Marker object. Once the Marker object is instantiated, its
+                                    // position will be available as a google.maps.LatLng object. In this case,
+                                    // we retrieve the marker's position using the
+                                    // google.maps.LatLng.getPosition() method.
+
+                                    google.maps.event.addListener(marker, 'dragend', function() {
+                                        $('#latitude').val(marker.position.lat());
+                                        $('#longitude').val(marker.position.lng());
+                                    });
+                                }
+
+                                google.maps.event.addDomListener(window, 'load', initialize);
+                            </script>
+                            <div id="map"></div>
+
+                            <ul>
+                                <li><a href="{{ path('modifierservice', { 'idService': service.idService }) }}"><i class="fa fa-user" aria-hidden="true"></i>Edit</a></li>
+                                <li><a href="{{ path('supprimeservice', { 'idService': service.idService }) }}"><i class="fa fa-tags" aria-hidden="true"></i>Delete</a>
+
+                                </li>
+                                <li><a href="{{ path('indexservice') }}"><i class="fa fa-comments-o" aria-hidden="true"></i>Show services</a></li>
+                            </ul>
+
+                        </div>
+
+
+                        <!---728x90--->
+
+                    </div>
+                </div>
+
+                <div class="clearfix"> </div>
+            </div>
+
+        {% endfor %}
+
+    {% endblock %}
+
+
+{% endblock %}

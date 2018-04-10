@@ -1,0 +1,33 @@
+{% extends '::default/home.html.twig' %}
+
+{% block content %}
+    <!DOCTYPE HTML >
+
+    <head>
+        <style type="text/css">html, body, #map_canvas{height: 100%;margin: 0;padding: 0;}</style>
+    </head>
+    <body>
+    {% block container %}
+    {% endblock %}
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCseQAI2fuEQElM8UxNsWEkc21B_iPGg7g"
+            type="test/javascript"></script>
+    <script>
+        function initialize() {
+            var mapOptions={
+                center: {lat: -34.397, lng: 150.644},
+                zoom:8
+            };
+            var  map = new google.maps.Map(document.getElementById('map-canvas'),
+                mapOptions);
+            var muLating= new google.maps.Map(-25.36882, 131.044922);
+            var mapOptions={
+                center: myLating,
+                zoom:4
+            };
+            var map = new google.maps.Map(document.getElementById("map-canvas"),mapOptions);
+        }
+        google.maps.Map.addDomListener(window,'load',initialize());
+    </script>
+    </body>
+    </html>
+{% endblock %}
