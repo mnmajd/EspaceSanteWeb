@@ -73,6 +73,30 @@ class Annonce
      */
     public $file;
 
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nbr_particip", type="integer", nullable=false)
+     */
+    private $nbrparticip;
+
+    /**
+     * @return int
+     */
+    public function getNbrparticip()
+    {
+        return $this->nbrparticip;
+    }
+
+    /**
+     * @param int $nbrparticip
+     */
+    public function setNbrparticip($nbrparticip)
+    {
+        $this->nbrparticip = $nbrparticip;
+    }
+
     /**
      * @return mixed
      */

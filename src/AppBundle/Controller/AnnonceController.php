@@ -143,21 +143,21 @@ class AnnonceController extends Controller
         ));
     }
 
-
-    public function RechercheEventAction(Request $request)
-    {
-
-        $em = $this->getDoctrine()->getManager();
-        $Event = $em->getRepository("AppBundle:Annonce")->findAll();
-        if ($request->isMethod('POST')) {
-            $Event = $request->get('Event');
-            $Event = $em->getRepository("AppBundle:Annonce")->findBy(array('Event' => $Event));
-
-        }
-
-        return $this->render("Annonce/afficherEvent.html.twig", array('Event' => $Event));
-
-    }
+//
+//    public function RechercheEventAction(Request $request)
+//    {
+//
+//        $em = $this->getDoctrine()->getManager();
+//        $Event = $em->getRepository("AppBundle:Annonce")->findAll();
+//        if ($request->isMethod('POST')) {
+//            $Event = $request->get('Event');
+//            $Event = $em->getRepository("AppBundle:Annonce")->findBy(array('Event' => $Event));
+//
+//        }
+//
+//        return $this->render("Annonce/afficherEvent.html.twig", array('Event' => $Event));
+//
+//    }
 
     private function generateUniqueFileName()
     {
@@ -303,7 +303,7 @@ class AnnonceController extends Controller
         $em = $this->getDoctrine()->getManager();
         $event = $em->getRepository("AppBundle:Annonce")->find($id);
 
-//var_dump($offre); die;
+//var_dump($event); die;
         $snappy = $this->get('knp_snappy.pdf');
 
         $html = $this->renderView('Annonce/pdf2.html.twig ', array(
@@ -406,7 +406,18 @@ class AnnonceController extends Controller
     }
 
 
+public function nbparticipeEventAction($id,$typeAnnonce){
 
+    $em = $this->getDoctrine()->getManager();
+//    $event=new Annonce();
+//    $event->setidAnnonce($id);
+    $em->getRepository('AppBundle:Annonce')->nbparticipeEventDQL($id);
+
+    return $this->redirectToRoute('AfficherEvent',array(
+        'typeAnnonce' => $typeAnnonce ,
+        'id'=>$id ));
+
+}
 
 
 
