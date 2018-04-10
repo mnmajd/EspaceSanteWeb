@@ -9,28 +9,43 @@ use Symfony\Component\HttpFoundation\Request;
 
 class QuestionController extends Controller
 {
- public function showaction()
+ public function showaction(Request $request)
  {
-
+    $user = $this->getUser();
      $em = $this->getDoctrine()->getManager();
-     $question = $em->getRepository('AppBundle:Question')->findAll();
+     $question = $em->getRepository('AppBundle:Question')->findBy(array('approvedQuestion'=> 1));
      $categorie = $em->getRepository('AppBundle:CategorieForum')->findAll();
+     $paginator  = $this->get('knp_paginator');
+     $pag = $paginator->paginate(
+         $question,
+         $request->query->getInt('page',1),
+         $request->query->getInt('limit',6)
 
+     );
      return $this->render('forum/forum.html.twig', array(
          'categorie'=>$categorie,
-         'question'=>$question ));
+         'user'=>$user,
+         'question'=>$pag ));
 
  }
- public function findQuesaction($cat)
+ public function findQuesaction($cat,Request $request)
  {
      $em = $this->getDoctrine()->getManager();
+     $user = $this->getUser();
      $categorie = $em->getRepository('AppBundle:CategorieForum')->findAll();
 
      $question = $em->getRepository('AppBundle:Question')->catquestion($cat);
+     $paginator  = $this->get('knp_paginator');
+     $pag = $paginator->paginate(
+         $question,
+         $request->query->getInt('page',1),
+         $request->query->getInt('limit',6)
+
+     );
      return $this->render('forum/forum.html.twig', array(
          'categorie'=>$categorie,
-
-         'question'=>$question ));
+            'user'=>$user,
+         'question'=>$pag ));
  }
 
  public function addQuestaction(Request $request)
@@ -50,6 +65,10 @@ class QuestionController extends Controller
         $question->setNbrRep(0);
         $em->persist($question);
         $em->flush();
+         return $this->redirectToRoute('forum'
+
+
+         );
      }
 
      return $this->render('forum/Question.html.twig',array(

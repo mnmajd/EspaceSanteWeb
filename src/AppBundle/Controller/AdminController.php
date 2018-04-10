@@ -72,19 +72,32 @@ class AdminController extends Controller
 
        $questionNot = $em->getRepository('AppBundle:Question')->findBy(array('approvedQuestion'=> 0));
 
-       if($request->isMethod('POST')){
-           $message = \Swift_Message::newInstance()
-               ->setSubject('Invitation')
-               ->setFrom('majd.mimoun@esprit.tn')
-               ->setTo($request->get('sender'))
-               ->setBody('salut je suis  et je veux que vous rejoignez notre site Santé et bien etre :D !');            ;
-           $this->get('mailer')->send($message);
-       }
-
 
        return $this->render('Admin/Question.html.twig' ,array(
            'quest'=>$questionNot
        ));
 
    }
+
+   public function viewQuestionaction( Request $request , $id)
+   {
+       $em = $this->getDoctrine()->getManager();
+        $quest = $em->getRepository('AppBundle:Question')->find($id);
+
+       return $this->render('Admin/seeQuestion.html.twig' ,array(
+           'quest'=>$quest
+       ));
+
+   }
+   public function approveaction(Request $request , $id)
+   {
+       $em = $this->getDoctrine()->getManager();
+
+       if($request->isMethod('get'))
+       {
+           $em->getRepository('AppBundle:Question')->approve($id);
+           return $this->redirectToRoute('confquest');
+       }
+   }
+
 }

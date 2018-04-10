@@ -109,3 +109,11 @@ confquest:
     path:     /ConfirmQuestion
     defaults: { _controller: AppBundle:Admin:Question}
 
+confirmquest:
+    path:     /ConfirmQuestion/{id}
+    defaults: { _controller: AppBundle:Admin:viewQuestion}
+
+approve:
+    path:     /approve/{id}
+    defaults: { _controller: AppBundle:Admin:approve}
+

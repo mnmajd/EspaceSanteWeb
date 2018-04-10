@@ -16,7 +16,7 @@ class QuestionRepository extends \Doctrine\ORM\EntityRepository
 public function catquestion($cat)
 {
     $req = $this->getEntityManager()->createQuery(
-        "select  m from AppBundle:Question m where m.nomCatf=:p"
+        "select  m from AppBundle:Question m where m.nomCatf=:p and m.approvedQuestion = 1"
     )->setParameter('p',$cat);
     return $req->getResult();
 }
@@ -33,6 +33,19 @@ public function catquestion($cat)
 
 
     }
+
+    public function approve($id)
+    {
+        $req = $this->getEntityManager()->createQuery(
+
+            "update AppBundle:Question m set m.approvedQuestion = 1
+     where m.idQuestion=:p")
+            ->setParameter('p',$id);
+
+        return $req->execute();
+    }
+
+
 
 
 

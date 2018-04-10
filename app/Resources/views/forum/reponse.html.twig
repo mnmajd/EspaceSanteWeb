@@ -12,8 +12,12 @@
             <p>{{ question.contenuQuest }}</p>
             <ul class="list-inline list-unstyled" style="margin-top: 10px">
                 <li><span><i class="glyphicon glyphicon-calendar"></i> {{ question.datePublication|date() }}</span></li>
+                {% if not user == null %}
+                 {% if user.id == question.idUser.id %}
                 <li> <span><i class="fa fa-edit"></i> <a href="{{ path('editQuestion',{'id' :question.idQuestion}) }}">Edit</a></span></li>
                 <li> <span><i class="fa fa-trash"></i> <a href="{{ path('deleteQuestion',{'id':question.idQuestion}) }}">Delete</a></span>  </li>
+                     {% endif %}
+                    {% endif %}
             </ul>
         </div>
     </div>
@@ -46,7 +50,7 @@
                     {% if user.id == reponse.idUser.id %}
                     <a class="btn btn-info btn-circle text-uppercase" href="{{ path('editResponse',{'idq':question.idQuestion ,'idr':reponse.idRep}) }}" id="reply"><span><i class="fa fa-edit"></i></span> Edit</a>
                     <a class="btn btn-danger btn-circle text-uppercase" href="{{ path('deleteResponse',{'idq':question.idQuestion ,'idr':reponse.idRep}) }}"><span><i class="fa fa-trash"></i></span> Delete</a>{% endif %}
-                    <a href="{{ path('like',{'idq':question.idQuestion ,'idr':reponse.idRep}) }}"> <i class="fa fa-thumbs-up" style="font-size: 20px"></i><strong>Like</strong></a> {% endif %}<strong >{{ reponse.nbrAimeRep }}</strong>
+                    <a href="{{ path('like',{'idq':question.idQuestion ,'idr':reponse.idRep}) }}"> <i class="fa fa-thumbs-up" style="font-size: 20px"></i><strong>Like</strong></a> {% endif %}<strong >{{ reponse.nbrAimeRep }} Likes</strong>
                 </div>
             </div>
 

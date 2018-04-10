@@ -5,11 +5,17 @@
 
         <h2 class="w3_heade_tittle_agile">Forum Espace</h2>
             <p class="sub_t_agileits">& Bien Etre</p>
+        {% if not user == null %}
         <div CLASS="row">
             <div class="col-md-offset-10">
                 <button class="btn btn-success"  style="margin-bottom: 20px "><a href="{{ path('Question') }}"><span>Propose your question</span></a> </button></div>
             </div>
-
+            {% endif %}
+    {% if  user == null %}
+        <div class="alert alert-info">
+            <strong>Authentification</strong> You should be authenficated to join the forum
+        </div>
+        {% endif %}
         </div>
 
 
@@ -49,5 +55,7 @@
             </div><!-- //Content -->
         </div><!-- //Tabs -->
 
-
+    <div class="navigation" style="text-align: center" >
+        {{ knp_pagination_render(question) }}
+    </div>
 {%  endblock content %}

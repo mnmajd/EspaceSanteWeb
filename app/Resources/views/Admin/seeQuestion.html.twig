@@ -1,0 +1,36 @@
+{% extends 'Admin/admin.html.twig' %}
+   {% block head %}
+       <h1>Confirmer Question</h1>
+   {% endblock %}
+{% block body %}
+    <div class="panel panel-success" style="margin-left: 150px ;margin-top: 30px">
+        <div class="panel-heading">
+            <h3 class="panel-title">Question Content</h3>
+        </div>
+        <div class="panel-body">
+            <p>{{ quest.contenuQuest }}</p>
+            <div class="row">
+            <div class="col-md-10">
+
+
+            <a href="{{ path('confquest') }}"><button type="button" class="btn btn-danger " >
+                    Decline
+                </button></a>
+            </div>
+                <div class="col-md-2">
+                <a href="{{ path('approve' ,{'id' :quest.idQuestion}) }}"><button type="button" class="btn btn-success " >
+                        Accept
+                    </button></a>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <d>
+
+    </d>
+
+
+
+{% endblock %}

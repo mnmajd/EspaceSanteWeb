@@ -8,8 +8,8 @@
         <tr>
             <th scope="col">Id Question</th>
             <th scope="col">User NAme</th>
-            <th scope="col">Contenu Question</th>
-            <th scope="col">Verify</th>
+
+            <th scope="col">See Question</th>
 
 
         </tr>
@@ -19,8 +19,8 @@
             {% for quest in quest %}
             <td scope="row">{{ quest.idQuestion }}</td>
             <td>{{ quest.idUser.username }}</td>
-            <td style="width: 100px">{{ quest.contenuQuest }}</td>
-            <td><a href="#"><button type="button" class="btn btn-success " >
+
+            <td><a href="{{ path('confirmquest',{'id':quest.idQuestion}) }}"><button type="button" class="btn btn-success " >
                     Verifier
                 </button></a></td>
 
