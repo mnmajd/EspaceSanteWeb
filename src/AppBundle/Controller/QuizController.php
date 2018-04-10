@@ -31,6 +31,9 @@ class QuizController extends Controller
             'quizzes' => $quizzes,
         ));
     }
+
+
+
     public function indexFrontAction()
     {
         $em = $this->getDoctrine()->getManager();
@@ -326,7 +329,7 @@ class QuizController extends Controller
 
        // $mailer=\Swift_Mailer::newInstance();
         $message = \Swift_Message::newInstance()
-            ->setSubject('test')
+            ->setSubject('Nouvaux Activation')
             ->setTo($this->getAllMails())
             ->setFrom("said_hmidi@yahoo.com")
             ->setBody('Veuillez essayer notre nouveau quiz de '.$quiz);
