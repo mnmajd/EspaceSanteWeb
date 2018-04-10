@@ -117,3 +117,7 @@ approve:
     path:     /approve/{id}
     defaults: { _controller: AppBundle:Admin:approve}
 
+dislike:
+    path:     /Question/{idq}/{idr}
+    defaults: { _controller: AppBundle:Reponse:dislike }
+

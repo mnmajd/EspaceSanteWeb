@@ -4,7 +4,7 @@
     <p class="sub_t_agileits">& Bien Etre</p>
     <div class="media panel panel-default" style="margin-left: 30px; margin-right: 30px" >
         <a class="pull-left" href="#">
-            <img class="media-object" src="https://s3.amazonaws.com/uifaces/faces/twitter/dancounsell/128.jpg">
+            <img class="media-object" src="https://scontent.ftun3-1.fna.fbcdn.net/v/t1.0-9/13062512_1047890938619105_475122614364588737_n.jpg?_nc_cat=0&oh=c5ba421c1dd10226ab2ba7da8fac7c81&oe=5B643536 " width="150" height="150">
         </a>
         <div class="media-body">
             <h4 class="media-heading">{{ question.sujetQuestion}}</h4>
@@ -28,14 +28,14 @@
         {% for reponse in reponses %}
         <li class="media">
             <a class="pull-left" href="#">
-                <img class="media-object img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/dancounsell/128.jpg" alt="profile">
+                <img class="media-object img-circle" src="https://scontent.ftun3-1.fna.fbcdn.net/v/t1.0-9/23795530_2075752239314677_2216223579689381687_n.jpg?_nc_cat=0&oh=f649e708d0d1da0c9dfbd6d9bbe89d95&oe=5B6A9BD0" alt="profile" height="150" width="150">
             </a>
             <div class="media-body">
                 <div class="well well-lg">
                     <h4 class="media-heading text-uppercase reviews">{{ reponse.idUser.username }} </h4>
 
 
-                            <h4 class="media-heading text-uppercase reviews"><i class="fa fa-calendar-check-o"></i>{{ reponse.datePublication|date() }} </h4>
+                            <h5 class="media-heading text-uppercase reviews"><i class="fa fa-calendar-check-o"></i>{{ reponse.datePublication|date() }} </h5>
 
 
 
@@ -43,14 +43,29 @@
                     <ul class="media-date text-uppercase reviews list-inline">
 
                     </ul>
-                    <p class="media-comment">
+                    <p class="media-comment" style="margin-top: 10px; margin-bottom: 10px ; font-size: 15px">
                         {{ reponse.contenuRep }}
                     </p>
                     {% if not user == null %}
                     {% if user.id == reponse.idUser.id %}
+
+
                     <a class="btn btn-info btn-circle text-uppercase" href="{{ path('editResponse',{'idq':question.idQuestion ,'idr':reponse.idRep}) }}" id="reply"><span><i class="fa fa-edit"></i></span> Edit</a>
                     <a class="btn btn-danger btn-circle text-uppercase" href="{{ path('deleteResponse',{'idq':question.idQuestion ,'idr':reponse.idRep}) }}"><span><i class="fa fa-trash"></i></span> Delete</a>{% endif %}
-                    <a href="{{ path('like',{'idq':question.idQuestion ,'idr':reponse.idRep}) }}"> <i class="fa fa-thumbs-up" style="font-size: 20px"></i><strong>Like</strong></a> {% endif %}<strong >{{ reponse.nbrAimeRep }} Likes</strong>
+
+                    <a href="{{ path('like',{'idq':question.idQuestion ,'idr':reponse.idRep}) }}"> <i class="fa fa-thumbs-up" style="font-size: 20px"></i><strong>Like</strong></a>
+
+
+
+
+
+
+
+
+                    {% endif %}
+
+
+                    <strong >{{ reponse.nbrAimeRep }} Likes</strong>
                 </div>
             </div>
 

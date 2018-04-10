@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * LikedQuestion
- * @ORM\Table(name="reponse")
+ * @ORM\Table(name="Liked_question")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\LikedQuestionRepository")
  */
 class LikedQuestion
@@ -29,6 +29,15 @@ class LikedQuestion
      * })
      */
     private $idUser;
+    /**
+     * @var \AppBundle\Entity\Reponse
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Reponse")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_rep", referencedColumnName="id_rep")
+     * })
+     */
+    private $idRep;
 
     /**
      * @return int
@@ -60,6 +69,22 @@ class LikedQuestion
     public function setIdUser($idUser)
     {
         $this->idUser = $idUser;
+    }
+
+    /**
+     * @return Reponse
+     */
+    public function getIdRep()
+    {
+        return $this->idRep;
+    }
+
+    /**
+     * @param Reponse $idRep
+     */
+    public function setIdRep($idRep)
+    {
+        $this->idRep = $idRep;
     }
 
 

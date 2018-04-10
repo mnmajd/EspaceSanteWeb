@@ -29,7 +29,7 @@ class AdminController extends Controller
      {
          $pieChart = new PieChart();
          $em = $this->getDoctrine()->getManager();
-         $questionApps = $em->getRepository('AppBundle:Question')->findBy(array('approvedQuestion'=> 1));
+         $questionApps = $em->getRepository('AppBundle:Question')->findAll();
          $questionNot = $em->getRepository('AppBundle:Question')->findBy(array('approvedQuestion'=> 0));
         $nbr1 = 1;
          $nbr2 = 1 ;
