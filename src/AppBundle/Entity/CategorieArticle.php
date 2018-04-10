@@ -17,7 +17,7 @@ class CategorieArticle
      *
      * @ORM\Column(name="nom_cat", type="string", length=20, nullable=false)
      */
-    private $nomCat;
+    public $nomCat;
 
     /**
      * @var integer
@@ -26,8 +26,39 @@ class CategorieArticle
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idCat;
+    public $idCat;
+
+    /**
+     * @return string
+     */
+    public function getNomCat()
+    {
+        return $this->nomCat;
+    }
+
+    /**
+     * @param string $nomCat
+     */
+    public function setNomCat($nomCat)
+    {
+        $this->nomCat = $nomCat;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIdCat()
+    {
+        return $this->idCat;
+    }
+
+    /**
+     * @param int $idCat
+     */
+    public function setIdCat($idCat)
+    {
+        $this->idCat = $idCat;
+    }
 
 
 }
-

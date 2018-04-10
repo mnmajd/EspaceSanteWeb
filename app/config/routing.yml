@@ -29,3 +29,63 @@ defis:
     path:     /listdefis
     defaults: { _controller: AppBundle:Defis:index }
 
+ajout_article:
+    path:     /ajoutArticle
+    defaults: { _controller: AppBundle:Article:ajoutArticle }
+calcul_imc:
+    path:     imc
+    defaults: { _controller: AppBundle:CalculController:calculImc }
+
+affichblog:
+    path:     /affichblog
+    defaults: { _controller: AppBundle:Article:affichblog }
+
+calcul_p_id:
+    path:     poidsideal
+    defaults: { _controller: AppBundle:CalculController:calculPId }
+
+calcul_img:
+    path:     img
+    defaults: { _controller: AppBundle:CalculController:calculImg }
+
+detail:
+    path:     /detail/{id}
+    defaults: { _controller: AppBundle:Article:detail }
+
+searcharticle:
+    path:     /searcharticle
+    defaults: { _controller: AppBundle:Article:searcharticle }
+
+
+
+delete:
+    path:     /delete/{id}
+    defaults: { _controller: AppBundle:Article:delete }
+confirmarticle:
+    path:     /confirmarticle/{id}
+    defaults: { _controller: AppBundle:Admin:confirmarticle }
+
+backarticle:
+    path:     backarticle
+    defaults: { _controller: AppBundle:Admin:articleAll }
+
+supprimAdmin:
+    path:     supprimAdmin/{id}
+    defaults: { _controller: AppBundle:Admin:supprimAdmin }
+
+bloguser:
+    path:     /bloguser/{id}
+    defaults: { _controller: AppBundle:Article:blogByUser }
+
+
+affichvisiblBlog:
+    path:     /affichvisiblBlog
+    defaults: { _controller: AppBundle:Article:affichvisiblBlog }
+
+new:
+    path:     /new
+    defaults: { _controller: AppBundle:Article:new }
+
+categ:
+    path:     /categ
+    defaults: { _controller: AppBundle:Article:categ }

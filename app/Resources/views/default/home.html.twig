@@ -76,7 +76,7 @@ Smartphone Compatible web template, free web designs for Nokia, Samsung, LG, Son
                 <nav class="menu menu--sebastian">
                     <ul id="m_nav_list" class="m_nav menu__list">
                         <li class="m_nav_item menu__item menu__item--current" id="m_nav_item_1"> <a href="index.html" class="menu__link"> Acceuil </a></li>
-                        <li class="m_nav_item menu__item" id="moble_nav_item_2"> <a href="about.html" class="menu__link"> Blog </a> </li>
+                        <li class="m_nav_item menu__item" id="moble_nav_item_2"> <a href="{{ path('affichblog') }}" class="menu__link"> Blog </a> </li>
                         <li class="m_nav_item menu__item" id="moble_nav_item_2"> <a href="about.html" class="menu__link">forum</a> </li>
                         <li class="m_nav_item menu__item" id="moble_nav_item_4"> <a href="appointment.html" class="menu__link">Service  </a> </li>
                         <li class="m_nav_item menu__item" id="moble_nav_item_3 dropdown"> <a href="#" class="menu__link dropdown-toggle" data-toggle="dropdown">Annonces  <b class="caret"></b></a>
@@ -87,6 +87,13 @@ Smartphone Compatible web template, free web designs for Nokia, Samsung, LG, Son
                         </li>
                         <li class="m_nav_item menu__item" id="moble_nav_item_5"> <a href="gallery.html" class="menu__link">Quiz</a> </li>
                         <li class="m_nav_item menu__item" id="moble_nav_item_6"> <a href="{{ path('defis') }}" class="menu__link"> Defis </a> </li>
+                        <li class="m_nav_item menu__item" id="moble_nav_item_3 dropdown"> <a href="#" class="menu__link dropdown-toggle" data-toggle="dropdown">Outils  <b class="caret"></b></a>
+                            <ul class="dropdown-menu agile_short_dropdown">
+                                <li><a href="{{ path('calcul_imc') }}"> Calculer IMC </a></li>
+                                <li><a href="{{ path('calcul_img') }}"> Calculer IMG </a></li>
+                                <li><a href="{{ path('calcul_p_id') }}"> Calculer Poids Idéal </a></li>
+                            </ul>
+                        </li>
                         <li class="m_nav_item menu__item" id="moble_nav_item_2"> <a href="{{ path('fos_user_security_login')}}" class="menu__link"> Se Connecter </a> </li>
                     </ul>
                 </nav>

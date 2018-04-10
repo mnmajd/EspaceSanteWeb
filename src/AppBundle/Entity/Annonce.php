@@ -81,5 +81,206 @@ class Annonce
     private $idUser;
 
 
-}
 
+    /**
+     * Set typeAnnonce
+     *
+     * @param string $typeAnnonce
+     *
+     * @return Annonce
+     */
+    public function setTypeAnnonce($typeAnnonce)
+    {
+        $this->typeAnnonce = $typeAnnonce;
+
+        return $this;
+    }
+
+    /**
+     * Get typeAnnonce
+     *
+     * @return string
+     */
+    public function getTypeAnnonce()
+    {
+        return $this->typeAnnonce;
+    }
+
+    /**
+     * Set titreAnnonce
+     *
+     * @param string $titreAnnonce
+     *
+     * @return Annonce
+     */
+    public function setTitreAnnonce($titreAnnonce)
+    {
+        $this->titreAnnonce = $titreAnnonce;
+
+        return $this;
+    }
+
+    /**
+     * Get titreAnnonce
+     *
+     * @return string
+     */
+    public function getTitreAnnonce()
+    {
+        return $this->titreAnnonce;
+    }
+
+    /**
+     * Set descAnnonce
+     *
+     * @param string $descAnnonce
+     *
+     * @return Annonce
+     */
+    public function setDescAnnonce($descAnnonce)
+    {
+        $this->descAnnonce = $descAnnonce;
+
+        return $this;
+    }
+
+    /**
+     * Get descAnnonce
+     *
+     * @return string
+     */
+    public function getDescAnnonce()
+    {
+        return $this->descAnnonce;
+    }
+
+    /**
+     * Set dateAnnonce
+     *
+     * @param string $dateAnnonce
+     *
+     * @return Annonce
+     */
+    public function setDateAnnonce($dateAnnonce)
+    {
+        $this->dateAnnonce = $dateAnnonce;
+
+        return $this;
+    }
+
+    /**
+     * Get dateAnnonce
+     *
+     * @return string
+     */
+    public function getDateAnnonce()
+    {
+        return $this->dateAnnonce;
+    }
+
+    /**
+     * Set addrAnnonce
+     *
+     * @param string $addrAnnonce
+     *
+     * @return Annonce
+     */
+    public function setAddrAnnonce($addrAnnonce)
+    {
+        $this->addrAnnonce = $addrAnnonce;
+
+        return $this;
+    }
+
+    /**
+     * Get addrAnnonce
+     *
+     * @return string
+     */
+    public function getAddrAnnonce()
+    {
+        return $this->addrAnnonce;
+    }
+
+    /**
+     * Set telAnnonce
+     *
+     * @param integer $telAnnonce
+     *
+     * @return Annonce
+     */
+    public function setTelAnnonce($telAnnonce)
+    {
+        $this->telAnnonce = $telAnnonce;
+
+        return $this;
+    }
+
+    /**
+     * Get telAnnonce
+     *
+     * @return integer
+     */
+    public function getTelAnnonce()
+    {
+        return $this->telAnnonce;
+    }
+
+    /**
+     * Set imgAnnonce
+     *
+     * @param string $imgAnnonce
+     *
+     * @return Annonce
+     */
+    public function setImgAnnonce($imgAnnonce)
+    {
+        $this->imgAnnonce = $imgAnnonce;
+
+        return $this;
+    }
+
+    /**
+     * Get imgAnnonce
+     *
+     * @return string
+     */
+    public function getImgAnnonce()
+    {
+        return $this->imgAnnonce;
+    }
+
+    /**
+     * Get idAnnonce
+     *
+     * @return integer
+     */
+    public function getIdAnnonce()
+    {
+        return $this->idAnnonce;
+    }
+
+    /**
+     * Set idUser
+     *
+     * @param \AppBundle\Entity\User $idUser
+     *
+     * @return Annonce
+     */
+    public function setIdUser(\AppBundle\Entity\User $idUser = null)
+    {
+        $this->idUser = $idUser;
+
+        return $this;
+    }
+
+    /**
+     * Get idUser
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getIdUser()
+    {
+        return $this->idUser;
+    }
+}

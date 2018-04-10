@@ -1,0 +1,59 @@
+{% extends '::default/home.html.twig' %}
+
+
+{% block content  %}
+
+<h1>Article</h1>
+{% for article in article %}
+<table>
+    <tbody>
+    <tr>
+        <th>Titrearticle</th>
+        <td>{{ article.titreArticle }}</td>
+    </tr>
+    <tr>
+        <th>Sujetarticle</th>
+        <td>{{ article.sujetArticle }}</td>
+    </tr>
+    <tr>
+        <th>Contenuarticle</th>
+        <td>{{ article.contenuArticle | raw }}</td>
+    </tr>
+    <tr>
+        <th>Datepub</th>
+        <td>{% if article.datePub %}{{ article.datePub|date('Y-m-d H:i:s') }}{% endif %}</td>
+    </tr>
+    <tr>
+        <th>Imgartc</th>
+        <td>{{ article.imgArtc }}</td>
+    </tr>
+    <tr>
+        <th>Iduser</th>
+        <td>{{ article.idUser }}</td>
+    </tr>
+    <tr>
+        <th>Idcat</th>
+        <td>{{ article.idCat }}</td>
+    </tr>
+    <tr>
+        <th>Idarticle</th>
+        <td>{{ article.idArticle }}</td>
+    </tr>
+    </tbody>
+</table>
+
+<ul>
+    <li>
+        <a href="{{ path('article_index') }}">Back to the list</a>
+    </li>
+    <li>
+        <a href="{{ path('article_edit', { 'idArticle': article.idArticle }) }}">Edit</a>
+    </li>
+    <li>
+        {{ form_start(delete_form) }}
+        <input type="submit" value="Delete">
+        {{ form_end(delete_form) }}
+    </li>
+</ul>
+
+{% endblock %}

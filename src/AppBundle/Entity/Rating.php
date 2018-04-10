@@ -49,5 +49,86 @@ class Rating
     private $idUser;
 
 
-}
 
+    /**
+     * Set valeur
+     *
+     * @param float $valeur
+     *
+     * @return Rating
+     */
+    public function setValeur($valeur)
+    {
+        $this->valeur = $valeur;
+
+        return $this;
+    }
+
+    /**
+     * Get valeur
+     *
+     * @return float
+     */
+    public function getValeur()
+    {
+        return $this->valeur;
+    }
+
+    /**
+     * Get idRating
+     *
+     * @return integer
+     */
+    public function getIdRating()
+    {
+        return $this->idRating;
+    }
+
+    /**
+     * Set idService
+     *
+     * @param \AppBundle\Entity\Service $idService
+     *
+     * @return Rating
+     */
+    public function setIdService(\AppBundle\Entity\Service $idService = null)
+    {
+        $this->idService = $idService;
+
+        return $this;
+    }
+
+    /**
+     * Get idService
+     *
+     * @return \AppBundle\Entity\Service
+     */
+    public function getIdService()
+    {
+        return $this->idService;
+    }
+
+    /**
+     * Set idUser
+     *
+     * @param \AppBundle\Entity\User $idUser
+     *
+     * @return Rating
+     */
+    public function setIdUser(\AppBundle\Entity\User $idUser = null)
+    {
+        $this->idUser = $idUser;
+
+        return $this;
+    }
+
+    /**
+     * Get idUser
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getIdUser()
+    {
+        return $this->idUser;
+    }
+}

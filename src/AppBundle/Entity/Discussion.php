@@ -39,5 +39,28 @@ class Discussion
     {
         return $this->id;
     }
-}
 
+    /**
+     * Set idDefis
+     *
+     * @param \AppBundle\Entity\Defis $idDefis
+     *
+     * @return Discussion
+     */
+    public function setIdDefis(\AppBundle\Entity\Defis $idDefis = null)
+    {
+        $this->idDefis = $idDefis;
+
+        return $this;
+    }
+
+    /**
+     * Get idDefis
+     *
+     * @return \AppBundle\Entity\Defis
+     */
+    public function getIdDefis()
+    {
+        return $this->idDefis;
+    }
+}

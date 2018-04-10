@@ -1,0 +1,22 @@
+#article {
+    width: 300px;
+    height: 350px;
+    border-color: gainsboro;
+   background-color: gainsboro;
+    margin-bottom: 25px;
+    margin-left: 30px;
+    display: inline-block
+
+
+}
+
+
+a{
+    text-align: left;
+}
+
+input{
+
+    text-align: center;
+}
+

@@ -89,5 +89,76 @@ class Publication
     {
         return $this->Contenu;
     }
-}
 
+    /**
+     * Set datePublication
+     *
+     * @param \DateTime $datePublication
+     *
+     * @return Publication
+     */
+    public function setDatePublication($datePublication)
+    {
+        $this->datePublication = $datePublication;
+
+        return $this;
+    }
+
+    /**
+     * Get datePublication
+     *
+     * @return \DateTime
+     */
+    public function getDatePublication()
+    {
+        return $this->datePublication;
+    }
+
+    /**
+     * Set idUser
+     *
+     * @param \AppBundle\Entity\User $idUser
+     *
+     * @return Publication
+     */
+    public function setIdUser(\AppBundle\Entity\User $idUser = null)
+    {
+        $this->idUser = $idUser;
+
+        return $this;
+    }
+
+    /**
+     * Get idUser
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getIdUser()
+    {
+        return $this->idUser;
+    }
+
+    /**
+     * Set idDisc
+     *
+     * @param \AppBundle\Entity\Discussion $idDisc
+     *
+     * @return Publication
+     */
+    public function setIdDisc(\AppBundle\Entity\Discussion $idDisc = null)
+    {
+        $this->idDisc = $idDisc;
+
+        return $this;
+    }
+
+    /**
+     * Get idDisc
+     *
+     * @return \AppBundle\Entity\Discussion
+     */
+    public function getIdDisc()
+    {
+        return $this->idDisc;
+    }
+}

@@ -1,0 +1,209 @@
+{% extends '::default/home.html.twig' %}
+
+
+{% block content  %}
+
+    <link rel="stylesheet" href="{{ asset('css/stylecalcul.css')}}"  type="text/css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script language = "javascript">
+
+
+        $(document).ready(function(){
+
+
+           $("#load").on("click", function(event){
+//if ("#calculer").on("click", function(event){
+
+               var taille = $("#taille").val();
+               var poids = $("#poids").val();
+               var imc = parseInt(taille) + parseInt(poids);
+               var imc =  parseFloat(poids) / parseFloat(parseInt(taille)*parseInt(taille)) ;
+               var im =  imc*10000 ;
+               var i = im.toFixed(1);
+             // var i = Math.round(im*100)/100
+
+
+
+              $.ajax({
+                    url:        'imc',
+                    type:       'POST',
+
+                    success: function(response) {
+
+
+                        $("#rslt").html("VOTRE IMC : "+ i);
+
+                        if (i < 18.5) {
+                            $("#3").css("background-color", "white");
+                            $("#4").css("background-color", "white");
+                            $("#5").css("background-color", "white");
+                            $("#6").css("background-color", "white");
+                            $("#7").css("background-color", "white");
+                            $("#2").css("background-color", "yellow");
+
+                        }
+
+                        else if(i >= 18.5 && i < 25 ) {
+                            $("#2").css("background-color", "white");
+                            $("#4").css("background-color", "white");
+                            $("#5").css("background-color", "white");
+                            $("#6").css("background-color", "white");
+                            $("#7").css("background-color", "white");
+                            $("#3").css("background-color", "yellow");
+                        }
+
+                        else if(i >= 25 && i < 30) {
+                            $("#3").css("background-color", "white");
+                            $("#2").css("background-color", "white");
+                            $("#5").css("background-color", "white");
+                            $("#6").css("background-color", "white");
+                            $("#7").css("background-color", "white");
+                            $("#4").css("background-color", "yellow");
+                        }
+                        else if(i >= 30 && i < 35) {
+                            $("#3").css("background-color", "white");
+                            $("#4").css("background-color", "white");
+                            $("#2").css("background-color", "white");
+                            $("#6").css("background-color", "white");
+                            $("#7").css("background-color", "white");
+                            $("#5").css("background-color", "yellow");
+                        }
+                        else if(i >= 35 && i < 40) {
+                            $("#3").css("background-color", "white");
+                            $("#4").css("background-color", "white");
+                            $("#5").css("background-color", "white");
+                            $("#2").css("background-color", "white");
+                            $("#7").css("background-color", "white");
+                            $("#6").css("background-color", "yellow");
+                        }
+                        else if(i > 40) {
+                            $("#3").css("background-color", "white");
+                            $("#4").css("background-color", "white");
+                            $("#5").css("background-color", "white");
+                            $("#6").css("background-color", "white");
+                            $("#2").css("background-color", "white");
+                            $("#7").css("background-color", "yellow");
+                        }
+                        else {
+                            $("#1").css("background-color", "white");
+                        }
+
+
+
+
+                    },
+                    error : function(xhr, textStatus, errorThrown) {
+                        alert('Ajax request failed.');
+                        $('#rslt').append('no');
+                    }
+                });
+            });
+        });
+
+    </script>
+
+
+<br> <br> <br>
+
+<h1>IMC </h1>
+
+<br>
+
+   <p id="def"> L’indice de masse corporelle (IMC) permet d’évaluer rapidement votre corpulence simplement avec votre poids et votre taille,
+    quel que soit votre sexe. Calculez rapidement votre IMC et découvrez dans quelle catégorie vous vous situez.
+<br>
+    L’indice de masse corporelle (IMC) est le seul indice validé par l’Organisation mondiale de la santé pour évaluer la corpulence
+    d’un individu et donc les éventuels risques pour la santé.
+    L’IMC permet de déterminer si l’on est situation de maigreur, de surpoids ou d’obésité par exemple.
+   </p>
+
+    <br>
+
+    <br>
+    <h1> CALCULER MON IMC </h1>
+
+    <br>
+
+
+    <br>
+    <div id="p">
+    <div class="inputs" align="center">
+<br>
+        <form class="form-style-7">
+<input type="number" name ="taille" id="taille" placeholder="Ma taille en cms" align="right">
+<br>
+<br>
+<input type="number" name ="poids" id="poids" placeholder="Mon poids en kgs">
+<br> <br>
+<a id = "load" href = "#"> <img src="{{ asset('images/cal.png') }}"  width=60 height=70  alt="#"/> </a>
+        </form>
+    </div>
+
+<br>
+
+
+<div id="rslt" align="center"></div>
+<br>
+    </div>
+    <br> <br>
+
+
+    <h1> Interprétation </h1>
+    <br>
+    <div id="p2">
+    <table align="center">
+        <tr id="1" align="center">
+            <th width="300" align="center"> Indice de masse corporelle (IMC) </th>
+            <th width="300" align="center"> Interprétation (d'après l'OMS) </th>
+        </tr>
+
+        <tr id="2">
+            <td>
+                moins de 18,5
+            </td>
+            <td> Insuffisance pondérale (maigreur)</td>
+        </tr>
+
+        <tr id="3">
+            <td>
+                18,5 à 25
+            </td>
+            <td> Corpulence normale </td>
+        </tr>
+
+        <tr id="4">
+            <td>
+                25 à 30
+            </td>
+            <td> Surpoids </td>
+        </tr>
+
+        <tr id="5">
+            <td>
+                30 à 35
+            </td>
+            <td>Obésité modérée </td>
+        </tr>
+
+        <tr id="6">
+            <td>
+                35 à 40
+            </td>
+            <td>Obésité sévère </td>
+        </tr>
+
+        <tr id="7">
+            <td>
+                plus de 40
+            </td>
+            <td>Obésité morbide ou massive </td>
+        </tr>
+
+    </table>
+    </div>
+
+
+<br>
+
+{% endblock %}

@@ -32,5 +32,38 @@ class LikedQuestion
     private $idUser;
 
 
-}
 
+    /**
+     * Get idLikedReponse
+     *
+     * @return integer
+     */
+    public function getIdLikedReponse()
+    {
+        return $this->idLikedReponse;
+    }
+
+    /**
+     * Set idUser
+     *
+     * @param \AppBundle\Entity\User $idUser
+     *
+     * @return LikedQuestion
+     */
+    public function setIdUser(\AppBundle\Entity\User $idUser = null)
+    {
+        $this->idUser = $idUser;
+
+        return $this;
+    }
+
+    /**
+     * Get idUser
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getIdUser()
+    {
+        return $this->idUser;
+    }
+}

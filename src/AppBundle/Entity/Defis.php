@@ -151,4 +151,3 @@ class Defis
         return $this->titre;
     }
 }
-

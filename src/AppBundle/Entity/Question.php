@@ -77,5 +77,182 @@ class Question
     private $nomCatf;
 
 
-}
 
+    /**
+     * Set contenuQuest
+     *
+     * @param string $contenuQuest
+     *
+     * @return Question
+     */
+    public function setContenuQuest($contenuQuest)
+    {
+        $this->contenuQuest = $contenuQuest;
+
+        return $this;
+    }
+
+    /**
+     * Get contenuQuest
+     *
+     * @return string
+     */
+    public function getContenuQuest()
+    {
+        return $this->contenuQuest;
+    }
+
+    /**
+     * Set approvedQuestion
+     *
+     * @param boolean $approvedQuestion
+     *
+     * @return Question
+     */
+    public function setApprovedQuestion($approvedQuestion)
+    {
+        $this->approvedQuestion = $approvedQuestion;
+
+        return $this;
+    }
+
+    /**
+     * Get approvedQuestion
+     *
+     * @return boolean
+     */
+    public function getApprovedQuestion()
+    {
+        return $this->approvedQuestion;
+    }
+
+    /**
+     * Set sujetQuestion
+     *
+     * @param string $sujetQuestion
+     *
+     * @return Question
+     */
+    public function setSujetQuestion($sujetQuestion)
+    {
+        $this->sujetQuestion = $sujetQuestion;
+
+        return $this;
+    }
+
+    /**
+     * Get sujetQuestion
+     *
+     * @return string
+     */
+    public function getSujetQuestion()
+    {
+        return $this->sujetQuestion;
+    }
+
+    /**
+     * Set datePublication
+     *
+     * @param \DateTime $datePublication
+     *
+     * @return Question
+     */
+    public function setDatePublication($datePublication)
+    {
+        $this->datePublication = $datePublication;
+
+        return $this;
+    }
+
+    /**
+     * Get datePublication
+     *
+     * @return \DateTime
+     */
+    public function getDatePublication()
+    {
+        return $this->datePublication;
+    }
+
+    /**
+     * Set nbrRep
+     *
+     * @param integer $nbrRep
+     *
+     * @return Question
+     */
+    public function setNbrRep($nbrRep)
+    {
+        $this->nbrRep = $nbrRep;
+
+        return $this;
+    }
+
+    /**
+     * Get nbrRep
+     *
+     * @return integer
+     */
+    public function getNbrRep()
+    {
+        return $this->nbrRep;
+    }
+
+    /**
+     * Get idQuestion
+     *
+     * @return integer
+     */
+    public function getIdQuestion()
+    {
+        return $this->idQuestion;
+    }
+
+    /**
+     * Set idUser
+     *
+     * @param \AppBundle\Entity\User $idUser
+     *
+     * @return Question
+     */
+    public function setIdUser(\AppBundle\Entity\User $idUser = null)
+    {
+        $this->idUser = $idUser;
+
+        return $this;
+    }
+
+    /**
+     * Get idUser
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getIdUser()
+    {
+        return $this->idUser;
+    }
+
+    /**
+     * Set nomCatf
+     *
+     * @param \AppBundle\Entity\CategorieForum $nomCatf
+     *
+     * @return Question
+     */
+    public function setNomCatf(\AppBundle\Entity\CategorieForum $nomCatf = null)
+    {
+        $this->nomCatf = $nomCatf;
+
+        return $this;
+    }
+
+    /**
+     * Get nomCatf
+     *
+     * @return \AppBundle\Entity\CategorieForum
+     */
+    public function getNomCatf()
+    {
+        return $this->nomCatf;
+    }
+}

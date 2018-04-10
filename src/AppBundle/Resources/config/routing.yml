@@ -1,0 +1,37 @@
+app_categoriearticle:
+    resource: "@AppBundle/Resources/config/routing/categoriearticle.yml"
+    prefix:   /categoriearticle
+
+
+ajout_article:
+    path:     /ajoutArticle
+    defaults: { _controller: AppBundle:Article:ajoutArticle }
+
+affiche_article:
+    path:     /afficheArticle
+    defaults: { _controller: AppBundle:Article:afficheArticle }
+
+supprimer_article:
+    path:     /supprimerArticle
+    defaults: { _controller: AppBundle:Article:supprimerArticle }
+
+modif_article:
+    path:     /modifArticle
+    defaults: { _controller: AppBundle:Article:modifArticle }
+
+calcul_imc:
+    path:     imc
+    defaults: { _controller: AppBundle:CalculController:calculImc }
+
+calcul_img:
+    path:     img
+    defaults: { _controller: AppBundle:CalculController:calculImg }
+
+calcul_p_id:
+    path:     poidsideal
+    defaults: { _controller: AppBundle:CalculController:calculPId }
+
+
+categ:
+    path:     /categ
+    defaults: { _controller: AppBundle:CategorieArticle:index }

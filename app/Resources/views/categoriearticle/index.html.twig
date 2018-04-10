@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Categoriearticles list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nomcat</th>
+                <th>Idcat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for categorieArticle in categorieArticles %}
+            <tr>
+                <td><a href="{{ path('categoriearticle_show', { 'idCat': categorieArticle.idCat }) }}">{{ categorieArticle.nomCat }}</a></td>
+                <td>{{ categorieArticle.idCat }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('categoriearticle_show', { 'idCat': categorieArticle.idCat }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('categoriearticle_edit', { 'idCat': categorieArticle.idCat }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('categoriearticle_new') }}">Create a new categorieArticle</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,24 @@
+categoriearticle_index:
+    path:     /
+    defaults: { _controller: "AppBundle:CategorieArticle:index" }
+    methods:  GET
+
+categoriearticle_show:
+    path:     /{idCat}/show
+    defaults: { _controller: "AppBundle:CategorieArticle:show" }
+    methods:  GET
+
+categoriearticle_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:CategorieArticle:new" }
+    methods:  [GET, POST]
+
+categoriearticle_edit:
+    path:     /{idCat}/edit
+    defaults: { _controller: "AppBundle:CategorieArticle:edit" }
+    methods:  [GET, POST]
+
+categoriearticle_delete:
+    path:     /{idCat}/delete
+    defaults: { _controller: "AppBundle:CategorieArticle:delete" }
+    methods:  DELETE

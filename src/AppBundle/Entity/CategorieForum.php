@@ -22,5 +22,14 @@ class CategorieForum
     private $nomCatf;
 
 
-}
 
+    /**
+     * Get nomCatf
+     *
+     * @return string
+     */
+    public function getNomCatf()
+    {
+        return $this->nomCatf;
+    }
+}

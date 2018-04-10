@@ -1,0 +1,52 @@
+{% extends '::default/home.html.twig' %}
+
+
+{% block content  %}
+
+    <script src="https://cdn.ckeditor.com/4.9.1/standard/ckeditor.js"></script>
+    <h1>Article creation</h1>
+
+
+
+    {{ form_start(form) }}
+
+
+    <div>
+
+
+
+
+        {{ form_widget(form.titreArticle, { 'attr': {'class': "titreArticle",
+            'placeholder': 'Titre article '|trans} }) }}
+
+                {{ form_widget(form.sujetArticle , { 'attr': {'class': "sujetArticle",
+                    'placeholder': 'Sujet article '|trans} }) }}
+
+
+
+        {{ form_widget(form.idCat)}}
+
+
+<br> <br>
+        <textarea name="contenuArticle"></textarea>
+        <script>
+            CKEDITOR.replace( 'contenuArticle' );
+        </script>
+
+
+
+
+    </div>
+    <input type="submit" value="Publier" />
+
+
+    {{ form_end(form) }}
+
+
+
+    <ul>
+        <li>
+            <a href="{{ path('article_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}

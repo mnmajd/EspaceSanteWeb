@@ -1,0 +1,77 @@
+{% extends '::default/home.html.twig' %}
+
+
+{% block content  %}
+
+
+    <link rel="stylesheet" href="{{ asset('css/blog.css')}}"  type="text/css">
+
+
+   {#<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"> </script>
+   <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+   <script>
+       $('#search').keyup(
+           function(){
+               var titre=$(this).val();
+              // var DATA="titre="+titre;
+               $.ajax({
+                   type:"POST",
+                   url:"{{ path('searcharticle') }}",
+                   dataType: 'json',
+                   data: {
+                       "titre" : titre
+                   },
+                   sync:true,
+                   success:function(data){
+
+
+                       $.each(data,function(k,el){
+
+                        $('#article').append(
+
+                          'ccc'
+
+
+                           );
+                      console.log(message.error('waa'))
+
+                       })
+                   }
+               })
+           }
+       )
+   </script>#}
+<br> <br>
+   <input type="text" placeholder="Rechercher " id="search" href="center">
+   <br>
+
+
+       {% for rol in r %}
+
+
+
+           <div id="article">
+
+               {{ rol.titreArticle }}
+               <br>
+
+               {{ rol.sujetArticle }}
+<br>
+               {% if rol.datePub %}{{ rol.datePub|date('Y-m-d H:i:s') }}{% endif %}
+               <br> <br>
+
+                   <a href="{{ path('detail', {'id': rol.idArticle}) }}"> Lire la suite >> </a>
+
+           </div>
+
+       {% endfor %}
+
+
+
+
+
+
+
+
+{% endblock %}

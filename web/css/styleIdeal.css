@@ -1,0 +1,150 @@
+#def {
+     font-size: 20px;
+     padding: 20px;
+     line-height:200% ;
+     font-family: cursive;
+ }
+
+#def2 {
+    font-size: 20px;
+    padding: 20px;
+    line-height:200% ;
+    font-family: cursive;
+}
+
+
+#rslt2 , #rslt {
+    font-size:30px;
+    color: darkgrey;
+
+    font-family: cursive;
+}
+
+table {
+    font-family: cursive;
+    height : 400px;
+
+}
+
+.inputs {
+
+    margin: auto;
+    width: 60%;
+    border: 3px  ;
+    padding: 10px;
+    background-color: #1c94c4;
+    border-radius: 50px 20px;
+    border-style : outset;
+}
+
+
+input {
+    border: none;
+    outline: none;
+    border-radius: 0;
+    text-align: center;
+    background: none;
+    font-weight: 700;
+    font-family:  georgia;
+    font-size: 25px;
+    color: rgba(255, 255, 255, 1);
+    max-width: 90%;
+    padding: 1rem;
+    border: 2px dashed rgba(255, 255, 255, 0);
+    box-sizing: border-box;
+    cursor: text;
+}
+input {
+    border-bottom: 2px dashed rgba(255, 255, 255, 0.5);
+}
+
+
+input:required,
+textarea:required {
+    border-bottom: 2px dashed rgba(255, 255, 255, 0.5);
+}
+
+input:focus {
+    border-bottom: 2px dashed rgba(255, 255, 255, 1);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+input:required:valid {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+input:required:invalid {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+::-webkit-input-placeholder {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.4);
+    font-style: italic;
+    font-weight: 400;
+}
+
+:-moz-placeholder {
+    /* Firefox 18- */
+
+    text-align: center;
+    color: rgba(255, 255, 255, 0.4);
+    font-style: italic;
+    font-weight: 400;
+}
+
+::-moz-placeholder {
+    /* Firefox 19+ */
+
+    text-align: center;
+    color: rgba(255, 255, 255, 0.4);
+    font-style: italic;
+    font-weight: 400;
+}
+
+:-ms-input-placeholder {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.4);
+    font-style: italic;
+    font-weight: 400;
+}
+
+h1 {
+    border-left: 4px dotted red;
+    margin-left: 80px;
+    padding-left: 15px;
+    font-family: cursive;
+    color: dodgerblue;
+}
+
+h2{
+    border-left: 4px dotted red;
+    margin-left: 80px;
+    padding-left: 15px;
+    font-family: Calibri ;
+}
+
+#def{
+    border-left: 4px solid gainsboro;
+    border-bottom: 4px solid gainsboro;
+    margin-left: 80px;
+    padding-left: 15px;
+    border-bottom-left-radius: 60px;
+}
+
+#def2{
+    border-left: 4px solid gainsboro;
+
+    margin-left: 80px;
+    padding-left: 15px;
+
+}
+
+
+#p , #p2{
+    border-left: 4px solid gainsboro;
+    border-bottom: 4px solid gainsboro;
+    margin-left: 80px;
+    padding-left: 15px;
+    border-bottom-left-radius: 60px;
+}

@@ -48,5 +48,52 @@ class MembresDefis
     {
         return $this->id;
     }
-}
 
+    /**
+     * Set idUser
+     *
+     * @param \AppBundle\Entity\User $idUser
+     *
+     * @return MembresDefis
+     */
+    public function setIdUser(\AppBundle\Entity\User $idUser = null)
+    {
+        $this->idUser = $idUser;
+
+        return $this;
+    }
+
+    /**
+     * Get idUser
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getIdUser()
+    {
+        return $this->idUser;
+    }
+
+    /**
+     * Set idDefis
+     *
+     * @param \AppBundle\Entity\Defis $idDefis
+     *
+     * @return MembresDefis
+     */
+    public function setIdDefis(\AppBundle\Entity\Defis $idDefis = null)
+    {
+        $this->idDefis = $idDefis;
+
+        return $this;
+    }
+
+    /**
+     * Get idDefis
+     *
+     * @return \AppBundle\Entity\Defis
+     */
+    public function getIdDefis()
+    {
+        return $this->idDefis;
+    }
+}
