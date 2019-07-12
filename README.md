@@ -1,4 +1,4 @@
-Symfony Standard Edition 
+Symfony Standard Editionsss 
 ========================
 
 Welcome to the Symfony Standard Edition - a fully-functional Symfony
